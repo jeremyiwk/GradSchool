@@ -1,0 +1,174 @@
+\documentclass[]{article}
+%\usepackage{setspace}
+%\onehalfspacing
+\usepackage{amsmath,amssymb,amsthm}
+\renewcommand{\qedsymbol}{$\blacksquare$}
+\usepackage{amsmath}
+\usepackage{bm}
+\usepackage{amsfonts}
+\usepackage{mathrsfs}
+\usepackage{amssymb}
+\usepackage{enumerate}
+\usepackage{mdwlist}
+\usepackage{dirtytalk}
+\usepackage{xparse}
+\usepackage{physics}
+\usepackage{graphicx}
+\setcounter{MaxMatrixCols}{13}
+\setlength\parindent{0pt}
+\usepackage[none]{hyphenat}
+\usepackage[hmarginratio=1:1]{geometry}
+\begin{document}
+
+{\Large Physics 614 Homework 2}\\
+{Jeremy Welsh-Kavan}\\
+%\end{center}
+\vspace{0.2 cm}
+\hfill \\
+\noindent\rule{15cm}{0.4pt} \\
+
+\begin{enumerate}[1.]
+
+\item {\bf Boson statistics: the more the merrier}
+
+Consider a bosonic system with two single-particle eigenstates $\phi_a$ and $\phi_b$. Let $\psi_{i,j} (\bm{r}_1, ..., \bm{r}_{i+j} )$ denote the
+symmetrized and normalized wavefunction for $i$ particles in state $a$ and $j$ particles in state $b$. \\
+
+\begin{enumerate}[i.]
+
+\item The symmetrized wave function will count all possible arrangements of $i+j$ particles in which $i$ particles are in state $a$ and $j$ particles are in state $b$. To normalize this sum we have to divide by $\sqrt{i+j}$ so that
+
+\begin{equation}
+\begin{split}
+\psi_{N,0} (\bm{r}_1, ..., \bm{r}_{N} ) & = \phi_a( \bm{r}_1)\phi_a(\bm{r}_2)\dots\phi_a(\bm{r}_N) \\
+\end{split}
+\end{equation}
+
+and 
+
+\begin{equation}
+\begin{split}
+\psi_{N,1} (\bm{r}_1, ..., \bm{r}_{N+1} ) & = \frac{1}{\sqrt{N+1}}  \sum_{p=1}^{N+1} \phi_a( \bm{r}_1)\phi_a(\bm{r}_2)  \dots \phi_a(\bm{r}_{p-1}) \phi_b(\bm{r}_p) \phi_a(\bm{r}_{p+1}) \dots \phi_a(\bm{r}_{N+1}) \\
+\end{split}
+\end{equation}
+
+where the sum is over all states in which particle $p$ is in state $b$. \footnote{Sorry I wasn't sure what else to show for this one.} \\
+
+\item Now suppose the system begins in the state $\psi_{N,0} (\bm{r}_1, ..., \bm{r}_{N} )$ and a new particle is inserted in an equal superposition of states $a$ and $b$: $\psi_{\text{new}} (\bm{r}) = \frac{1}{\sqrt{2}} \left(  \phi_a(\bm{r}) + \phi_b(\bm{r}) \right)$. Then the wave function for the system, $\psi_{\text{new}} (\bm{r}_1, ..., \bm{r}_{N+1} )$, is given by symmetrizing the product state $\psi_{N,0} (\bm{r}_1, ..., \bm{r}_{N} )\psi_{\text{new}} (\bm{r})$. \\
+We can treat this new system as $N+1$ particles wherein one particle exists in the superposition above and the rest are in state $a$. Summing over all arrangements in which particle $p$ is in the superposition gives
+
+\begin{equation}
+\begin{split}
+\psi_{\text{new}} (\bm{r}_1, ..., \bm{r}_{N+1} ) & = C_B \left[  \sum_{p=1}^{N+1}   \phi_a( \bm{r}_1) \dots \phi_a(\bm{r}_{p-1})  \frac{1}{\sqrt{2}} \left(  \phi_a(\bm{r}_p) + \phi_b(\bm{r}_p) \right)\phi_a(\bm{r}_{p+1}) \dots \phi_a(\bm{r}_{N+1})   \right] \\
+\psi_{\text{new}} (\bm{r}_1, ..., \bm{r}_{N+1} ) & =  \frac{C_B}{\sqrt{2}}  \left[  \sum_{p=1}^{N+1}   \phi_a( \bm{r}_1) \dots \phi_a(\bm{r}_{p-1}) \phi_a(\bm{r}_p)\phi_a(\bm{r}_{p+1}) \dots \phi_a(\bm{r}_{N+1})   \right.
+ \\ & \left. +  \sum_{p=1}^{N+1}   \phi_a( \bm{r}_1) \dots \phi_a(\bm{r}_{p-1})\phi_b(\bm{r}_p)\phi_a(\bm{r}_{p+1}) \dots \phi_a(\bm{r}_{N+1})   \right] \\
+\psi_{\text{new}} (\bm{r}_1, ..., \bm{r}_{N+1} ) & =  \frac{C_B}{\sqrt{2}}  \left[  (N+1) \psi_{N+1,0} (\bm{r}_1, ..., \bm{r}_{N+1} ) + \sqrt{N+1} \psi_{N,1} (\bm{r}_1, ..., \bm{r}_{N+1} )    \right] \\
+\end{split}
+\end{equation}
+
+where $C_B$ is an overall normalization. \\
+
+\item We compute the ratio of the probability of finding all particles in state $a$, $|\braket{\psi_{N+1,0}}{\psi_{\text{new}}}|^2$, to the probability of finding a particle in state $b$, $| \braket{\psi_{N,1}}{\psi_{\text{new}}} |^2$. \\
+
+\begin{equation}
+\begin{split}
+|\braket{\psi_{N+1,0}}{\psi_{\text{new}}}|^2 & = \frac{C_B^2}{2}(N+1)^2 \\ 
+|\braket{\psi_{N,1}}{\psi_{\text{new}}}|^2 & = \frac{C_B^2}{2}(N+1) \\ 
+\implies \frac{|\braket{\psi_{N+1,0}}{\psi_{\text{new}}}|^2}{|\braket{\psi_{N,1}}{\psi_{\text{new}}}|^2} & = N+1 \\
+\end{split}
+\end{equation}
+
+\end{enumerate}
+
+\noindent\rule{15cm}{0.4pt} \\
+
+\item {\bf  Density of states}
+
+\begin{enumerate}[i.]
+
+\item For a one dimensional box of length $L$, the energy eigenstates are simply
+
+\begin{equation}
+\begin{split}
+\psi(x) & = \frac{1}{\sqrt{L}} e^{ik_nx} \\
+\end{split}
+\end{equation}
+
+each with energy $E_k = \frac{\hbar^2k_n^2}{2m} = \frac{4n^2\pi^2\hbar^2}{2mL^2}$, where $k_n = 2\pi n/L$. Following Tong's notes, we have
+
+\begin{equation}
+\begin{split}
+\sum_n \approx \int dn = \frac{L}{2\pi} \int_{-\infty}^\infty dk  & = \frac{L}{2\pi} \int_{-\infty}^\infty d\epsilon \dv{k}{\epsilon} \\
+& =  \frac{L}{2\pi} \int_{-\infty}^\infty d\epsilon  \frac{m}{\hbar^2}\left( \frac{2m}{\hbar^2} \epsilon  \right)^{-1/2} \\ 
+& = \int_{-\infty}^\infty d\epsilon g(\epsilon) \\
+\end{split}
+\end{equation}
+where $g(\epsilon)  = \frac{mL}{2\pi\hbar^2} \left( \frac{2m\epsilon}{\hbar^2}\right)^{-1/2}$. \\
+
+\item The wave function for the 2 dimensional case is similarly
+
+\begin{equation}
+\begin{split}
+\psi(\bm{x}) & = \frac{1}{L} e^{i\bm{k}_n\bm{x}} \\
+\end{split}
+\end{equation}
+
+with eigenenergies $E_k = \frac{\hbar^2\bm{k}_n^2}{2m}$, $\bm{k}_n = 2\pi/L(n_x, n_y)$. So we again have
+
+\begin{equation}
+\begin{split}
+\sum_{n_x,n_y} = \int dn_x dn_y = \frac{L^2}{2\pi} \int_{-\infty}^{\infty} k dk & = \frac{L^2}{2\pi} \int_{-\infty}^{\infty} \frac{m}{\hbar^2} d\epsilon  \\ 
+& =  \int_{-\infty}^{\infty} g(\epsilon) d\epsilon  \\ 
+\end{split}
+\end{equation}
+
+where $g(\epsilon) = \frac{mL^2}{2\pi\hbar^2}$. In the second equality in (8) we have integrated over the angle $\theta$ in polar coordinates. \\
+
+\end{enumerate}
+
+\item {\bf “Maxwell-Boltzmann” ideal gas}
+
+\begin{enumerate}[i.]
+
+\item We can write the grand potential for Maxwell-Boltzmann particles in the plane-wave basis, $\Phi = -k_BT\ln( \mathcal{Q} ) = -k_BT\sum_{\bm{k}} e^{-\beta(\epsilon_{\bm{k}} - \mu)}$, as an integral using the density of states, $g(\epsilon) = \frac{V}{4\pi^2}\left( \frac{2m}{\hbar^2}\right)^{3/2} \epsilon^{1/2}$. 
+
+\begin{equation}
+\begin{split}
+\Phi & = -k_BT\sum_{\bm{k}} e^{-\beta(\epsilon_{\bm{k}} - \mu)} \\
+\Phi & \approx -k_BT e^{\beta\mu} \frac{V}{4\pi^2} \left( \frac{2m}{\hbar^2} \right)^{3/2} \int_{0}^{\infty} \epsilon^{1/2} e^{-\beta\epsilon} d\epsilon \\
+\Phi & \approx -k_BT e^{\beta\mu} \frac{V}{4\pi^2} \left( \frac{2m}{\hbar^2} \right)^{3/2} \frac{1}{\beta^{3/2}}\int_{0}^{\infty} x^{1/2} e^{-x} dx \\
+\Phi & \approx -k_BT e^{\beta\mu} \frac{V}{4\pi^2} \left( \frac{2m}{\hbar^2} \right)^{3/2} \frac{1}{\beta^{3/2}}  \Gamma\left(\frac{3}{2} \right) \\
+\Phi & \approx -k_BT e^{\beta\mu} \frac{V}{4\pi^2} \left( \frac{2m}{\hbar^2} \right)^{3/2} \frac{\sqrt{\pi}}{2\beta^{3/2}}  \\
+\Phi & \approx -k_BT e^{\beta\mu} V \left( \frac{m}{2\pi\hbar^2\beta} \right)^{3/2} \\
+\Phi & \approx -k_BT e^{\beta\mu} V \frac{1}{\lambda^3}
+\end{split}
+\end{equation}
+
+where $\lambda = \sqrt{ \frac{2\pi\hbar^2\beta}{m}  }$ is the thermal deBroglie wavelength. \\
+
+\item The expected value of $N$ is given by summing the average occupancies over $\alpha$. But this is proportional to $\Phi$. So, using $\Phi = - PV$,  the equation of state for the Maxwell-Boltzmann ideal gas is $PV = k_BT \expval{N}$. \\
+
+\end{enumerate}
+
+
+\end{enumerate}
+
+\begin{center}
+\noindent\rule{15cm}{0.4pt} \\
+\end{center}
+$$\clubsuit$$
+\end{document}
+
+
+
+
+
+
+
+
+
+
+%\begin{equation}
+%\begin{split}
+%\end{split}
+%\end{equation}

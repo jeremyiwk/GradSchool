@@ -1,0 +1,193 @@
+\documentclass[]{article}
+%\usepackage{setspace}
+%\onehalfspacing
+\usepackage{amsmath,amssymb,amsthm}
+\renewcommand{\qedsymbol}{$\blacksquare$}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{mathrsfs}
+\usepackage{amssymb}
+\usepackage{bm}
+\usepackage{enumerate}
+\usepackage{mdwlist}
+\usepackage{dirtytalk}
+\usepackage{xparse}
+\usepackage{physics}
+\usepackage[cmtip,all]{xy}
+\newcommand{\longsquiggly}{\xymatrix{{}\ar@{~>}[r]&{}}}
+\usepackage{graphicx}
+\usepackage{xcolor}% http://ctan.org/pkg/xcolor
+\usepackage{hyperref}% http://ctan.org/pkg/hyperref
+\hypersetup{
+  colorlinks=true,
+  linkcolor=blue!50!red,
+  urlcolor=green!70!black
+}
+\setcounter{MaxMatrixCols}{13}
+\setlength\parindent{0pt}
+\usepackage[none]{hyphenat}
+\usepackage[hmarginratio=1:1]{geometry}
+\begin{document}
+
+{\Large Physics 614 Homework 8}\\
+{Jeremy Welsh-Kavan}\\
+\hfill \\
+\noindent\rule{15cm}{0.4pt} \\
+
+\begin{enumerate}[1.]
+
+\item :(
+
+\item {\bf Fully-connected Ising model} \\
+
+We consider an Ising model on a "complete graph", whose Hamiltonian is given by \\
+
+\begin{equation}
+\begin{aligned}
+H & = - \frac{ J }{ 2 N} \sum_{i = 1}^{N} \sum_{ j =1 }^{ N} \sigma_i \sigma_j - B \sum_{ i = 1}^{N} \sigma_i \\
+\end{aligned}
+\end{equation} \\
+
+\begin{enumerate}[i.]
+
+\item Let $S = \sum_{ i = 1}^{N} \sigma_i $ be the total spin of the system. Then $H$ can be rewritten in terms of $S$ as follows:
+
+\begin{equation}
+\begin{aligned}
+H & = - \frac{ J }{ 2 N} \sum_{i = 1}^{N} \sum_{ j =1 }^{ N} \sigma_i \sigma_j - B \sum_{ i = 1}^{N} \sigma_i \\
+& = - \frac{ J }{ 2 N} \left( \sum_{i = 1}^{N}  \sigma_i \right)^2 - B S \\
+& = - \frac{ J S^2 }{ 2 N}  - B S \\
+\end{aligned}
+\end{equation} \\
+
+\item We claim that \\
+
+\begin{equation}
+\begin{aligned}
+e^{ \frac{ \beta J }{ 2N } S^2} & = \sqrt{  \frac{ \beta J N }{ 2 \pi }   } \int_{-\infty}^{\infty} dm \: e^{ -  \frac{1}{2} \beta J N m^2 + \beta J S m} \\
+\end{aligned}
+\end{equation} \\
+
+To show this, we can simply manipulate the integral of a normalized Gaussian\\
+
+\begin{equation}
+\begin{aligned}
+1 =  \frac{ 1 }{  \sigma \sqrt{  2 \pi }   } \int_{-\infty}^{\infty} dx \: e^{ -  \frac{1}{2} \frac{ ( x - \mu )^2 }{ \sigma^2 }  }  & =      \frac{ 1 }{  \sigma \sqrt{  2 \pi }   } \int_{-\infty}^{\infty} dx \: e^{ -  \frac{1}{2} \frac{ x^2 }{ \sigma^2 } +  \frac{ \mu }{ \sigma } x -  \frac{ \mu^2 }{ 2 \sigma^2 }  }  \\
+%
+1 & =      \frac{ 1 }{  \sigma \sqrt{  2 \pi }   } e^{ -  \frac{ \mu^2 }{ 2 \sigma^2 }}    \int_{-\infty}^{\infty} dx \: e^{ -  \frac{1}{2} \frac{ x^2 }{ \sigma^2 } +  \frac{ \mu }{ \sigma } x   }  \\
+\implies e^{   \frac{ \mu^2 }{ 2 \sigma^2 }}  & =  \frac{ 1 }{  \sigma \sqrt{  2 \pi }   }  \int_{-\infty}^{\infty} dx \: e^{ -  \frac{1}{2} \frac{ x^2 }{ \sigma^2 } +  \frac{ \mu }{ \sigma } x   }  \\
+\end{aligned}
+\end{equation} \\
+
+Now substituting $\sigma = 1/ \sqrt{ \beta J N }$ and $ \mu  = S  \sqrt{ \beta J/ N} $, we have \\
+
+\begin{equation}
+\begin{aligned}
+e^{   \frac{ \beta J }{ 2 N } S^2 }  & =  \sqrt{ \frac{ \beta J N}{ 2 \pi }   }  \int_{-\infty}^{\infty} dm \: e^{ -  \frac{1}{2} \beta J N m^2 + \beta J S m} \\
+\end{aligned}
+\end{equation} \\
+
+In terms of the total spin, $S$, the partition function can be written as \\
+
+\begin{equation}
+\begin{aligned}
+\mathcal{Z} & = \sum_{ \{ S \} } e^{   \beta \frac{ J S^2 }{ 2 N}  +  \beta B S   }\\
+\end{aligned}
+\end{equation} \\
+
+with $\{ S \}$ the set of all possible configurations that yield the total spin $S$. We can use formula for the integral above to write $\mathcal{Z}$ as \\
+
+\begin{equation}
+\begin{aligned}
+\mathcal{Z} & =   \sum_{ \{ S \} } e^{   \beta \frac{ J S^2 }{ 2 N}  +  \beta B S   }\\
+%
+\mathcal{Z} & =   \sqrt{ \frac{ \beta J N}{ 2 \pi }   }  \sum_{ \{ S \} } e^{  \beta B S   }    \int_{-\infty}^{\infty} dm \: e^{ -  \frac{1}{2} \beta J N m^2 + \beta J S m} \\
+%
+\mathcal{Z} & =   \sqrt{ \frac{ \beta J N}{ 2 \pi }   }   \int_{-\infty}^{\infty} dm \:     e^{ -  \frac{1}{2} \beta J N m^2 } \sum_{ \{ S \} } e^{  \beta S ( B + Jm )   }   \\
+%
+\end{aligned}
+\end{equation} \\
+
+To evaluate the sum, we expand the exponential as a power series and $S$ as a finite sum. \\
+
+\begin{equation}
+\begin{aligned}
+ \sum_{ \{ S \} } e^{  \beta S ( B + Jm )   } & = \sum_{ \{ S \} } \sum_{n = 0 }^{\infty } \frac{ ( \beta S ( B + Jm )  )^n }{n!}   \\
+%
+& = \sum_{ \{ S \} } \sum_{n = 0 }^{\infty } \frac{ ( \beta  ( B + Jm )  )^n }{n!} \left(  \sum_{ i = 1}^{N} \sigma_i  \right)^n  \\
+%
+& =  \sum_{n = 0 }^{\infty } \frac{ ( \beta  ( B + Jm )  )^n }{n!} \sum_{ \{ S \} } \left(  \sum_{ i = 1}^{N} \sigma_i  \right)^n  \\
+\end{aligned}
+\end{equation} \\
+
+where the last step is justified since only $\sigma_i$ depends on the configuration $\{ S \}$. We can rewrite the last sum as follows \\
+
+\begin{equation}
+\begin{aligned}
+\sum_{n = 0 }^{\infty } \frac{ a^n }{n!} \sum_{ \{ S \} } \left(  \sum_{ i = 1 }^{N} \sigma_i  \right)^n  & =  \sum_{n = 0 }^{\infty } \frac{ a^n }{n!} \sum_{ \{ S \} }  \sum_{ j_1 \dots j_n }^{N} \sigma_{ j_1 } \dots \sigma_{ j_n }   \\
+%
+& =  \left( \sum_{n = 0 }^{\infty } \frac{ a^n }{n!} + \sum_{n = 0 }^{\infty } \frac{ (-a)^n }{n!}  \right)^N   \\
+%
+& =  \left(2 \cosh( a) \right)^N   \\
+%
+& =  \left(2 \cosh(  \beta  ( B + Jm )  ) \right)^N   \\
+\end{aligned}
+\end{equation} \\
+
+where the simplification in the sum has been left unjustified out of desperation. Thus, we may write the partition function as \\
+
+\begin{equation}
+\begin{aligned}
+\mathcal{Z} & =   \sqrt{ \frac{ \beta J N}{ 2 \pi }   }   \int_{-\infty}^{\infty} dm \:     e^{ -  \frac{1}{2} \beta J N m^2 }  \left(2 \cosh(  \beta  ( B + Jm )  ) \right)^N  \\
+%
+& =   \sqrt{ \frac{ \beta J N}{ 2 \pi }   }   \int_{-\infty}^{\infty} dm \:     e^{ -  \frac{1}{2} \beta J N m^2   +  N \ln( 2 \cosh(  \beta  ( B + Jm )  ))  }    \\
+%
+& =   \sqrt{ \frac{ \beta J N}{ 2 \pi }   }   \int_{-\infty}^{\infty} dm \:     e^{ -  N \beta f(m) }    \\
+%
+\end{aligned}
+\end{equation} \\
+
+where $f(m) = Jm^2/2 - k_B T  \ln( 2 \cosh(  \beta  ( B + Jm )  ))$. \\
+
+Jeez. Yet another ``L" taken... Thanks anyway for grading our homework this year! 
+
+
+
+
+
+
+\end{enumerate}
+
+\item :(
+
+
+
+\end{enumerate}
+
+
+
+
+\noindent\rule{15cm}{0.4pt} \\
+
+$$\clubsuit$$
+
+\end{document}
+
+
+
+
+
+
+
+
+
+
+
+%\begin{equation}
+%\begin{aligned}
+%\end{aligned}
+%\end{equation}
+
+%\begin{enumerate}[]
+%\item
+%\end{enumerate}

@@ -1,0 +1,182 @@
+\documentclass[]{article}
+%\usepackage{setspace}
+%\onehalfspacing
+\usepackage{amsmath,amssymb,amsthm}
+\renewcommand{\qedsymbol}{$\blacksquare$}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{mathrsfs}
+\usepackage{amssymb}
+\usepackage{bm}
+\usepackage{enumerate}
+\usepackage{mdwlist}
+\usepackage{dirtytalk}
+\usepackage{xparse}
+\usepackage{physics}
+\usepackage[cmtip,all]{xy}
+\newcommand{\longsquiggly}{\xymatrix{{}\ar@{~>}[r]&{}}}
+\usepackage{graphicx}
+\usepackage{xcolor}% http://ctan.org/pkg/xcolor
+\usepackage{hyperref}% http://ctan.org/pkg/hyperref
+\hypersetup{
+  colorlinks=true,
+  linkcolor=blue!50!red,
+  urlcolor=green!70!black
+}
+\setcounter{MaxMatrixCols}{13}
+\setlength\parindent{0pt}
+\usepackage[none]{hyphenat}
+\usepackage[hmarginratio=1:1]{geometry}
+\begin{document}
+
+{\Large Physics 614 Homework 6}\\
+{Jeremy Welsh-Kavan}\\
+\hfill \\
+\noindent\rule{15cm}{0.4pt} \\
+
+1. {\bf Cumulants and the Central Limit Theorem} \\
+
+Consider $N$ independent random variables $X_1, \dots, X_N$ drawn from a single probability distribution with finite variance, $\sigma^2$, and a mean, $\mu$, of zero. The central limit theorem states that, as $N \to \infty$, the probability density function, $p(s)$, of the scaled sum 
+
+\begin{equation}
+\begin{aligned}
+s_X & = \frac{1 }{ \sqrt{N} } \sum_{i=1}^{N} X_i
+\end{aligned}
+\end{equation}
+
+converges to a normal distribution with variance $\sigma^2$, $p(s) \to \frac{1}{\sqrt{2\pi \sigma^2} }e^{- s^2 /(2\sigma^2)}$
+
+
+\begin{enumerate}[i.]
+
+\item We first note that, since $X_1, \dots, X_N$ are drawn from the same distribution, their cumulants are equal, i.e. $\expval{ X_i^n }_c = \expval{ X_j^n }_c$ for all $i$,$j$, and $n$. Now let $\expval{ X_i^n }_c = \expval{x^n}_c$. For the first cumulant, we have
+
+\begin{equation}
+\begin{aligned}
+\expval{s_X}_c & = \frac{1 }{ \sqrt{N} } \sum_{i=1}^{N} \expval{ X_i }_c \\
+\expval{s_X}_c & = \sqrt{N}  \expval{ x}_c \\
+\end{aligned}
+\end{equation}\\
+
+For the $n^\text{th}$, and by property b., we have
+
+\begin{equation}
+\begin{aligned}
+\expval{s_X^n}_c & = \frac{1 }{ N^{n/2} } \sum_{i=1}^{N} \expval{ x^n }_c \\
+\expval{s_X^n}_c & = N^{1-n/2}\expval{ x^n }_c \\
+\end{aligned}
+\end{equation}\\
+
+\item Taking the limit as $N\to \infty$, we have
+
+\begin{equation}
+\begin{aligned}
+\lim_{N \to \infty } \expval{s_X^n}_c & =  \expval{ x^n }_c \lim_{N \to \infty } N^{1-n/2}  \\
+\lim_{N \to \infty } \expval{s_X^n}_c & =  \expval{ x^n }_c \begin{cases} 1, \; \; \text{if} \; \; n = 2 \\ 0, \; \; \text{if} \; \;   n>2 \end{cases} \\
+\end{aligned}
+\end{equation}\\
+
+And since $ \expval{ x }_c =  \expval{ x }$, if $n=1$, we have $\lim_{N \to \infty }  \expval{s_X}_c = 0$ trivially. Thus, all cumulants are roughly zero for large $N$ except $ \expval{s_X^2}_c = \sigma^2$. \\
+
+\item For the normal distribution with variance $\sigma^2$, the moment generating function, $g(\lambda)$, is given by
+
+\begin{equation}
+\begin{aligned}
+g( \lambda ) & = \frac{1}{  \sqrt{ 2 \pi \sigma^2} }\int_{-\infty}^{\infty} dx \; e^{ \lambda x} e^{- x^2/ (2\sigma^2)} \\
+\end{aligned}
+\end{equation}\\
+
+Recall that integrals of this form can be computed by completing the square in the exponent (we did this in the first term of Physics 631). We will use without proof the following fact
+
+\begin{equation}
+\begin{aligned}
+\int_{-\infty}^{\infty} dx \; e^{ - (\alpha x^2 + \beta x + \gamma)} & = \sqrt{ \frac{\pi}{\alpha} } \exp\left[ \frac{\beta^2}{4\alpha} - \gamma  \right] \; \; \; (\alpha, \beta, \gamma \in \mathbb{C} \text{, } \; \text{Re}\left[ \alpha \right] > 0)
+\end{aligned}
+\end{equation}\\
+
+The moment generating function for the normal distribution is then given by then is given by
+
+\begin{equation}
+\begin{aligned}
+g( \lambda ) & = e^{ \lambda^2 \sigma^2 / 2 } \\
+\end{aligned}
+\end{equation}\\
+
+This also yields easily the cumulant generating function, $h(\lambda)$, which is given by
+
+\begin{equation}
+\begin{aligned}
+h( \lambda ) & = \ln( g(\lambda ) ) \\
+h(\lambda) & = \frac{ \lambda^2 \sigma^2 }{ 2 } \\
+\end{aligned}
+\end{equation}\\
+
+The cumulants of the random variable $x$, which is normally distributed, are then
+
+\begin{equation}
+\begin{aligned}
+\expval{x^n}_c & = \frac{d^n}{d^n\lambda} h(\lambda) \eval_{\lambda=0}\\
+\implies \expval{x^0}_c & = 0 \\
+\expval{x^1}_c & = 0 \\
+\expval{x^2}_c & = \sigma^2 \\
+\expval{x^3}_c & = 0 \\
+\vdots \\
+\expval{x^n}_c & = 0 \; \; \; \text{, } \; (n>2) \\
+\end{aligned}
+\end{equation}\\
+
+
+\end{enumerate}
+
+
+\hfill 
+\noindent\rule{15cm}{0.4pt} \\
+
+2. {\bf First Virial Coefficient of the Hard-Sphere Gas} \\
+
+We consider a gas of $N$ interacting particles with interaction potential, $U(r)$, given by \\
+
+\begin{equation}
+\begin{aligned}
+U(r) & = \begin{cases}
+\infty \; \; \text{, } \; \; r < 2a \\
+0 \; \; \text{, } \; \; \text{otherwise} \\
+\end{cases}
+\end{aligned}
+\end{equation}\\
+
+
+We can then use the equation in the notes: \\
+
+\begin{equation}
+\begin{aligned}
+\frac{ P}{ k_B T} & = \rho  - \frac{ \rho^2 }{2 } \int d^3r \; f(r) \\
+\frac{ P}{ k_B T} & = \rho  - \frac{ \rho^2 }{2 } \int d^3r \; e^{ -\beta U(r)} - 1 \\
+\frac{ P}{ k_B T} & = \rho  - 2\pi \rho^2  \int_0^{\infty} r^2 dr \; e^{ -\beta U(r)} - 1 \\
+\frac{ P}{ k_B T} & = \rho  + 2\pi \rho^2  \int_0^{2a} r^2 dr \;  \\
+\frac{ P}{ k_B T} & = \rho  +  \frac{16 \pi a^3}{3} \rho^2 \\
+\end{aligned}
+\end{equation}\\
+
+
+
+\noindent\rule{15cm}{0.4pt} \\
+
+$$\clubsuit$$
+
+\end{document}
+
+
+
+
+
+
+
+
+
+
+
+%\begin{equation}
+%\begin{split}
+%\end{split}
+%\end{equation}

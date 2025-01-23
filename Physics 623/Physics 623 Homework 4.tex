@@ -1,0 +1,168 @@
+\documentclass[]{article}
+%\usepackage{setspace}
+%\onehalfspacing
+\usepackage{amsmath,amssymb,amsthm}
+\renewcommand{\qedsymbol}{$\blacksquare$}
+\usepackage{amsmath}
+\usepackage{bm}
+\usepackage{amsfonts}
+\usepackage{mathrsfs}
+\usepackage{amssymb}
+\usepackage{enumerate}
+\usepackage{mdwlist}
+\usepackage{dirtytalk}
+\usepackage{xparse}
+\usepackage{physics}
+\usepackage{xfrac}
+\usepackage{graphicx}
+\setcounter{MaxMatrixCols}{13}
+\setlength\parindent{0pt}
+\usepackage[none]{hyphenat}
+\usepackage[hmarginratio=1:1]{geometry}
+\begin{document}
+
+{\Large Physics 623 Homework 4}\\
+{Jeremy Welsh-Kavan}\\
+%\end{center}
+%\vspace{0.2 cm}
+\hfill \\ 
+\noindent\rule{15cm}{0.4pt} \\
+
+4.3.1. {\bf Potentials in Coulomb gauge } \\
+
+
+
+
+\hfill \\ 
+\noindent\rule{15cm}{0.4pt} \\
+
+4.3.2. {\bf Radiation from cyclotron motion } \\
+
+Consider a point mass $m$ with charge $e$ that moves in a plane perpendicular to a homogeneous magnetic field $B$ and assume the particle travels with a nonrelativistic velocity, $v \ll c$. \\
+
+\begin{enumerate}[a)]
+
+
+\item Since the particle is confined to the plane we let $\bm{r}(t) = (x(t), y(t), 0)$ and $\bm{B} = (0,0,B)$. We can use the Lorentz force law to find the velocity, $\bm{v}(t)$. 
+
+\begin{equation}
+\begin{split}
+\dot{\bm{v}} & = \frac{e}{m} \bm{v} \times \bm{B} \\
+\implies \dot{\bm{v}}^2 & = \frac{e^2 v^2 B^2}{m^2}  \\
+\end{split}
+\end{equation}
+
+Then, using the Larmor formula, we have that the power, $\mathscr{P}$, radiated by the particle is
+
+\begin{equation}
+\begin{split}
+\mathscr{P} & = \frac{2e^2}{3c^3}  \dot{\bm{v}}^2 \\
+\mathscr{P} & = \frac{2 e^4 v^2\bm{B}^2}{3 c^3m^2}  \\
+\mathscr{P} & = \frac{4 e^4 B^2}{3 c^3m^3} E \\
+\end{split}
+\end{equation}
+
+where $E$ is the kinetic energy of the particle. \\
+
+\item Since (2) represents the power radiated by the particle, the power lost by the particle is the negative time derivative of the kinetic energy. We can write (2) as a first order differential equation in $E(t)$. This yields
+
+\begin{equation}
+\begin{split}
+\dv{E(t)}{t} & =  -   \frac{4 e^4 B^2}{3 c^3m^3} E(t) \\
+\implies E(t) & =  E_0 e^{ -  t/\tau}
+\end{split}
+\end{equation}
+
+where $\tau = \frac{3 c^3m^3}{4 e^4 B^2}$ and $E_0$ is the initial kinetic energy of the charge. \\
+
+\item Let $e$ and $m$ be the charge and mass of an electron respectively and let $B = 1$ Tesla. Then the timescale of energy loss, $\tau$, is
+
+\begin{equation}
+\begin{split}
+\tau & = \frac{3 c^3m^3}{4 e^4 B^2} \\
+\tau & =  4\pi\epsilon_0 \frac{3 c^3m^3}{4 e^4 B^2} \\
+\tau & \approx 2.6 \; \text{s} \\ 
+\end{split}
+\end{equation}
+
+\end{enumerate}
+
+\hfill \\ 
+\noindent\rule{15cm}{0.4pt} \\
+
+4.3.3. {\bf Radiating harmonic oscilator } \\
+
+Consider particle with charge $e$ and mass $m$ in a one-dimensional harmonic potential. Let the frequency of the harmonic oscillator by $\omega_0$.
+
+\begin{enumerate}[a)]
+
+\item We can again rewrite the Larmor formula to express the power, $\mathscr{P}$, in terms of the total energy of the particle, $E$. First, we rewrite $ \dot{\bm{v}}^2$ in terms of the potential energy.s
+
+
+\begin{equation}
+\begin{split}
+\dot{\bm{v}} & = - \omega_0^2 \bm{x} \\
+\dot{\bm{v}}^2 & = \omega_0^4\bm{x}^2 \\
+\dot{\bm{v}}^2 & =  \frac{2  \omega_0^2 }{m} V(x) \\
+\implies \overline{\dot{\bm{v}}^2} & =  \frac{2  \omega_0^2 }{m} \overline{V} \\
+\end{split}
+\end{equation}
+
+Using the fact that $\overline{V} = \overline{T} = E/2$, where $E$ is the total energy of the particle, we have that the power radiated by the particle averaged over on oscillation period is
+
+
+\begin{equation}
+\begin{split}
+\mathscr{P} & = \frac{2e^2}{3c^3} \overline{\dot{\bm{v}}^2} \\
+\mathscr{P} & = \frac{4\omega_0^2e^2}{3mc^3} \overline{V}\\ 
+\mathscr{P} & = \frac{2\omega_0^2e^2}{3mc^3} E \\ 
+\end{split}
+\end{equation}
+
+\item The rate of energy loss is again $-\mathscr{P}$ so we have
+
+
+\begin{equation}
+\begin{split}
+\dv{E}{t} & = - \frac{2\omega_0^2e^2}{3mc^3} E \\ 
+\implies E(t) & = E_0 e^{-t/\tau} \\
+\end{split}
+\end{equation}
+
+where $\tau = \frac{3mc^3}{2\omega_0^2e^2}$ and $E_0$ is the initial energy of the particle. \\
+
+\item With $e$ and $m$ the charge and mass of the electron and $\omega_0 = 10^{15} \; \text{sec}^{-1}$, the timescale, $\tau$ is
+
+\begin{equation}
+\begin{split}
+\tau & =  \frac{3mc^3}{2\omega_0^2e^2} \\
+\tau & \approx 1.6\times10^{-7} \; \text{s} \\
+\end{split}
+\end{equation}
+
+
+
+\end{enumerate}
+
+
+
+
+\hfill \\ 
+\noindent\rule{15cm}{0.4pt} \\
+
+$$\clubsuit$$
+\end{document}
+
+
+
+
+
+%+ \lambda \frac{\hbar c\alpha}{|\bm{r}_1 - \bm{r}_2|}
+
+
+
+
+%\begin{equation}
+%\begin{split}
+%\end{split}
+%\end{equation}

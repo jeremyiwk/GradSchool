@@ -1,0 +1,338 @@
+\documentclass[]{article}
+%\usepackage{setspace}
+%\onehalfspacing
+\usepackage{amsmath,amssymb,amsthm}
+\renewcommand{\qedsymbol}{$\blacksquare$}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{mathrsfs}
+\usepackage{amssymb}
+\usepackage{enumerate}
+\usepackage{mdwlist}
+\usepackage{dirtytalk}
+\usepackage{xparse}
+\usepackage{physics}
+\usepackage{graphicx}
+\usepackage{mathrsfs}
+\setcounter{MaxMatrixCols}{13}
+\setlength\parindent{0pt}
+\usepackage[none]{hyphenat}
+\usepackage[hmarginratio=1:1]{geometry}
+\begin{document}
+%\begin{center}
+{\Large Physics 633 Homework 1}\\
+{Jeremy Welsh-Kavan}\\
+%\end{center}
+\vspace{0.2 cm}
+\begin{center}
+\noindent\rule{15cm}{0.4pt} \\
+\end{center}
+
+\begin{enumerate}[1)]
+
+\item Starting with the series
+
+\begin{equation}
+\begin{split}
+x(\lambda) = x_0 + x_1\lambda + x_2\lambda^2 + ...\\
+\end{split}
+\end{equation}
+we will attempt to find an approximate solution to 
+\begin{equation}
+\begin{split}
+x^3 = 12^3 + \lambda \\
+\end{split}
+\end{equation}
+
+\begin{enumerate}[a)]
+
+\item Setting $\lambda = 0$ and $x_0 = 12$, to first order we have 
+
+\begin{equation}
+\begin{split}
+x(\lambda) & = x_0 + x_1\lambda \\
+x^3 &= 12^3 + \lambda \\
+(x_0 + x_1\lambda)^3 &= 12^3 + \lambda \\
+x_0^3 + 3x_0^2x_1\lambda+3x_0x_1^2\lambda^2 + x_1^3\lambda^3 & = 12^3 + \lambda \\
+\implies x_1 & = \frac{1}{3x_0^2}
+\end{split}
+\end{equation}
+The approximate value of $x$, to first order, is
+
+\begin{equation}
+\begin{split}
+x(\lambda) & = x_0 + \frac{1}{3x_0^2}\lambda \\
+x(1.03) & = 12 + \frac{1.03}{432}\\
+x(1.03) & \approx 12.00238426 \\
+\end{split}
+\end{equation}
+
+\item Now setting $x(\lambda) = x_0 + x_1\lambda + x_2\lambda^2$, we have 
+
+\begin{equation}
+\begin{split}
+x(\lambda) & = x_0 + x_1\lambda + x_2\lambda^2 \\
+x^3 &= 12^3 + \lambda \\
+( x_0 + x_1\lambda + x_2\lambda^2 )^3 & = 12^3 + \lambda \\
+\implies 3 x_0 x_1^2 \lambda^2 + 3 x_0^2 x_2 \lambda^2 &=0 \\
+ x_1^2 + x_0 x_2 &=0 \\
+ x_2 &= -\frac{x_1^2}{x_0} \\ 
+  x_2 &= -\frac{1}{9x_0^5} \\ 
+\end{split}
+\end{equation}
+The approximate value of $x$, to second order, is
+\begin{equation}
+\begin{split}
+x(\lambda) & = x_0 + \frac{1}{3x_0^2}\lambda - \frac{1}{9x_0^5}\lambda^2 \\
+x(1.03) & = 12 + \frac{1.03}{432}   + \frac{1.03^2}{2239488} \\
+x(1.03) & \approx 12.00238379 \\
+\end{split}
+\end{equation}
+Which is pretty darn good, considering it's about as many decimals as Mathematica will give you if you don't ask for more. \\
+
+\end{enumerate}
+
+\item We start the expression for $\Delta_n$ in equation (53) in the reading.
+
+\begin{equation}
+\begin{split}
+\Delta_n & =  \underset{(k_1+...+k_{n+1}=n-1)}{\underset{k1,...,k_{n+1}}{ \sum}} S_{k_1} V S_{k_2} V ...V S_{k_{n+1}}
+\end{split}
+\end{equation}
+and plug in $n=4$ to get
+
+\begin{equation}
+\begin{split}
+\Delta_4 & =  
+S_0VS_0VS_0VS_0VS_3+
+S_0VS_0VS_0VS_1VS_2+
+S_0VS_0VS_0VS_2VS_1+
+S_0VS_0VS_0VS_3VS_0 \\ &+
+S_0VS_0VS_1VS_0VS_2+ 
+S_0VS_0VS_1VS_1VS_1+
+S_0VS_0VS_1VS_2VS_0+
+S_0VS_0VS_2VS_0VS_1 \\ &+
+S_0VS_0VS_2VS_1VS_0+
+S_0VS_0VS_3VS_0VS_0+
+S_0VS_1VS_0VS_0VS_2+
+S_0VS_1VS_0VS_1VS_1 \\ &+
+S_0VS_1VS_0VS_2VS_0+
+S_0VS_1VS_1VS_0VS_1+
+S_0VS_1VS_1VS_1VS_0+
+S_0VS_1VS_2VS_0VS_0 \\ &+
+S_0VS_2VS_0VS_0VS_1+
+S_0VS_2VS_0VS_1VS_0+
+S_0VS_2VS_1VS_0VS_0+
+S_0VS_3VS_0VS_0VS_0 \\ &+
+S_1VS_0VS_0VS_0VS_2+
+S_1VS_0VS_0VS_1VS_1+
+S_1VS_0VS_0VS_2VS_0+
+S_1VS_0VS_1VS_0VS_1 \\ &+
+S_1VS_0VS_1VS_1VS_0+
+S_1VS_0VS_2VS_0VS_0+
+S_1VS_1VS_0VS_0VS_1+
+S_1VS_1VS_0VS_1VS_0 \\ &+
+S_1VS_1VS_1VS_0VS_0+
+S_1VS_2VS_0VS_0VS_0+
+S_2VS_0VS_0VS_0VS_1+
+S_2VS_0VS_0VS_1VS_0 \\ &+
+S_2VS_0VS_1VS_0VS_0+
+S_2VS_1VS_0VS_0VS_0+
+S_3VS_0VS_0VS_0VS_0
+\\
+\end{split}
+\end{equation}
+Taking the trace of (8) and cancelling terms with $S_0$ acting on $S_{1,2,3}$, we have
+\begin{equation}
+\begin{split}
+\text{tr}(\Delta_4) & =  
+\text{tr}(S_0VS_0VS_0VS_3VS_0)+
+\text{tr}(S_0VS_0VS_1VS_2VS_0)+
+\text{tr}(S_0VS_0VS_2VS_1VS_0) \\ &+
+\text{tr}(S_0VS_0VS_3VS_0VS_0)+
+\text{tr}(S_0VS_1VS_0VS_2VS_0)+
+\text{tr}(S_0VS_1VS_1VS_1VS_0) \\ &+
+\text{tr}(S_0VS_1VS_2VS_0VS_0)+
+\text{tr}(S_0VS_2VS_0VS_1VS_0)+
+\text{tr}(S_0VS_2VS_1VS_0VS_0) \\ &+
+\text{tr}(S_0VS_3VS_0VS_0VS_0)+
+\text{tr}(S_1VS_0VS_0VS_0VS_2)+
+\text{tr}(S_1VS_0VS_0VS_1VS_1) \\ &+
+\text{tr}(S_1VS_0VS_1VS_0VS_1)+
+\text{tr}(S_1VS_1VS_0VS_0VS_1)+
+\text{tr}(S_2VS_0VS_0VS_0VS_1)\\
+\end{split}
+\end{equation}
+Now, using the fact that $S_1S_1 = S_2$ and $S_1S_2=S_2S_1=S_3$ and $S_0^2=-S_0$, and the fact that the trace is invariant under cyclic permutations of its argument, we have
+\begin{equation}
+\begin{split}
+\text{tr}(\Delta_4) & =  
+%\text{tr}(S_0VS_0VS_0VS_3VS_0)+ % 1 -- 15
+\text{tr}(S_0VS_0VS_1VS_2VS_0)+ % 2
+\text{tr}(S_0VS_0VS_2VS_1VS_0)+ % 3
+\text{tr}(S_0VS_0VS_3VS_0VS_0)\\ &+  %4
+%\text{tr}(S_0VS_1VS_0VS_2VS_0)+ % 5 --13
+\text{tr}(S_0VS_1VS_1VS_1VS_0)+ % 6
+%\text{tr}(S_0VS_1VS_2VS_0VS_0)+ % 7	 --12
+\text{tr}(S_0VS_2VS_0VS_1VS_0) %8
+%\text{tr}(S_0VS_2VS_1VS_0VS_0) \\ &+ %9 -- 14
+%\text{tr}(S_0VS_3VS_0VS_0VS_0)+   %10 -- 11
+%\text{tr}(S_1VS_0VS_0VS_0VS_2)+  %11 -- 10
+%\text{tr}(S_1VS_0VS_0VS_1VS_1) \\ &+ % 12	 --7 
+%\text{tr}(S_1VS_0VS_1VS_0VS_1)+ %13 -- 5
+%\text{tr}(S_1VS_1VS_0VS_0VS_1)+  %14 -- 9
+%\text{tr}(S_2VS_0VS_0VS_0VS_1)\\   %15--1
+\\
+\text{tr}(\Delta_4) & =  
+- \text{tr}(S_0VS_0VS_1VS_2V)
+- \text{tr}(S_0VS_0VS_2VS_1V)+ 
+\text{tr}(S_0VS_0VS_3VS_0VS_0)\\ &+  
+\text{tr}(S_0VS_1VS_1VS_1VS_0) -
+\text{tr}(S_0VS_2VS_0VS_1V) 
+\\
+\end{split}
+\end{equation}
+Now inserting $S_k = \sum_{\alpha \ne 0} \frac{\ket{\alpha}\bra{\alpha}}{E_{0\alpha}^k}$, we have \\
+\begin{equation}
+\begin{split}
+\text{tr}(\Delta_4) & = -\sum_{\alpha,\beta \ne 0} \frac{  V_{00}  V_{0\alpha}  V_{\alpha\beta}  V_{\beta 0}  }{  E_{0\alpha}E_{0\beta}^2  } - \sum_{\alpha,\beta \ne 0} \frac{  V_{00}  V_{0\alpha}  V_{\alpha\beta}  V_{\beta 0}  }{  E_{0\alpha}^2E_{0\beta}  }  + \sum_{\alpha \ne 0} \frac{V_{00}  V_{0\alpha}V_{\alpha0} V_{00} }{E_{0\alpha}^3}  \\ &+   \sum_{\alpha,\beta,\gamma \ne 0} \frac{  V_{0\alpha}  V_{\alpha\beta} V_{\beta\gamma} V_{0\gamma}  }{  E_{0\alpha}E_{0\beta} E_{0\gamma}   } -   \sum_{\alpha, \beta \ne 0} \frac{   V_{00} V_{0\alpha} V_{\alpha 0} V_{0\beta} V_{\beta 0}  }{ E_{0\alpha}^2 E_{ 0\beta}  } \\
+\text{tr}(\Delta_4) & = \sum_{\alpha,\beta,\gamma \ne 0} \frac{  V_{0\alpha}  V_{\alpha\beta} V_{\beta\gamma} V_{0\gamma}  }{  E_{0\alpha}E_{0\beta} E_{0\gamma}   } 
+-   V_{00}  \sum_{\alpha, \beta \ne 0} \frac{ |V_{0\alpha}|^2  |V_{0\beta}|^2  }{ E_{0\alpha}^2 E_{ 0\beta}  } 
+\\ & -V_{00}\sum_{\alpha,\beta \ne 0}  \left[\frac{  V_{0\alpha}  V_{\alpha\beta}  V_{\beta 0}  }{  E_{0\alpha}E_{0\beta}^2  } + \frac{  V_{0\alpha}  V_{\alpha\beta}  V_{\beta 0}  }{  E_{0\alpha}^2E_{0\beta}  }  \right]     
++ V_{00}^2 \sum_{\alpha \ne 0} \frac{  |V_{0\alpha}|^2 }{E_{0\alpha}^3}
+\\
+\end{split}
+\end{equation}
+as desired. \\
+\item We consider a particle in the potential $V(\textbf{r}) = \lambda r^n$ and compute the commutator $\left[  \textbf{r}\cdot\textbf{p}, H \right]$, where $H = \textbf{p}^2/2m + V(\textbf{r})$. \\
+
+\begin{equation}
+\begin{split}
+\left[ \textbf{r}\cdot\textbf{p}, H  \right] & = \textbf{r}\cdot\left[ \textbf{p}, H   \right]  + \left[\textbf{r} , H   \right]\cdot\textbf{p}  \\
+\left[ \textbf{r}\cdot\textbf{p}, H  \right] & =\textbf{r}\cdot\left[ \textbf{p}, \lambda r^n   \right]  + \left[\textbf{r} , \frac{\textbf{p}^2}{2m}   \right]\cdot\textbf{p}  \\
+\left[ \textbf{r}\cdot\textbf{p}, H  \right] & = \lambda \textbf{r}\cdot\left[ \textbf{p}, r^n   \right]  + \frac{1}{2m}\left[\textbf{r} , \textbf{p}^2  \right]\cdot\textbf{p}  \\
+\left[ \textbf{r}\cdot\textbf{p}, H  \right] & = -i\hbar \lambda \textbf{r}\cdot ( nr^{n-1}\hat{\textbf{r}} ) + \frac{1}{2m}\left[\textbf{r} , \textbf{p}^2  \right]\cdot \textbf{p} \\ \left[ \textbf{r}\cdot\textbf{p}, H  \right] & = -i\hbar \left( n\lambda r^n + \frac{1}{2m}\left[\textbf{r} , \textbf{p}^2  \right]\cdot \nabla \right) \\
+\left[ \textbf{r}\cdot\textbf{p}, H  \right] & = -i\hbar \left( n\lambda r^n  + \frac{1}{2m}\sum_i \left[ r_i, \textbf{p}^2 \right]\pdv{r_i}  \right)\\
+\left[ \textbf{r}\cdot\textbf{p}, H  \right] & = -i\hbar \left( n\lambda r^n  - \frac{\hbar^2}{2m}\sum_i \left[ r_i, \nabla^2 \right]\pdv{r_i}  \right) \\
+\left[ \textbf{r}\cdot\textbf{p}, H  \right] & = -i\hbar \left( n\lambda r^n  - \frac{\hbar^2}{2m}\sum_i \left( -2 \pdv{r_i} \pdv{r_i}\right)  \right) \\
+\left[ \textbf{r}\cdot\textbf{p}, H  \right] & = -i\hbar \left( n\lambda r^n  +2 \frac{\hbar^2}{2m} \nabla^2 \right) \\
+\left[ \textbf{r}\cdot\textbf{p}, H  \right] & = -i\hbar \left( n\lambda r^n  -2 \frac{\textbf{p}^2}{2m} \right) \\
+\left[ \textbf{r}\cdot\textbf{p}, H  \right] & = -i\hbar \left( nV(\textbf{r})  -2 T \right) \\
+\end{split}
+\end{equation}
+Let $\ket{\psi}$ be an energy eigenstate with eigenvalue $E$. Then we have
+
+\begin{equation}
+\begin{split}
+\bra{\psi}\left[ \textbf{r}\cdot\textbf{p}, H  \right]\ket{\psi} & =  \bra{\psi}(\textbf{r}\cdot\textbf{p})H\ket{\psi}   -  \bra{\psi}H(\textbf{r}\cdot\textbf{p})\ket{\psi}  \\
+\bra{\psi}\left[ \textbf{r}\cdot\textbf{p}, H  \right]\ket{\psi} & = E\bra{\psi}\textbf{r}\cdot\textbf{p}\ket{\psi}   -  E\bra{\psi}\textbf{r}\cdot\textbf{p}\ket{\psi}  \\
+\bra{\psi}\left[ \textbf{r}\cdot\textbf{p}, H  \right]\ket{\psi} & = 0\\
+\implies 0 & = -i\hbar \bra{\psi}\left( nV(\textbf{r})  -2 T \right) \ket{\psi}\\
+0 & = n \big< V(\textbf{r}) \big> -2 \big<  T \big> \\
+ n \big< V \big> & = 2 \big<  T \big>
+\end{split}
+\end{equation}
+
+\item For the hydrogen atom, $V(\textbf{r}) = -\hbar c\alpha/r$.
+\begin{enumerate}[a)]
+\item From (13), we have
+
+\begin{equation}
+\begin{split}
+\big< H \big> & = \big< T \big>  +  \big<  V \big> \\
+\big< H \big> & = \frac{1}{2} \big<  V \big> \\
+_n = E-\frac{\alpha^2c^2\mu}{2n^2} & = -\frac{1}{2} \expval{ \frac{\hbar c \alpha }{r} } \\
+\implies \expval{\frac{1}{r} }  & = \frac{\mu\alpha c}{\hbar n^2} \\
+\expval{ \frac{1}{r} } & = \frac{1}{a_0 n^2} \\
+\end{split}
+\end{equation}
+
+\item Starting with the Hamiltonian for the hydrogen atom,
+
+\begin{equation}
+\begin{split}
+ H &= \frac{p_r^2}{2m_e} + \frac{\hbar^2L(L+1)}{2m_e r^2} -  \frac{\hbar c \alpha }{r}
+\end{split}
+\end{equation}
+we have, by the Hellmann–Feynman theorem, 
+
+\begin{equation}
+\begin{split}
+\expval{\pdv{H}{\alpha} } & = \pdv{E}{\alpha} \\
+-\hbar c \expval{\frac{1}{r}} & = -\frac{\alpha c^2 \mu }{n^2} \\
+\expval{\frac{1}{r}} & = \frac{\alpha c \mu }{\hbar n^2} \\
+\expval{\frac{1}{r}} & = \frac{1 }{a_0 n^2}
+\end{split}
+\end{equation}
+
+\item We apply the Hellmann–Feynman theorem again with $\lambda = \ell$ and using the fact that, at fixed angular momentum, $\pdv{n}{\ell} = 1$. 
+
+\begin{equation}
+\begin{split}
+\expval{\pdv{H}{\ell} } & = \pdv{E}{\ell} \\
+\frac{\hbar^2(2\ell +1)}{2m_e}\expval{ \frac{1}{r^2}  } & = \pdv{E}{n}\pdv{n}{\ell}  \\
+\expval{ \frac{1}{r^2}  } & = \frac{m_e }{\hbar^2(\ell +1/2 )} \frac{  \alpha^2 c^2 m_e }{ n^3  } \\
+\expval{ \frac{1}{r^2}  } & =\frac{  \alpha^2 c^2 m_e^2 }{ \hbar^2 (\ell +1/2 )n^3  } \\
+\expval{ \frac{1}{r^2}  } & =\frac{ 1 }{ a_0^2 (\ell +1/2 )n^3  }
+\end{split}
+\end{equation}
+
+\item For any operator, $A$, acting on an energy eigenstate, $\expval{[H , A]} = 0$ by the algebra in equation (13). Below we compute $\expval{[H , p_r]} $.
+
+\begin{equation}
+\begin{split}
+\expval{[H , p_r]} & = \frac{\hbar^2 \ell(\ell +1)}{2m_e}\expval{ [ \frac{1}{r^2} ,  p_r] } - \hbar c \alpha \expval{  [ \frac{1}{r} , p_r  ]   }  \\
+0  & = \frac{\hbar^2 \ell(\ell +1)}{2m_e}\expval{  \frac{-2i\hbar}{r^3} } - \hbar c \alpha \expval{  \frac{-i\hbar}{r^2}  }  \\
+0  & = \frac{\hbar^2 \ell(\ell +1)}{m_e}\expval{  \frac{1}{r^3} } - \hbar c \alpha \expval{  \frac{1}{r^2}  }  \\
+\frac{\hbar^2 \ell(\ell +1)}{m_e}\expval{  \frac{1}{r^3} } & =   \frac{ \hbar c \alpha }{ a_0^2 (\ell +1/2 )n^3  }    \\
+\expval{  \frac{1}{r^3} } & =  \frac{ c \alpha m_e }{ \hbar a_0^2 \ell(\ell +1)(\ell +1/2 )n^3  }    \\
+\expval{  \frac{1}{r^3} } & =  \frac{ 1 }{\ell(\ell +1)(\ell +1/2 )  a_0^3   n^3  }    \\
+\end{split}
+\end{equation}
+
+\end{enumerate}
+
+\item The $n=3$ states are
+
+\begin{equation}
+\begin{split}
+& \ket{3 \text{ }0\text{ } 0} \\
+&\ket{3 \text{ }1\text{ } 0} \text{,	} \ket{3 \text{ }1\text{ } \pm 1} \\
+&\ket{3 \text{ }2\text{ } 0} \text{,	} \ket{3 \text{ }2\text{ } \pm 1} \text{,	} \ket{3 \text{ }2\text{ } \pm 2} \\
+\end{split}
+\end{equation}
+
+Since the integral $\int d\Omega \cos(\theta) Y_0^0(\Omega)^*Y_l^m(\Omega)$ vanishes for all $l$ and $m$ except $l=1$ and $m=0$, we need only calculate the term carrying $\ket{3 \text{ }1\text{ } 0} $. \\
+
+\begin{equation}
+\begin{split}
+\delta E_2 & \approx e^2 \mathscr{E}^2 \left(   \frac{|z_{01}|^2}{E_{01}} + \frac{|z_{02}|^2}{E_{02}} \right) \\
+z_{02} & = \frac{\sqrt{2}}{81 \pi a_0^3} \int_{0}^{\infty}dr\int d\Omega \left[ 6-\frac{r}{a_0} \right]\frac{r}{a_0}e^{-r/a_0} e^{-r/3a_0} r^3\cos^2(\theta) \\
+z_{02} & = \frac{3^3a_0}{2^6\sqrt{2}} \\ 
+\delta E_2 & \approx -\frac{2^{20}}{3^{11}}\pi \epsilon_0 a_0^3 \mathscr{E}^2 +  e^2 \mathscr{E}^2 \frac{|z_{02}|^2}{E_{02}}  \\
+\delta E_2 & \approx -\frac{2^{20}}{3^{11}}\pi \epsilon_0 a_0^3 \mathscr{E}^2 - \frac{3^8}{2^{13}} \pi\epsilon_0a_0^3\mathscr{E}^2   \\ 
+\delta E_2 & \approx -\left(  \frac{2^{33} + 3^{19}}{3^{11}2^{13} }\right)\pi\epsilon_0a_0^3\mathscr{E}^2 \\
+\delta E_2 & \approx - 6.72 \pi\epsilon_0a_0^3\mathscr{E}^2 \\
+\end{split}
+\end{equation}
+
+Which is about $6.72/9 \approx 74.67 \%$ of the value in equation (22) in the reading. 
+
+\end{enumerate}
+\noindent\rule{15cm}{0.4pt} \\
+$$\clubsuit$$
+\end{document}
+
+
+
+
+
+
+
+
+
+
+%\begin{equation}
+%\begin{split}
+%\end{split}
+%\end{equation}

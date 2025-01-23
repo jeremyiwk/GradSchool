@@ -1,0 +1,325 @@
+\documentclass[]{book}
+%\usepackage{setspace}
+%\onehalfspacing
+\usepackage{amsmath,amssymb,amsthm}
+\renewcommand{\qedsymbol}{$\blacksquare$}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{mathrsfs}
+\usepackage{amssymb}
+\usepackage{enumerate}
+\usepackage{mdwlist}
+\usepackage{dirtytalk}
+\usepackage{xparse}
+\usepackage{physics}
+\usepackage{graphicx}
+\setcounter{MaxMatrixCols}{13}
+\setlength\parindent{0pt}
+\usepackage[none]{hyphenat}
+\usepackage[hmarginratio=1:1]{geometry}
+\begin{document}
+%\begin{center}
+{\Large PHYS 622 Homework 9}\\
+{Jeremy Welsh-Kavan}\\
+%\end{center}
+\vspace{0.2 cm}
+\begin{center}
+\noindent\rule{15cm}{0.4pt} \\
+\end{center}
+\begin{enumerate}[1)]
+\item
+Consider the following ODE
+\begin{equation}
+\begin{split}
+(1-x^2)y'' -2xy' +\lambda y & = 0 
+\end{split}
+\end{equation}
+We claim that a necessary condition for a polynomial solution is $\lambda = n(n+1)$, $n=0,1,2,...$. To show this, suppose $p(x) = \sum_{n=0}^{\infty} a_n x^n$ is a polynomial solution to (1). That is, suppose there is $N$ such that $a_N \ne 0$ and for $n>N$, $a_n = 0$. Then we have
+\begin{equation}
+\begin{split}
+(1-x^2)\sum_{n=0}^{\infty} a_n n(n-1)x^{n-2} -2x\sum_{n=0}^{\infty} a_n nx^{n-1} +\lambda \sum_{n=0}^{\infty} a_n x^n & = 0 \\
+(1-x^2)\sum_{n=0}^{\infty} a_n n(n-1)x^{n-2} -2x\sum_{n=0}^{\infty} a_n nx^{n-1} +\lambda \sum_{n=0}^{\infty} a_n x^n & = 0 \\
+\sum_{n=0}^{\infty} a_n n(n-1)x^{n-2} - \sum_{n=0}^{\infty} a_n n(n-1)x^{n} -2\sum_{n=0}^{\infty} a_n nx^{n}+\lambda \sum_{n=0}^{\infty} a_n x^n & = 0 \\
+\sum_{n=0}^{\infty} a_n n(n-1)x^{n-2} + \sum_{n=0}^{\infty} \left(\lambda -n(n-1) -2n \right) a_n x^n & = 0 \\
+\sum_{n=0}^{\infty} a_n n(n-1)x^{n-2} + \sum_{n=0}^{\infty} \left(\lambda -n(n+1)\right) a_n x^n & = 0 \\
+\end{split}
+\end{equation}
+Reindexing the first sum yields
+\begin{equation}
+\begin{split}
+\sum_{n=0}^{\infty} a_{n+2} (n+2)(n+1)x^{n} + \sum_{n=0}^{\infty} \left(\lambda -n(n+1)\right) a_n x^n & = 0 \\
+\implies a_{n+2} & = \frac{n(n+1) - \lambda}{(n+2)(n+1)}a_n \\ 
+\end{split}
+\end{equation}
+But, by assumption, the series truncates at $n = N$ so $a_{N+2} = 0$. So we must have $\lambda = N(N+1)$, since $a_N \ne 0$.  \\
+Therefore, if we are to have a polynomial solution to (1), we must have $\lambda =n(n+1)$ for $n = 0, 1, 2,...$, where $n$ is the degree of the polynomial. \\
+Now suppose $a_0  \ne 0$ and $a_1=0$. By (2) and (3), if
+\begin{equation}
+\begin{split}
+a_{n+2} & = \frac{n(n+1) - N(N+1)}{(n+2)(n+1)}a_n \\ 
+\end{split}
+\end{equation}
+then the polynomial, $p(x) = \sum_{n=0}^{N} a_n x^n$, satisfies (1) with $\lambda = N(N+1)$, $a_n \ne 0$ for even $n \le N$, and $a_n=0$ for $ n> N$. \\
+\\
+Similarly, suppose $a_0=0$ and $a_1 \ne 0 $. Then the polynomial $p(x) = \sum_{n=0}^{N} a_n x^n$, satisfies (1) with $\lambda = N(N+1)$, $a_n \ne 0$ for odd $n \le N$, and $a_n=0$ for $ n> N$. \\
+\\
+Now suppose $a_0 \ne 0$ and $a_1 \ne 0$ and suppose there is $N$ such that $a_N \ne 0$ and $a_n = 0$ for all $n>N$. Then, by (4), we have $a_N \ne 0 $ and $a_{N-1} \ne 0$. But if $a_{N-1} \ne 0$ then (4) implies that $a_{N+1} \ne 0$. Which is a contradiction. Therefore, in order to have a polynomial solution, either $a_0 = 0$ or $a_1 = 0$. \\
+\\
+Thus, $p(x) = \sum_{k=0}^{n} a_k x^k$ is a solution to (1) if and only if $a_0 = 0$ and $a_1 \ne 0 $ and $\lambda = n(n+1)$ or $a_0 \ne 0$ and $a_1 = 0$ and $\lambda = n(n+1)$.
+\\
+\noindent\rule{15cm}{0.4pt} \\
+\item 
+We claim that
+\begin{equation}
+\begin{split}
+\left( \sqrt{1-x^2}\dv{x} - m\frac{x}{\sqrt{1-x^2}} \right) P_l^m(x) & = (l+m)(l-m+1) P_l^{m-1}(x)
+\end{split}
+\end{equation}
+By construction, $P_l(x)$ satisfies Legendre's differential equation.
+\begin{equation}
+\begin{split}
+(1-x^2)\dv[2]{x} P_l(x) -2x \dv{x} P_l(x) + l(l+1)P_l(x) = 0
+\end{split}
+\end{equation}
+We can apply $\dv{x}$ to (6) to get
+\begin{equation}
+\begin{split}
+(1-x^2)\dv[3]{x} P_l(x) -4x \dv[2]{x} P_l(x) + (l(l+1)-2)\dv{x}P_l(x) = 0
+\end{split}
+\end{equation}
+Applying $\dv{x}$ again, we get
+\begin{equation}
+\begin{split}
+(1-x^2)\dv[4]{x} P_l(x) -6x \dv[3]{x} P_l(x) + (l(l+1)-6)\dv[2]{x}P_l(x) = 0
+\end{split}
+\end{equation}
+Continuing in this manner $m-1$ times, we find that
+\begin{equation}
+\begin{split}
+(1-x^2)\dv[m+1]{x} P_l(x) -2mx \dv[m]{x} P_l(x) + (l(l+1)-m(m-1))\dv[m-1]{x}P_l(x) & = 0 \\
+(1-x^2)\dv[m+1]{x} P_l(x) -2mx \dv[m]{x} P_l(x) + (l+m)(l-m+1)\dv[m-1]{x}P_l(x) & = 0
+\end{split}
+\end{equation}
+Recall that the associated Legendre functions are related to the Legendre polynomials by
+\begin{equation}
+\begin{split}
+P_l^m(x) & = (-1)^m(1-x^2)^{m/2} \dv[m]{x} P_l(x) \\
+\end{split}
+\end{equation}
+Therefore, plugging (10) into (9) we have
+\begin{equation}
+\begin{split}
+\left((1-x^2)\dv{x} \frac{P_l^m(x)}{(-1)^m(1-x^2)^{m/2}} -2mx \frac{P_l^m(x) }{(-1)^m(1-x^2)^{m/2}} \right) \\
++ \frac{(l+m)(l-m+1)}{(-1)^{m-1}(1-x^2)^{(m-1)/2}}P_l^{m-1}(x) & = 0 \\
+\left((1-x^2)\frac{1}{(1-x^2)^{m/2}}\dv{x}P_l^m(x) +(1-x^2)P_l^m(x)\dv{x} \frac{1}{(1-x^2)^{m/2}} -2mx \frac{P_l^m(x) }{(1-x^2)^{m/2}} \right) \\
+-  \frac{(l+m)(l-m+1)}{(1-x^2)^{(m-1)/2}}P_l^{m-1}(x) & = 0\\
+\left((1-x^2)\frac{1}{(1-x^2)^{m/2}}\dv{x}P_l^m(x) + P_l^m(x)\frac{mx(1-x^2)}{(1-x^2)^{m/2+1}} -2mx \frac{P_l^m(x) }{(1-x^2)^{m/2}} \right) \\
+-  \frac{(l+m)(l-m+1)}{(1-x^2)^{(m-1)/2}}P_l^{m-1}(x) & = 0\\
+\left((1-x^2)\frac{1}{(1-x^2)^{m/2}}\dv{x}P_l^m(x) + P_l^m(x)\frac{mx}{(1-x^2)^{m/2}} -2mx \frac{P_l^m(x) }{(1-x^2)^{m/2}} \right) \\
+-  \frac{(l+m)(l-m+1)}{(1-x^2)^{(m-1)/2}}P_l^{m-1}(x) & = 0\\
+\left((1-x^2)\dv{x}P_l^m(x) - mx P_l^m(x) \right) -  \sqrt{1-x^2}(l+m)(l-m+1)P_l^{m-1}(x) & = 0\\
+\implies \left(\sqrt{1-x^2}\dv{x} - m\frac{x}{ \sqrt{1-x^2}}\right)P_l^m(x) -  (l+m)(l-m+1)P_l^{m-1}(x) & = 0\\
+\end{split}
+\end{equation}
+\noindent\rule{15cm}{0.4pt} \\
+\item 
+Below we show some statements concerning the spherical harmonics. \\
+\begin{enumerate}[(i)]
+\item
+By definition,
+\begin{equation}
+\begin{split}
+Y_l^m(\Omega) & = \left[ \frac{(2l+1)(l-m)!}{4\pi(l+m)!}\right]^{\frac{1}{2}} e^{im \varphi}P_l^m(\eta) \\
+\end{split}
+\end{equation}
+We complex conjugate both sides and substitute $P_l^{-m}(\eta)$, multiplying by the appropriate coefficient, to get
+\begin{equation}
+\begin{split}
+Y_l^m(\Omega)^* & = (-1)^{m}\left[ \frac{(2l+1)(l-m)!}{4\pi(l+m)!}\right]^{\frac{1}{2}} e^{-im \varphi}\frac{(l+m)!}{(l-m)!}P_l^{-m}(\eta) \\
+Y_l^m(\Omega)^* & = (-1)^{m}\left[ \frac{(2l+1)(l+m)!}{4\pi(l-m)!}\right]^{\frac{1}{2}} e^{-im \varphi}P_l^{-m}(\eta) \\
+Y_l^m(\Omega)^* & = (-1)^{m}Y_l^{-m}(\Omega)
+\end{split}
+\end{equation}
+\item
+Next we find an expression for $\cos(\theta) Y_l^m(\Omega) $
+\begin{equation}
+\begin{split}
+\cos(\theta) Y_l^m(\Omega) & =  \left[ \frac{(2l+1)(l-m)!}{4\pi(l+m)!}\right]^{\frac{1}{2}} e^{im \varphi}\eta P_l^m(\eta) \\ 
+\end{split}
+\end{equation}
+We know, from the Wikipedia page on Associated Legendre Polynomials, that
+\begin{equation}
+\begin{split}
+\eta P_l^m(\eta) & = \frac{l-m+1}{2l+1}P_{l+1}^m(\eta) + \frac{l+m}{2l+1}P_{l-1}^m(\eta) \\
+\frac{e^{im \varphi}}{4\pi}\eta P_l^m(\eta) & = \frac{e^{im \varphi}}{4\pi(2l+1)}(l-m+1)P_{l+1}^m(\eta) + \frac{e^{im \varphi}}{4\pi(2l+1)}(l+m)P_{l-1}^m(\eta) \\
+\left[ \frac{(l+m)!  }{ (2l+1)(l-m)!} \right]^{\frac{1}{2}} \cos(\theta) Y_l^m(\Omega) & = \frac{(l-m+1)}{(2l+1)}\left[ \frac{(l+m+1)!  }{ (2l+3)(l-m+1)!} \right]^{\frac{1}{2}} Y_{l+1}^m(\Omega) \\  & + \frac{(l+m)}{(2l+1)}\left[ \frac{(l+m-1)!  }{ (2l-1)(l-m-1)!} \right]^{\frac{1}{2}} Y_{l-1}^m(\Omega)\\
+\cos(\theta) Y_l^m(\Omega) & = \frac{(l-m+1)}{\sqrt{2l+1}}\left[ \frac{(l+m+1)!(l-m)!  }{ (2l+3)(l-m+1)!(l+m)!} \right]^{\frac{1}{2}} Y_{l+1}^m(\Omega) \\  & + \frac{(l+m)}{\sqrt{2l+1}}\left[ \frac{(l+m-1)! (l-m)! }{ (2l-1)(l-m-1)!(l+m)!} \right]^{\frac{1}{2}} Y_{l-1}^m(\Omega) \\ 
+\\
+\cos(\theta) Y_l^m(\Omega) & = \frac{(l-m+1)}{\sqrt{2l+1}}\left[ \frac{(l+m+1)  }{ (2l+3)(l-m+1)} \right]^{\frac{1}{2}} Y_{l+1}^m(\Omega) \\  & + \frac{(l+m)}{\sqrt{2l+1}}\left[ \frac{ (l-m)}{ (2l-1)(l+m)} \right]^{\frac{1}{2}} Y_{l-1}^m(\Omega) \\ 
+\\
+\cos(\theta) Y_l^m(\Omega) & = \left[ \frac{(l+m+1) (l-m+1) }{ (2l+1)(2l+3)} \right]^{\frac{1}{2}} Y_{l+1}^m(\Omega)  \\&+ \left[ \frac{ (l-m)(l+m)}{ (2l+1)(2l-1)} \right]^{\frac{1}{2}} Y_{l-1}^m(\Omega) \\ 
+\end{split}
+\end{equation}
+\item We know that the associated Legendre functions satisfy
+\begin{equation}
+\begin{split}
+\sqrt{1-\eta^2}P_l^m(\eta) & = \frac{1}{2l+1} \left[  (l-m+1)(l-m+2) P_{l+1}^{m-1}(\eta) - (l+m-1)(l+m)P_{l-1}^{m-1}(\eta)\right] \\
+\end{split}
+\end{equation}
+Multiplying on both sides by the appropriate factors, we have
+\begin{equation}
+\begin{split}
+\sin(\theta)e^{-i\varphi}Y_l^m(\Omega) & = \frac{1}{2l+1} \left[ \frac{ (2l+1)(l-m)!}{(l+m)!  }\right]^\frac{1}{2} \left[  (l-m+1)(l-m+2) \left[ \frac{(l+m)!}{(2l+3)(l-m+2)!} \right]^\frac{1}{2}Y_{l+1}^{m-1}(\Omega)  \right. \\  &  \left. - (l+m-1)(l+m)  \left[\frac{(l+m-2)!}{(2l-1)(l-m)!} \right]^\frac{1}{2}Y_{l-1}^{m-1}(\Omega)\right]  \\
+\sin(\theta)e^{-i\varphi}Y_l^m(\Omega) & = \frac{1}{2l+1} \left[  (l-m+1)(l-m+2) \left[ \frac{(2l+1)(l-m)!}{(2l+3)(l-m+2)!} \right]^\frac{1}{2}Y_{l+1}^{m-1}(\Omega)  \right. \\  &  \left. - (l+m-1)(l+m)  \left[\frac{(2l+1)(l+m-2)!}{(2l-1)(l+m)!} \right]^\frac{1}{2}Y_{l-1}^{m-1}(\Omega)\right]  \\
+\sin(\theta)e^{-i\varphi}Y_l^m(\Omega) & =   \left[ \frac{ (l-m+1)(l-m+2)}{(2l+1)(2l+3)} \right]^\frac{1}{2}Y_{l+1}^{m-1}(\Omega)  -  \left[\frac{(l+m-1)(l+m) }{(2l+1)(2l-1)} \right]^\frac{1}{2}Y_{l-1}^{m-1}(\Omega) \\
+\end{split}
+\end{equation}
+The $\sin(\theta)e^{i\varphi}Y_l^m(\Omega) $ case follows from the fact that
+\begin{equation}
+\begin{split}
+\sqrt{1-\eta^2}P_l^m(\eta) & = -\frac{1}{2l+1} \left[  P_{l+1}^{m+1}(\eta) - P_{l-1}^{m+1}(\eta)\right] \\
+\end{split}
+\end{equation}
+After almost precisely the same algebra as in (17), we have
+\begin{equation}
+\begin{split}
+\sin(\theta)e^{\pm i\varphi}Y_l^m(\Omega) & =  \mp \left[ \frac{ (l\pm m+1)(l \pm m+2)}{(2l+1)(2l+3)} \right]^\frac{1}{2}Y_{l+1}^{m\pm 1}(\Omega)  \pm  \left[\frac{(l\mp m-1)(l\mp m) }{(2l+1)(2l-1)} \right]^\frac{1}{2}Y_{l-1}^{m\pm 1}(\Omega) \\
+\end{split}
+\end{equation}
+\item Define two differential operators, $\hat{L}_{\mp}$, by
+\begin{equation}
+\begin{split}
+\hat{L}_{\mp} = e^{ \mp i\varphi} \left[ \mp \pdv{\theta} + i \cot\theta\pdv{\varphi}\right]
+\end{split}
+\end{equation}
+We will compute $\hat{L}_{\mp}Y_l^m(\Omega)$.
+\begin{equation}
+\begin{split}
+\hat{L}_{-}Y_l^m(\Omega) & = e^{ - i\varphi} \left[ -\pdv{\theta} + i \cot\theta\pdv{\varphi}\right]\left[\frac{(2l+1)(l-m)!}{4\pi(l+m)!} \right]^\frac{1}{2}e^{im\varphi}P_l^m(\eta) \\
+\hat{L}_{-}Y_l^m(\Omega) & =   e^{ - i\varphi}\left[ \sqrt{1-\eta^2}\pdv{\eta} + i \frac{\eta}{\sqrt{1-\eta^2}}\pdv{\varphi}\right]\left[\frac{(2l+1)(l-m)!}{4\pi(l+m)!} \right]^\frac{1}{2}e^{im\varphi}P_l^m(\eta) \\
+\hat{L}_{-}Y_l^m(\Omega) & =  e^{ - i\varphi} \left[ \sqrt{1-\eta^2}\pdv{\eta} - m \frac{\eta}{\sqrt{1-\eta^2}}\right]\left[\frac{(2l+1)(l-m)!}{4\pi(l+m)!} \right]^\frac{1}{2}e^{im\varphi}P_l^m(\eta) \\
+\hat{L}_{-}Y_l^m(\Omega) & =  e^{  i(m-1)\varphi} \left[\frac{(2l+1)(l-m)!}{4\pi(l+m)!} \right]^\frac{1}{2}\left[ \sqrt{1-\eta^2}\pdv{\eta} - m \frac{\eta}{\sqrt{1-\eta^2}}\right]P_l^m(\eta) \\
+\hat{L}_{-}Y_l^m(\Omega) & =  e^{  i(m-1)\varphi} \left[\frac{(2l+1)(l-m)!}{4\pi(l+m)!} \right]^\frac{1}{2}(l+m)(l-m+1)P_l^m(\eta) \\
+\hat{L}_{-}Y_l^m(\Omega) & =  e^{  i(m-1)\varphi} \left[\frac{(2l+1)(l-(m-1))!}{4\pi(l+m-1)!} \right]^\frac{1}{2}\sqrt{(l+m)(l-m+1)}P_l^m(\eta) \\
+\hat{L}_{-}Y_l^m(\Omega) & =  \sqrt{(l+m)(l-m+1)}Y_l^{m-1}(\Omega) \\
+\end{split}
+\end{equation}
+The $\hat{L}_+$ case follows in the same manner. Thus, we have
+\begin{equation}
+\hat{L}_{\mp}Y_l^m(\Omega) =  \sqrt{(l\pm m)(l\mp m+1)}Y_l^{m\mp 1}(\Omega) 
+\end{equation}
+
+\end{enumerate}
+\noindent\rule{15cm}{0.4pt} \\
+\item Consider the electric field generated by a charge density $\rho(\textbf{y})$ that vanishes inside a sphere of radius $r_0$. \\
+\begin{enumerate}[a)]
+\item We claim that if $\rho(\textbf{y}) = \rho( - \textbf{y}) $ then $\textbf{E}(\textbf{0}) = \textbf{0}$. The electric field due to the charge density is given by
+\begin{equation}
+\begin{split}
+\textbf{E}(\textbf{x}) &= \int d\textbf{y} \frac{\textbf{x} -\textbf{y}}{| \textbf{x} - \textbf{y}|^3}\rho(\textbf{y})\\
+\end{split}
+\end{equation}
+Therefore, 
+\begin{equation}
+\begin{split}
+\textbf{E}(\textbf{0}) &= -\int_{-\infty}^{\infty}\int_{-\infty}^{\infty}\int_{-\infty}^{\infty} d y_1 d y_2 d y_3 \frac{(y_1,y_2,y_3)}{| \textbf{y}|^3}\rho(\textbf{y}) \\
+\text{let \textbf{u} = -\textbf{y}} \\
+\textbf{E}(\textbf{0}) &= - \int_{\infty}^{-\infty}\int_{\infty}^{-\infty}\int_{\infty}^{-\infty} d u_1 d u_2 d u_3 \frac{(u_1,u_2,u_3)}{| \textbf{u}|^3}\rho(-\textbf{u}) \\
+\textbf{E}(\textbf{0}) &=  \int_{-\infty}^{\infty}\int_{-\infty}^{\infty}\int_{-\infty}^{\infty} d u_1 d u_2 d u_3 \frac{(u_1,u_2,u_3)}{| \textbf{u}|^3}\rho(-\textbf{u}) \\
+\textbf{E}(\textbf{0}) &=  \int_{-\infty}^{\infty}\int_{-\infty}^{\infty}\int_{-\infty}^{\infty} d u_1 d u_2 d u_3 \frac{(u_1,u_2,u_3)}{| \textbf{u}|^3}\rho(\textbf{u}) \\
+\textbf{E}(\textbf{0}) &= -\textbf{E}(\textbf{0}) \\
+\implies \textbf{E}(\textbf{0}) &= \textbf{0} \\ 
+\end{split}
+\end{equation}
+\item
+The field gradient tensor is given by
+\begin{equation}
+\begin{split}
+\varphi(\textbf{x})_{ij} & = \pdv{\varphi(\textbf{x})}{x_i}{x_j} \\ 
+\varphi(\textbf{x})_{ij} & = \int d\textbf{y} \rho(\textbf{y})\frac{3(x_i-y_i)(x_j-y_j)}{|\textbf{x} - \textbf{y}|^5 }, \text{	} \text{if $i\ne j$} \\
+\varphi(\textbf{x})_{ij} & = \int d\textbf{y} \rho(\textbf{y})\frac{3(y_i-x_i)^2 - |\textbf{x} - \textbf{y}|^2}{|\textbf{x} - \textbf{y}|^5 }, \text{	} \text{if $i =  j$}   \\
+\varphi(\textbf{0})_{ij} & = \int d\textbf{y} \rho(\textbf{y})\frac{3y_iy_j}{| \textbf{y}|^5 }, \text{	} \text{if $i\ne j$} \\
+\varphi(\textbf{0})_{ij} & = \int d\textbf{y} \rho(\textbf{y})\frac{3y_i^2 - |\textbf{y}|^2}{| \textbf{y}|^5 }, \text{	} \text{if $i =  j$}   \\
+\varphi(\textbf{0})_{ij} & = \int_{r_0}^{\infty}\int_{0}^{\pi}\int_{0}^{2\pi} r^2\sin(\theta) d\phi d\theta dr \rho(r,\theta, \phi)\frac{3y_iy_j}{ r^5 }, \text{	} \text{if $i\ne j$} \\
+\varphi(\textbf{0})_{ij} & = \int_{r_0}^{\infty}\int_{0}^{\pi}\int_{0}^{2\pi} r^2\sin(\theta) d\phi d\theta dr \rho(r,\theta, \phi)\frac{3y_i^2 - r^2}{ r^5 }, \text{	} \text{if $i =  j$} \\
+\end{split}
+\end{equation}
+By symmetry, the current coordinate system is the principle axis coordinate system. Therefore. $\varphi(\textbf{0})_{ij}$ is diagonal and we have $\varphi(\textbf{0})_{ij} = 0$ for $i \ne j$. We can parameterize $\varphi(\textbf{0})_{ij}$ as
+\begin{equation}
+\begin{split}
+\varphi(\textbf{0})_{ij} & = \left(
+\begin{array}{ccc}
+   \varphi_1 & 0 & 0 \\
+ 0 &  \varphi_2 & 0 \\
+ 0 & 0 &  
+   \varphi_3\\
+\end{array}
+\right)\\
+\end{split}
+\end{equation}
+We first show that $\varphi_1 = \varphi_2$. Observe that $\varphi_1 - \varphi_2$ is proportional to the following integral
+\begin{equation}
+\begin{split}
+\varphi_1 - \varphi_2 & \propto \int_{0}^{2\pi} d\phi \rho(r, \theta, \phi) (\cos^2(\phi) - \sin^2(\phi) ) \\
+& = \int_{0}^{2\pi} d\phi \rho(r, \theta, \phi) \cos(2\phi) \\
+& = \int_{0}^{2\pi} d\phi \rho(r, \theta, \phi+\alpha) \cos(2\phi) \\
+& = \int_{\alpha}^{2\pi+\alpha} d\phi \rho(r, \theta, \phi) \cos(2\phi-2\alpha) \\
+& = \int_{0}^{2\pi} d\phi \rho(r, \theta, \phi) (\cos(2\phi)\cos(2\alpha) + \sin(2\phi)\sin(2\alpha)) \\
+\end{split}
+\end{equation}
+But the second term in the last line is proportional to $\varphi(\textbf{0})_{xy}=0$ so
+\begin{equation}
+\begin{split}
+\int_{0}^{2\pi} d\phi \rho(r, \theta, \phi) (\cos(2\phi) & = \cos(2\alpha) \int_{0}^{2\pi} d\phi \rho(r, \theta, \phi) (\cos(2\phi) \\
+\implies \varphi_1 - \varphi_2 & \propto 0
+\end{split}
+\end{equation}
+So we may write $\varphi(\textbf{0})_{ij}$ as
+\begin{equation}
+\begin{split}
+\varphi(\textbf{0})_{ij} & = \left(
+\begin{array}{ccc}
+   \varphi & 0 & 0 \\
+ 0 &  \varphi & 0 \\
+ 0 & 0 &  
+   \varphi_3\\
+\end{array}
+\right)\\
+\end{split}
+\end{equation}
+We note that $\varphi(\textbf{0})_{ij}$ is traceless, since $3y_1^2 - r^2 + 3y_1^2 - r^2 + 3y_3^2 - r^2 = 3r^2 - 3r^2 = 0$. Therefore, we can write $\varphi(\textbf{0})_{ij}$ as
+\begin{equation}
+\begin{split}
+\varphi(\textbf{0})_{ij} & = \left(
+\begin{array}{ccc}
+   \varphi & 0 & 0 \\
+ 0 &  \varphi & 0 \\
+ 0 & 0 &  
+   -2\varphi\\
+\end{array}
+\right)\\
+\end{split}
+\end{equation}
+\item 
+Now suppose $\rho(\textbf{y})$ has cubic symmetry so that $\rho(r, \theta, \phi) = \rho(r, \theta \pm \pi/2, \phi) = \rho(r, \theta, \phi \pm \pi/2)$. We claim that $\varphi(\textbf{0})_{ij}$ vanishes in this case. From part b), we know that $\varphi(\textbf{0})_{ij}$ is of the form (23). Therefore, we need only show that $\varphi = 0$. If $\rho(\textbf{y})$ has cubic symmetry then we must have $\varphi(\textbf{0})_{xx} = \varphi(\textbf{0})_{yy} = \varphi(\textbf{0})_{zz}$. But this implies that $\varphi = -2\varphi$. So we must have $\varphi = 0$. Therefore, $\varphi(\textbf{0})_{ij} = 0$.
+\end{enumerate}
+\end{enumerate} 
+\noindent\rule{15cm}{0.4pt} \\
+\begin{equation}
+\begin{split}
+\clubsuit
+\end{split}
+\end{equation}
+\end{document}
+
+
+
+
+
+
+
+
+%\begin{equation}
+%\begin{split}
+%\end{split}
+%\end{equation}

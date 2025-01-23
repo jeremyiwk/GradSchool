@@ -1,0 +1,184 @@
+\documentclass{article}
+%\usepackage{setspace}
+%\onehalfspacing
+\usepackage{amsmath,amssymb,amsthm}
+\renewcommand{\qedsymbol}{$\blacksquare$}
+\usepackage{blindtext}
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage{amsmath}
+\usepackage{bm}
+\usepackage{amsfonts}
+\usepackage{mathrsfs}
+\usepackage{amssymb}
+\usepackage{enumerate}
+\usepackage{mdwlist}
+\usepackage{dirtytalk}
+\usepackage{xparse}
+\usepackage{physics}
+\usepackage{newunicodechar}
+\usepackage{tikzsymbols}
+\usepackage{graphicx}
+\setcounter{MaxMatrixCols}{13}
+\setlength\parindent{0pt}
+\usepackage[none]{hyphenat}
+\usepackage[hmarginratio=1:1]{geometry}
+\begin{document}
+%\begin{center}
+{\Large Physics 623 Homework 3}\\
+{Jeremy Welsh-Kavan}\\
+
+%\end{center}
+\vspace{0.2 cm}
+\begin{center}
+\noindent\rule{15cm}{0.4pt} \\
+\end{center}
+
+4.2.1. {\bf Lienard-Wiechert potentials}
+\hfill\\
+
+Consider a point charge $e$ that moves on a given trajectory $\bm{X}(t)$ with velocity $\bm{v}(t) = \dot{\bm{X} }(t)$ which results in charge and current densities
+
+\begin{equation}
+\rho(\bm{x},t) = e\delta(\bm{x} - \bm{X}(t))  \;\; \text{,} \;\; \bm{j}(\bm{x},t)  = e\bm{v}(t) \delta( \bm{x} - \bm{X}(t)) 
+\end{equation}
+
+The retarded potentials are given by
+
+\begin{equation}
+\begin{split}
+\varphi( \bm{x}, t) & = \int d\bm{y} \frac{1}{|\bm{x} - \bm{y}|} \rho\Big( \bm{y}, t - \frac{1}{c} |\bm{x} - \bm{y} | \Big) \\
+\bm{A}(\bm{x},t) & = \frac{1}{c} \int d\bm{y} \frac{1}{|\bm{x} - \bm{y}|} \bm{j} \Big( \bm{y}, t - \frac{1}{c}| \bm{x} - \bm{y} |  \Big)\\
+\end{split}
+\end{equation}
+
+Plugging (1) into (2), we have
+
+\begin{equation}
+\begin{split}
+\varphi( \bm{x}, t) & = e\int d\bm{y} \frac{1}{|\bm{x} - \bm{y}|} \delta\Big(\bm{y} - \bm{X}\Big(  t - \frac{1}{c}| \bm{x} - \bm{y} |    \Big)\Big) 
+\end{split}
+\end{equation}
+
+In order to solve (3), we must determine the point(s) at which the argument of the delta function is zero, which requires that we solve a recursive equation for $\bm{y}$, or we must eliminate the recursive relation in the delta function. We can do this by introducing a new delta function, $\delta( t'  - t +  \frac{1}{c}| \bm{x} - \bm{y} | )$, and integrating over $t'$. \footnote{ This solution follows closely the solution in Landau and Lifshitz. }
+
+\begin{equation}
+\begin{split}
+\varphi( \bm{x}, t) & = e\int \int  d\bm{y}dt' \frac{ \delta \left( \bm{y} - \bm{X} \left(  t'    \right) \right) }{|\bm{x} - \bm{y}|}    \delta \left(  t'  - t +  \frac{1}{c}| \bm{x} - \bm{y} | \right) \\
+\varphi( \bm{x}, t) & = e\int \int dt' d\bm{y} \frac{ \delta \left( \bm{y} - \bm{X} \left(  t'    \right) \right) }{|\bm{x} - \bm{y}|}    \delta \left(  t'  - t +  \frac{1}{c}| \bm{x} - \bm{y} | \right) \\
+\varphi( \bm{x}, t) & = e  \int  dt' \frac{   \delta \left(  t'  - t +  \frac{1}{c}| \bm{x} -  \bm{X} \left(  t'    \right) | \right)    }{|\bm{x} -  \bm{X} \left(  t'    \right)|}    \\
+\end{split}
+\end{equation}
+
+Now let $g(t') = t'  - t +  \frac{1}{c}| \bm{x} -  \bm{X} \left(  t'    \right) | $, and recall the following property of the delta function
+
+\begin{equation}
+\begin{split}
+\delta(g(x)) & = \sum_i \frac{ \delta(x-x_i)  }{ |g'(x_i) |  }
+\end{split}
+\end{equation}
+
+where $i$ indexes the set $\{ x : g(x)=0 \}$. We claim that $g(t')=0$ has exactly one solution, $t_-$. \\
+\hfill \\
+Fix $A = (ct ,\bm{x})$ and, without loss of generality, define $\bm{X}(0)=\bm{0}$. Since we need only consider events $A$ which can be causally related to $O = (0, \bm{X}(0) )$, we may assume $A$ occurs ``above'' the light cone whose origin is $O$. Therefore, $c^2t^2 > \bm{x}^2$, which implies that $g(0) = -t + \frac{1}{c}|\bm{x}| < 0 $. Observe that $g(t) =  \frac{1}{c}| \bm{x} -  \bm{X} (t ) | > 0 $. Thus, by the Intermediate Value Theorem, there exists $t_- \in \left( 0, t \right)$ such that $g(t_-) = t_-  - t +  \frac{1}{c}| \bm{x} -  \bm{X} (  t_-) | = 0$. \\ 
+
+Suppose there exists another value, $t_+ \in \left( -\infty, \infty \right)$, such that $g(t_+)= 0$. Without loss of generality, assume that $t_- < t_+$. \footnote{Note that the algebra is identical if we assume $t_+ < t_-$} Then, by the Mean Value Theorem, there exists a point $t^* \in \left( t_-, t_+ \right)$ such that $g'(t^*) ( t_+ - t_- )  = g( t_+ ) - g( t_-)$. But then we would have
+
+\begin{equation}
+\begin{split}
+g'(t^*) ( t_+ - t_- ) & = g( t_+ ) - g( t_-) \\
+\left(1 - \frac{1}{c} \frac{ (  \bm{x} - \bm{X}(t^*))\cdot \bm{X}'(t^*)  }{ | \bm{x} -  \bm{X} (  t^*) |  } \right)  ( t_+ - t_- )   & =  0 \\
+c| \bm{x} -  \bm{X} (  t^*) | + ( \bm{X}(t^*)- \bm{x} )\cdot \bm{v}(t^*)  & = 0 \\
+ | \bm{X}'(t^*) | \ge | \bm{v}(t^*) | | \cos(\vartheta) | & = c \\
+\implies | \bm{v}(t^*) | & \ge c
+\end{split}
+\end{equation}
+
+where $\vartheta = \arctan( ( \bm{X}(t^*)- \bm{x} )\cdot \bm{X}'(t^*)/ | \bm{X}'(t^*) |  | \bm{x} -  \bm{X} (  t^*) | )$. But we know {\it a priori} that the particle cannot travel faster than the speed of light, so this is a contradiction. Therefore, there exists one and only one value, $t_-$, such that $g(t_-) = 0$. \\
+
+Therefore, we can rewrite the integral in (4) in terms of $t_-$ using (5) as follows
+
+\begin{equation}
+\begin{split}
+\varphi( \bm{x}, t) & = e  \int  dt' \frac{   \delta \left(  t'  - t +  \frac{1}{c}| \bm{x} -  \bm{X} \left(  t'    \right) | \right)    }{|\bm{x} -  \bm{X} \left(  t'    \right)|}    \\
+\varphi( \bm{x}, t) & = e \frac{1}{| 1 - \frac{1}{c} \frac{ ( \bm{x} - \bm{X}(t_-) )\cdot \bm{v}(t_-)  }{ | \bm{x} -  \bm{X} (  t_-) |  } |} \int  dt' \frac{   \delta \left(  t'  - t_- \right)    }{ |\bm{x} -  \bm{X} \left(  t'    \right)| }    \\
+\varphi( \bm{x}, t) & = e \frac{1}{1 - \frac{1}{c} \frac{ ( \bm{x} - \bm{X}(t_-) )\cdot \bm{v}(t_-)  }{ | \bm{x} -  \bm{X} (  t_-) |  } } \frac{  1  }{ |\bm{x} -  \bm{X} \left(  t_-   \right)| }    \\
+\implies \varphi( \bm{x}, t) & =  \frac{e}{|\bm{x} -  \bm{X} \left(  t_-   \right)|  - \bm{v}(t_-) \cdot ( \bm{x} - \bm{X}(t_-) )/c }   \\
+\end{split}
+\end{equation}
+
+Note that $g'(t_-)>0$ so the absolute value signs in the second line of (7) can be eliminated. 
+
+\hfill \\
+
+In the same manner, we can evaluate the integral for $\bm{A}(\bm{x},t)$. 
+
+\begin{equation}
+\begin{split}
+\bm{A}(\bm{x},t) & = \frac{1}{c} \int d\bm{y} \frac{1}{|\bm{x} - \bm{y}|} \bm{j} \Big( \bm{y}, t - \frac{1}{c}| \bm{x} - \bm{y} |  \Big)\\
+\bm{A}(\bm{x},t) & = \frac{1}{c} \int d\bm{y} \frac{1}{|\bm{x} - \bm{y}|} \bm{v}(t - \frac{1}{c} |\bm{x} - \bm{y} |)  \rho\Big( \bm{y}, t - \frac{1}{c} |\bm{x} - \bm{y} | \Big)  \\
+\bm{A}(\bm{x},t) & = \frac{e}{c}   \int  dt' \frac{   \delta \left(  t'  - t +  \frac{1}{c}| \bm{x} -  \bm{X} \left(  t'    \right) | \right)    }{|\bm{x} -  \bm{X} \left(  t'    \right)|} \bm{v}(t')   \\
+\implies \bm{A}(\bm{x},t) & = \frac{1}{c}   \bm{v}(t_-)  \varphi( \bm{x},t)\\
+\end{split}
+\end{equation}
+
+
+\hfill \\
+\noindent\rule{15cm}{0.4pt} \\
+
+
+4.2.2. {\bf Potential of a uniformly moving charge}
+\hfill\\
+
+Consider a charge $e$ moving uniformly along the $x$-axis with velocity $v$ and let $\bm{X}(t) = (vt,0,0)$ parameterize its position as a function of time. To determine the Lienard-Wiechert potentials, we need only to find $t_-$ which is the solution to $t_- = t - \frac{1}{c} | \bm{x} - \bm{X}(t_-) |$.
+
+\begin{equation}
+\begin{split}
+t_- &= t - \frac{1}{c} | \bm{x} - \bm{X}(t_-) | \\
+c^2(t - t_-)^2 & = (x-vt_-)^2 +  y^2  +  z^2 \\ 
+ y^2 + z^2 & = (c^2t^2-x^2) + 2(xv - c^2t)t_- + (c^2-v^2)t_-^2    \\
+0 & = (c^2-v^2)t_-^2 + 2(xv - c^2t)t_- + (c^2t^2-x^2) - y^2 - z^2 \\
+0 &= At_-^2 + Bt_- + C  \\
+t_- & = \frac{ -B - \sqrt{ B^2 - 4AC  }  }{2A} \\
+t_- & = \frac{ -(xv - c^2t) - \sqrt{ (xv - c^2t)^2 - (c^2-v^2)((c^2t^2-x^2) - y^2 - z^2) }  }{(c^2-v^2)} \\
+\end{split}
+\end{equation}
+
+where we have chosen the negative root since we must have $t_- <t$. Plugging this into equations (7) and (8) we get
+
+\begin{equation}
+\begin{split}
+\varphi( \bm{x}, t) & =  \frac{e}{  \sqrt{ (x-vt_-)^2 + y^2 +z^2  }  - \frac{v}{c}(x-vt_-) }   \\
+\varphi( \bm{x}, t) & =  \frac{e}{  c(t - t_-) - \frac{v}{c}(x-vt_-) }   \\
+\varphi( \bm{x}, t) & =  \frac{e}{ \sqrt{ (x-vt)^2 + y^2+z^2 - \frac{v^2}{c^2}(y^2+z^2) }}   \\
+\varphi( \bm{x}, t) & =  \frac{e}{ \sqrt{ (x-vt)^2 + \left(1 - \frac{v^2}{c^2} \right)(y^2+z^2)} }   \\
+\implies \varphi( \bm{x}, t) & =  \frac{e}{ R^* } \; \text{   ,   } \; R^* := \sqrt{ (x-vt)^2 + \left(1 - \frac{v^2}{c^2} \right)(y^2+z^2)}\\
+\bm{A}( \bm{x}, t) & =  \frac{1}{c}   \bm{v}(t_-)  \varphi( \bm{x},t)\\
+\bm{A}( \bm{x}, t) & = \frac{e}{c} \frac{\bm{v}}{R^*}  \; \text{   ,   } \; \bm{v} := (v, 0, 0) \\
+\end{split}
+\end{equation}
+
+
+both of which agree with the potentials found in ch. 3 \S 3.4. 
+
+%A = (c^2-v^2)
+%B = 2(xv - c^2t)
+%C = (c^2t^2-x^2) - y^2 - z^2
+
+\noindent\rule{15cm}{0.4pt} \\
+$$\clubsuit$$
+\end{document}
+
+
+
+
+
+
+
+%\Rightarrow\!\Leftarrow
+
+
+%\begin{equation}
+%\begin{split}
+%\end{split}
+%\end{equation}

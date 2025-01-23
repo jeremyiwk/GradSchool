@@ -1,0 +1,251 @@
+\documentclass[]{book}
+\usepackage{amsmath,amssymb,amsthm}
+\renewcommand{\qedsymbol}{$\blacksquare$}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{mathrsfs}
+\usepackage{amssymb}
+\usepackage{enumerate}
+\usepackage{mdwlist}
+\usepackage{dirtytalk}
+\setcounter{MaxMatrixCols}{13}
+\setlength\parindent{0pt}
+\usepackage[none]{hyphenat}
+\usepackage[hmarginratio=1:1]{geometry}
+\begin{document}
+\begin{center}
+{\Large Problem Set 5}\\
+{Jeremy Welsh-Kavan}\\
+\end{center}
+\vspace{0.2 cm}
+\begin{center}
+\noindent\rule{15cm}{0.4pt} \\
+\end{center}
+{\bf 1.4.5} \\
+
+Consider the reals $\mathbb{R}$ with $\rho:\mathbb{R}\times \mathbb{R}\to \mathbb{R}$ defined by $\rho(x,y)=|x-y|$. \\
+
+{\bf Proposition:} $\mathbb{R}$ with this definition of $\rho$ makes ($\mathbb{R},\rho)$ a metric space. \\
+\begin{proof}
+We will check each of the criteria in Definition 1 of section 4.5.
+\begin{enumerate}[1.]
+\item Let $x,y\in \mathbb{R}$. If $x\neq y$ then we can assume without loss of generality that $x>y$. Therefore, $$\rho(x,y)=|x-y|=x-y>0$$ since $x>y$. Suppose $x=y$. Then $$\rho(x,y)=|x-y|=x-y=x-x=0$$
+Now suppose $\rho(x,y)=0$. We can assume without loss of generality that $x\geqslant y$. Then we have that $$\rho(x,y)=|x-y|=x-y=0$$
+But $x-y=0$ implies that $x=y$. Therefore, for all $x,y\in \mathbb{R}$, $\rho(x,y)\geqslant 0$ and $\rho(x,y)=0$ if and only if $x=y$. \\
+\item Let $x,y\in \mathbb{R}$ and assume without loss of generality that $x\geqslant y$. Then $x-y\geqslant 0$ and $y-x\leqslant 0$ so $$\rho(x,y)=|x-y|=x-y$$ and $$\rho(y,x)=|y-x|=-(y-x)=x-y$$
+Therefore, $\rho(x,y)=\rho(y,x)$ for all $x,y\in \mathbb{R}$. \\
+\item First we observe that $\sqrt{(a-b)^2}=|a-b|=\rho(a,b)$ for each $a,b\in \mathbb{R}$. Let $x,y,z\in \mathbb{R}$ and set $\alpha=x-y$ and $\beta=y-z$. For all $\alpha,\beta\in \mathbb{R}$, we have the following:
+\begin{align*} 
+(\alpha+\beta)^2 &= \alpha^2 + \beta^2 + 2\alpha \beta \\
+&\leqslant |\alpha|^2 + |\beta|^2 + 2|\alpha||\beta| \\
+&=(|\alpha| + |\beta|)^2
+\end{align*}
+Therefore, $$\rho(x,z)=|x-z|=|\alpha+\beta|=\sqrt{(\alpha+\beta)^2}\leqslant |\alpha| + |\beta|=|x-y|+|y-z|=\rho(x,y)+\rho(y,z)$$
+So the triangle inequality is satisfied.
+\end{enumerate}
+Thus, the criteria of Definition 1 in Section 4.5 are satisfied so $(\mathbb{R},\rho)$ forms a metric space.
+\end{proof}
+
+\noindent\rule{15cm}{0.4pt} \\
+
+{\bf 1.4.6} \\ \\
+{\bf Proposition a:} A sequence in a metric space has at most one limit.
+\begin{proof}
+Let $X$ be a metric space and let $\{a_n\}_{n\in \mathbb{N}}$ be a sequence in $X$. Assume that $a_n\to L_1$ and $a_n\to L_2$. \\
+Let $\epsilon>0$. Since $a_n\to L_1$ we can find $N_1$ such that $d(a_n,L_1)<\frac{\epsilon}{2}$, and since $a_n\to L_2$ we can find $N_2$ such that $d(a_n,L_2)<\frac{\epsilon}{2}$. Then for all $n>N_1+N_2$ we have $d(a_n,L_1)<\frac{\epsilon}{2}$ and $d(a_n,L_2)<\frac{\epsilon}{2}$. By the triangle inequality, we have
+
+$$d(L_1,L_2) \leqslant d(a_n,L_1) + d(L_2,a_n) < \frac{\epsilon}{2} + \frac{\epsilon}{2} = \epsilon$$
+But, for any $\alpha\in \mathbb{R}_{\geqslant 0}$, if $\alpha < \epsilon$ for all $\epsilon >0$ then $\alpha=0$. So we must have $d(L_1,L_2)=0$. Since $X$ is a metric space, $d(L_1,L_2)=0$ implies that $L_1=L_2$. Thus, for any sequence $\{a_n\}_{n\in \mathbb{N}}$ in a metric space, $\{a_n\}_{n\in \mathbb{N}}$ has at most one limit.
+\end{proof}
+
+\noindent\rule{15cm}{0.4pt} \\
+
+{\bf Proposition b:} Every convergent sequence in a metric space is a Cauchy sequence.
+\begin{proof}
+Let $X$ be a metric space and let $\{a_n\}_{n\in \mathbb{N}}$ be a sequence in $X$ such that $a_n\to L$. Let $\epsilon>0$ and choose $N\in \mathbb{N}$ such that, for all $n>N$, $d(a_n,L)<\frac{\epsilon}{2}$. If $m>N$, we have 
+$$d(a_n,a_m) \leqslant d(a_n,L) + d(a_m,L) < \frac{\epsilon}{2} + \frac{\epsilon}{2} = \epsilon$$
+Thus, if $a_n\to L$ then for all $\epsilon>0$ there exists $N\in \mathbb{N}$ such that if $n,m>N$ then $d(a_n,a_m)< \epsilon$. Therefore, $\{a_n\}_{n\in \mathbb{N}}$ is a Cauchy sequence.
+\end{proof}
+
+\noindent\rule{15cm}{0.4pt} \\
+
+{\bf 1.4.7} \\ \\
+Let $B$ be a $K$-vector space with null vector $\theta$. Let $||...||: B\to \mathbb{R}$ be a mapping such that
+\begin{enumerate}[(i)]
+\item $||x||\geqslant 0$ $\forall x,y\in B$, and $||x||=0$ iff $x=\theta$
+\item $||x+y||\leqslant ||x|| + ||y||$ $\forall x,y\in B$
+\item $||\lambda x|| = |\lambda|\cdot ||x|| \; \forall x\in B, \lambda\in K$
+\end{enumerate}
+Define a mapping $d:B\times B\to \mathbb{R}$ by $$d(x,y):=||x-y||\; \forall x,y\in B$$
+{\bf Proposition a:} $d$ is a metric on $B$.
+\begin{proof}
+We again check the criteria in Definition 1 of section 4.5.
+\begin{enumerate}[1.]
+\item Let $x,y\in B$. Since $(x-y)\in B$, $d(x,y)=||x-y||\geqslant 0$, since $||\dots ||$ is a norm on $B$. Since $B$ is a vector space, $x-x = 0$ so 
+$$d(x,x)=||x-x||=||0||=0$$
+If $d(x,y)=0$ then $||x-y||=0$ so $x-y=0$, since $||\dots||$ is a norm.
+\item Let $x,y\in B$. Since $||\dots||$ is a norm, if $b\in B$ then $||-b||=|-1|\cdot||b||=||b||$. So $$d(x,y)=||x-y||=||-(y-x)||=|-1|\cdot||y-x||=d(y,x)$$
+\item Let $x,y,z\in B$ and define $\alpha=x-z$ and $\beta=z-y$. Since $||\dots||$ satisfies the triangle inequality, we have
+$$d(x,y)=||x-y||=||\alpha +\beta|| \leqslant ||\alpha||+||\beta||=||x-z||+||z-y||=d(x,z) + d(z,y)$$
+\end{enumerate}
+Thus, $d(\cdot,\cdot)$ is a metric on $B$.
+\end{proof}
+
+\noindent\rule{15cm}{0.4pt} \\
+
+Define a function $|\dots|:\mathbb{C}\to \mathbb{R}_{\geqslant 0}$ such that, for $\lambda\in \mathbb{C}$, $|\lambda|=\sqrt{\lambda^*\lambda}$. \\ \\
+{\bf Proposition b:} $\mathbb{R}$ and $\mathbb{C}$ with $|\dots|$, as defined above, are $B$-spaces.
+\begin{proof}
+Since $\mathbb{R}$ is a subspace of $\mathbb{C}$, we will prove the proposition for $\mathbb{C}$ which will show that it is also true for $\mathbb{R}$. First, we will show that $|\dots|$ satisfies the criteria for a norm.
+\begin{enumerate}[(i)]
+\item Let $\lambda\in \mathbb{C}$. Then $\lambda=a+ib$ for some $a,b\in \mathbb{R}$, and $\lambda^*=a-ib$. So 
+$$\lambda^*\lambda=(a+ib)(a-ib)=a^2+b^2$$
+and since $a,b\in \mathbb{R}$, $a^2+b^2 \geqslant 0$. Therefore,
+$$|\lambda|=\sqrt{\lambda^*\lambda}=\sqrt{a^2+b^2} \geqslant 0$$
+for each $\lambda\in\mathbb{C}$. \\
+Suppose $|\lambda|=0$. Then, if $\lambda=a+ib$, we have that $a^2+b^2=0$. Therefore, $a=0$ and $b=0$, so $\lambda=0$. \\
+Now suppose $\lambda=0$. Then $|\lambda|=\sqrt{0^2+0^2}=0$. So (i) is satisfied.
+\item Let $\alpha,\beta\in \mathbb{C}$ and write $\alpha = a+ib$ and $\beta=c+id$, for some $a,b,c,d\in\mathbb{R}$. Since $a,b,c,d\in\mathbb{R}$, we have
+\begin{align*}
+0 &\leqslant (b c - a d)^2 \\
+(ac + bd)^2 &\leqslant (a^2 + b^2)(c^2 + d^2) \\
+2ac + 2bd &\leqslant 2\sqrt{(a^2 + b^2)(c^2 + d^2)} \\
+a^2+b^2+c^2+d^2+2ac + 2bd &\leqslant a^2+b^2+c^2+d^2+2\sqrt{(a^2 + b^2)(c^2 + d^2)} \\
+|\alpha|^2+|\beta|^2+\alpha\beta^*+\beta\alpha^* &\leqslant |\alpha|^2+|\beta|^2 + 2|\alpha||\beta| \\
+|\alpha+\beta|^2 &\leqslant (|\alpha|+|\beta|)^2 \\
+|\alpha+\beta| &\leqslant |\alpha|+|\beta| 
+\end{align*}
+Therefore, (ii), the triangle inequality, is satisfied. 
+\item Let $\lambda,\xi\in \mathbb{C}$. Then 
+$$|\lambda\xi|=\sqrt{\lambda\xi(\lambda\xi)^*}=\sqrt{\lambda\lambda^*\xi\xi^*}=\sqrt{\lambda\lambda^*}\sqrt{\xi\xi)^*}=|\lambda||\xi|$$
+So (iii) is satisfied.
+\end{enumerate}
+Since $\mathbb{R}\subset\mathbb{C}$, all of the above hold for elements of $\mathbb{R}$.
+Since $\mathbb{R}$ is the completion of $\mathbb{Q}$, $\mathbb{R}$ is complete. $\mathbb{R}$ is the set of equivalence classes of Cauchy sequences in $\mathbb{Q}$ which get arbitrarily close to each other. This is the result of exercises 24 and 25 in chapter 3 Walter Rudin's {\it Principles of Mathematical Analysis}.
+\end{proof}
+
+\noindent\rule{15cm}{0.4pt} \\
+
+Now let $B^*$ be the dual space of $B$, i.e., the space of linear functionals $l:B\to K$, and define a function on $B^*$ by $$||l||:= \textrm{sup}_{||x||=1}\{|l(x)|\}$$
+{\bf Proposition c:} $l$ is a norm on $B^*$
+\begin{proof}
+We will check the criteria above.
+\begin{enumerate}[(i)]
+\item Let $l\in B^*$. Since $|l(x)|\in \mathbb{R}$, $|l(x)|\geqslant 0$ for all $x\in B$.\footnote{this is true whether K is the real or complex numbers} By definition, $\textrm{sup}_{||x||=1}\{|l(x)|\}$ is an upper bound for $\{|l(x)| : ||x||=1\}$. Therefore, since $|l(x)|\in \{|l(x)| : ||x||=1\}$, we have $$\textrm{sup}_{||x||=1}\{|l(x)|\} \geqslant |l(x)|\geqslant 0$$
+Therefore, for each $l\in B^*$, $||l|| \geqslant 0$. \\
+Suppose $l(x)=0$ for each $x\in B$. Then $|l(x)|=0$ for each $x\in B$ and $$||l||=\textrm{sup}_{||x||=1}\{|l(x)|\}=\textrm{sup}\{0\}=0$$
+Therefore, if $l=0$ then $||l||=0$. \\
+Now suppose $||l||=0$. Then $\textrm{sup}_{||x||=1}\{|l(x)|\}=0$. But since $|l(x)|\geqslant 0$ for each $x\in B$, we must have $$0=\textrm{sup}_{||x||=1}\{|l(x)|\} \geqslant |l(x)|\geqslant 0$$
+So $|l(x)|=0$ for each $x\in B$, which implies that $l=0$.\footnote{This follows from that fact that the absolute value is a norm on K} Therefore, $||l||=0$ if and only if $l=0$. \\
+\item {\bf Lemma 1:} For two sets, $A$ and $B$, of real numbers, if $A+B=\{a+b:a\in A$ and $b\in B\}$ then sup$(A+B)=$ sup$A$ $+$ sup$B$.
+\begin{proof}
+Let $a\in A$ and $b\in B$. Since sup$A$ is an upper bound for A and sup$B$ is an upper bound for B, we have $$a \leqslant \textrm{sup}A \textrm{ and } b\leqslant \textrm{sup}B$$
+$$a+b \leqslant \textrm{sup}A + \textrm{sup}B$$
+ for each $a\in A$ and $b\in B$. So $\textrm{sup}A + \textrm{sup}B$ is an upper bound for $A+B$. Let $\epsilon>0$. Then there exists $a\in A$ and $b\in B$ such that $$\textrm{sup}A-\frac{\epsilon}{2} \leqslant a \textrm{ and } \textrm{sup}B - \frac{\epsilon}{2} \leqslant b$$
+ Therefore, for all $\epsilon>0$ there exists $a+b\in A+B$ such that
+ $$\textrm{sup}A+\textrm{sup}B - \epsilon \leqslant a+b$$
+ So $\textrm{sup}A+\textrm{sup}B$ is the least upper bound for $A+B$. 
+\end{proof}
+{\bf Lemma 2:} If $A\subset \mathbb{R}$, $\lambda\in \mathbb{R}$, and $\lambda \geqslant 0$, then $\lambda\cdot\textrm{sup}A=\textrm{sup}\{\lambda a:a\in A\}$.
+\begin{proof}
+Define $\lambda A=\{\lambda a:a\in A\}$. Since $\textrm{sup}A$ is an upper bound for $A$, for each $a\in A$ we have
+$$a\leqslant \textrm{sup}A$$
+and since $\lambda \geqslant 0$, 
+$$\lambda a \leqslant \lambda\cdot\textrm{sup}A$$
+So $\lambda\cdot\textrm{sup}A$ is an upper bound for $A$. Let $\epsilon>0$. Since $\textrm{sup}A$ is the least upper bound for $\lambda A$, there exists $a\in A$ such that 
+$$\textrm{sup}A-\frac{\epsilon}{\lambda} \leqslant a$$
+But since $\lambda\geqslant 0$, 
+$$\lambda\cdot\textrm{sup}A-\epsilon \leqslant \lambda a$$
+Thus, for each $\epsilon>0$ there exists $\lambda a\in\lambda A$ such that
+$$\lambda\cdot\textrm{sup}A-\epsilon \leqslant \lambda a$$
+Therefore, $\lambda\cdot\textrm{sup}A=\textrm{sup}(\lambda A)$
+\end{proof}
+
+Let $k,l\in B^*$. Since $|\dots|$ is a norm on $K$, we have $$|k(x)+l(x)|\leqslant |k(x)|+|l(x)|$$ for each $x\in B$. In particular, if $x\in B$ and $||x||=1$ then $|k(x)|+|l(x)|$ must be an upper bound for the set $\{|k(x)+l(x)|:||x||=1\}$. 
+Which means $$\textrm{sup}_{||x||=1}\{|k(x)+l(x)|\} \leqslant |k(x)|+|l(x)|$$
+And $$|k(x)|+|l(x)| \leqslant \textrm{sup}_{||x||=1}\{|k(x)|+|l(x)| \}$$ for each $x\in B$ such that $||x||=1$. Therefore, we have $$\textrm{sup}_{||x||=1}\{|k(x)+l(x)|\} \leqslant \textrm{sup}_{||x||=1}\{|k(x)|+|l(x)| \}$$ By Lemma 1, we know that $$\textrm{sup}_{||x||=1}\{|k(x)|+|l(x)|\}=\textrm{sup}_{||x||=1}\{|k(x)|\} + \textrm{sup}_{||x||=1}\{|l(x)|\}$$ Finally, we arrange the sequence of inequalities above to arrive at 
+$$||k+l||=\textrm{sup}_{||x||=1}\{|k(x)+l(x)|\} \leqslant \textrm{sup}_{||x||=1}\{|k(x)|\} + \textrm{sup}_{||x||=1}\{|l(x)|\}=||k||+||l||$$
+Therefore, for each $k,l\in B^*$, $$||k+l|| \leqslant ||k||+||l||$$ so the triangle inequality is satisfied. 
+\item Let $l\in B^*$ and $\lambda\in K$. By definition,
+$$||\lambda l||=\textrm{sup}_{||x||=1}\{|\lambda l(x)| \}$$
+Since $|\lambda l(x)|=|\lambda|\cdot|l(x)|$, by Lemma 2 we have
+$$||\lambda l||=\textrm{sup}_{||x||=1}\{|\lambda|\cdot|l(x)|\}=|\lambda|\cdot\textrm{sup}_{||x||=1}\{|l(x)|\}=|\lambda|\cdot||l||$$
+So condition (iii) is satisfied.
+\end{enumerate}
+Thus, since conditions (i),(ii), and (iii) are satisfied, $l$ is a norm on $B^*$.
+\end{proof}
+
+\noindent\rule{15cm}{0.4pt} \\
+
+{\bf 1.4.8} \\ \\
+{\bf Proposition a:} The norm, $||x||=\sqrt{(x,x)}$, in 4.7 Definition 1 is a norm in the sense of 4.6 Definition 1.
+\begin{proof}
+We will check the criteria of 4.6 Definition 1. Let $H$ be a linear space over $\mathbb{C}$ with null vector $0$.
+\begin{enumerate}[(i)]
+\item Let $x\in H$. Then $||x||=\sqrt{(x,x)}$. By (ii) in 4.7 Definition 1, $(x,x)\geqslant 0$. Therefore, $||x||\geqslant 0$.
+Since taking square roots preserves positive semidefiniteness, by (ii) in 4.7 Definition 1, $||\dots||$ on $H$ satisfies (i) in 4.6 Definition 1.
+\item Let $\alpha,\beta\in H$. By 4.7 Lemma 1, we have 
+\begin{align*}
+|(\alpha,\beta)|^2 &\leqslant (\alpha,\alpha)(\beta,\beta) \\ 
+|(\alpha,\beta)| &\leqslant ||\alpha||||\beta|| \\
+\end{align*}
+We use the fact that if $z\in\mathbb{C}$, 
+$$Re(z) \leqslant |z|$$ 
+So we have
+\begin{align*}
+2\mathfrak{Re}((\alpha,\beta)) &\leqslant 2||\alpha||||\beta|| \\
+||\alpha||^2 + ||\beta||^2 + 2\mathfrak{Re}((\alpha,\beta)) &\leqslant ||\alpha||^2 + ||\beta||^2 + 2||\alpha||||\beta|| \\
+(\alpha,\alpha) + (\beta,\beta) + (\alpha,\beta) + (\beta,\alpha) &\leqslant (||\alpha|| + ||\beta||)^2 \\
+(\alpha+\beta,\alpha+\beta) &\leqslant (||\alpha|| + ||\beta||)^2 \\
+||\alpha+\beta||^2 &\leqslant (||\alpha|| + ||\beta||)^2 \\
+||\alpha+\beta|| &\leqslant ||\alpha|| + ||\beta|| \\
+\end{align*}
+Therefore, (ii) of 4.6 Definition 1 is satisfied.
+\item Let $x\in H$ and $\lambda\in\mathbb{C}$. Then by (iv) in 4.7 Definition 1, we have
+$$||\lambda x|| = \sqrt{\lambda(x,\lambda x)} = \sqrt{\lambda\lambda^*(x,x)}= |\lambda|\sqrt{(x,x)}=|\lambda| ||x||$$
+Therefore, (iii) of 4.6 Definition 1 is satisfied.
+\end{enumerate}
+Thus, the norm in 4.7 Definition 1 is a norm in the sense of 4.6 Definition 1.
+\end{proof}
+
+\noindent\rule{15cm}{0.4pt} \\
+
+{\bf Proposition b:} The mappings, $l$, defined in 4.7 Definition 4 are linear forms in the sense of 4.3 Definition 1 a).
+\begin{proof}
+Let $y\in H$ and let $l:H\to \mathbb{C}$ be a mapping such that $l(x):=(y,x)$ for all $x\in H$. 
+\begin{enumerate}[(i)]
+\item Let $x,z\in H$. Then, by (i) and (iii) of 4.7 Definition 1, we have
+$$l(x+z)=(y,x+z)=(x+z,y)^*=(x,y)^*+(z,y)^*=(y,x)+(y,z)=l(x)+l(z)$$
+So (i) of 4.3 Definition 1 a) is satisfied.
+\item Let $x\in H$ and $\lambda\in\mathbb{C}$. Then, by (iv) of 4.7 Definition 1, we have
+$$l(\lambda x)=(y,\lambda x) = (\lambda x,y)^*=(\lambda^*(x,y))^*=\lambda(x,y)^*=\lambda l(x)$$
+So (ii) of 4.3 Definition 1 a) is satisfied.
+\end{enumerate}
+Therefore, $l:H\to\mathbb{C}$ is a linear form in the sense of 4.3 Definition 1 a).
+\end{proof}
+\end{document}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

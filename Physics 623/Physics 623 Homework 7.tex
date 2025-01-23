@@ -1,0 +1,240 @@
+\documentclass[]{article}
+%\usepackage{setspace}
+%\onehalfspacing
+\usepackage{amsmath,amssymb,amsthm}
+\renewcommand{\qedsymbol}{$\blacksquare$}
+\usepackage{amsmath}
+\usepackage{bm}
+\usepackage{amsfonts}
+\usepackage{mathrsfs}
+\usepackage{amssymb}
+\usepackage{enumerate}
+\usepackage{mdwlist}
+\usepackage{dirtytalk}
+\usepackage{xparse}
+\usepackage{physics}
+\usepackage{graphicx}
+\usepackage{xcolor}% http://ctan.org/pkg/xcolor
+\usepackage{hyperref}% http://ctan.org/pkg/hyperref
+\hypersetup{
+  colorlinks=true,
+  linkcolor=blue!50!red,
+  urlcolor=green!70!black
+}
+\setcounter{MaxMatrixCols}{13}
+\setlength\parindent{0pt}
+\usepackage[none]{hyphenat}
+\usepackage[hmarginratio=1:1]{geometry}
+
+
+
+\begin{document}
+
+{\Large Physics 623 Homework 7}\\
+{Jeremy Welsh-Kavan}\\
+\hfill \\
+\noindent\rule{15cm}{0.4pt} \\
+
+
+
+4.6.1. {\bf Properties of Bessel functions} \\
+
+\begin{enumerate}[a)]
+
+\item The Bessel function $J_n$ can be written in terms of an integral as
+
+
+\begin{equation}
+\begin{aligned}
+J_n(x) & =  \frac{1}{\pi} \int_{0}^{\pi}  d\phi \: \cos( x \sin\phi - n\phi) \\
+\end{aligned}
+\end{equation}
+
+We claim that $J_{2n}(x)$ can be written as
+
+\begin{equation}
+\begin{aligned}
+J_{2n}(x) & =  \frac{1}{\pi} \int_{0}^{\pi}  d\phi \: \cos( x \sin(\phi/2) ) \cos(n\phi) \\
+\end{aligned}
+\end{equation}
+
+Starting with the representation in Eq. (1), we have
+
+\begin{equation}
+\begin{aligned}
+J_{2n}(x) & =  \frac{1}{\pi} \int_{0}^{\pi}  d\phi \: \cos( x \sin\phi - 2n\phi) \\
+%
+& =  \frac{1}{2\pi} \int_{0}^{2\pi}  d\phi \:   \cos( x \sin(\phi/2) - n\phi)  \\
+%
+& =  \frac{1}{2\pi} \int_{0}^{2\pi}  d\phi \:   \cos( x \sin(\phi/2)) \cos(n\phi) +  \sin( x \sin(\phi/2)) \sin(n\phi)   \\
+%
+\end{aligned}
+\end{equation} \\
+
+Observe that $ \sin(\phi/2)$ is even with respect to $\phi = \pi$, so for all $x \in \mathbb{R}$,   $\sin( x \sin(\phi/2))$ is even with respect to $\phi = \pi$. We also know that $\sin(n\phi)$ is odd with respect to $\phi = \pi$. Therefore, $\sin( x \sin(\phi/2)) \sin(n\phi)$ is odd with respect to $\phi = \pi$ so the second integral in the last line of Eq. (3) is zero. \\
+
+\begin{equation}
+\begin{aligned}
+J_{2n}(x) & =    \frac{1}{2\pi} \int_{0}^{2\pi}  d\phi \:   \cos( x \sin(\phi/2)) \cos(n\phi)    \\
+%
+\end{aligned}
+\end{equation} \\
+
+We also have that $\cos( x \sin(\phi/2))$ is even with respect to $\phi = \pi$, and since $\cos(n\phi)$ is even with respect to $\phi = \pi$, we have can divide the integral in 4 to get \\
+
+\begin{equation}
+\begin{aligned}
+J_{2n}(x) & =    \frac{1}{2\pi} \int_{0}^{2\pi}  d\phi \:   \cos( x \sin(\phi/2)) \cos(n\phi)    \\
+%
+& =  \frac{2}{2\pi} \int_{0}^{\pi}  d\phi \:   \cos( x \sin(\phi/2)) \cos(n\phi)  \\
+\implies J_{2n}(x) & =  \frac{1}{\pi} \int_{0}^{\pi}  d\phi \:   \cos( x \sin(\phi/2)) \cos(n\phi)  \\
+\end{aligned}
+\end{equation} \\
+
+as desired. \\
+
+
+
+
+
+
+
+%\cos( x \sin\phi ) \cos( 2n\phi) + \sin( x \sin\phi ) \sin( 2n\phi) 
+
+
+
+
+\end{enumerate}
+
+\noindent\rule{15cm}{0.4pt} \\
+
+
+
+4.6.2. {\bf Synchrotron radiation} \\
+ 
+\begin{enumerate}[a)]
+
+\item We can begin with the expression for the power per unit frequency per solid angle stated after Lemma 3 of ch. 5 § 6.2. Simplifying the dot products, we have \\
+
+\begin{equation}
+\begin{aligned}
+\frac{  d^2 \mathscr{P} (T) }{ d\Omega \: d\omega} & = \frac{ \omega^2 e^2}{ 4 \pi^2 c^3 } \int d\tau \: e^{ i \omega \tau }  \left[ \bm{v}\left( T + \frac{\tau}{2} \right) \cdot   \bm{v}\left( T -\frac{\tau}{2} \right) - c^2 \right] \: e^{  - i \frac{\omega}{c} \hat{\bm{x}} \cdot \left[  \bm{y}\left( T + \frac{\tau}{2}  \right) - \bm{y}\left( T - \frac{\tau}{2}  \right) \right] }    \\
+%
+& = \frac{ \omega^2 e^2}{ 4 \pi^2 c } \int d\tau \: e^{ i \omega \tau }  \left[ \frac{v^2}{c^2} \cos \omega_0 \tau - 1\right] \: e^{  - i \frac{\omega}{c} \hat{\bm{x}} \cdot \left[  \bm{y}\left( T + \frac{\tau}{2}  \right) - \bm{y}\left( T - \frac{\tau}{2}  \right) \right] }    \\
+\end{aligned}
+\end{equation} \\
+
+We now compute the dot products in the exponential in a coordinate system in which $\hat{\bm{x}}$ lies along the $z$-direction.  \\
+
+\begin{equation}
+\begin{aligned}
+\hat{\bm{x}} \cdot \left[  \bm{y}\left( T + \frac{\tau}{2}  \right) - \bm{y}\left( T - \frac{\tau}{2}  \right) \right] & = \left|  \bm{y}\left( T + \frac{\tau}{2}  \right) - \bm{y}\left( T - \frac{\tau}{2}  \right)  \right| \cos\theta
+\end{aligned}
+\end{equation} \\
+
+We have, in addition, that
+
+\begin{equation}
+\begin{aligned}
+ \left|  \bm{y}\left( T + \frac{\tau}{2}  \right) - \bm{y}\left( T - \frac{\tau}{2}  \right)  \right| & = 2R \sin( \omega_0 \frac{\tau}{2} ) \\
+\end{aligned}
+\end{equation} \\
+
+this was done in Mathematica. We can plug these into Eq. (6) and integrate over $\Omega$ to get \\
+
+\begin{equation}
+\begin{aligned}
+\frac{  d \mathscr{P} (T) }{ d\omega} & =  \frac{ \omega^2 e^2 }{ 4 \pi^2 c } \int d\tau \: e^{ i \omega \tau }  \left[ \frac{v^2}{c^2} \cos \omega_0 \tau - 1\right] \: \int d\Omega \; e^{  - i \frac{\omega}{c} 2R \sin( \omega_0 \tau / 2  ) \cos\theta  }    \\
+%
+ & =  \frac{ \omega^2 e^2 }{ 4 \pi^2 c } \int d\tau \: e^{ i \omega \tau }  \left[ \frac{v^2}{c^2} \cos \omega_0 \tau - 1\right] \:  \int_{0}^{\pi} \int_{0}^{2\pi} d\theta \: d\phi \; \sin\theta \:e^{  - i \frac{\omega}{c} 2R \sin( \omega_0 \tau / 2  ) \cos\theta  }    \\
+\end{aligned}
+\end{equation} \\
+
+We can compute this easily using a substitution to get
+
+\begin{equation}
+\begin{aligned}
+\frac{  d \mathscr{P} (T) }{ d\omega}  & =  \frac{ \omega^2e^2 }{ 4 \pi^2 c } \int d\tau \: e^{ i \omega \tau }  \left[ \frac{v^2}{c^2} \cos \omega_0 \tau - 1\right] \: \frac{ 4\pi \sin(  \frac{\omega}{c} 2R \sin( \omega_0 \tau / 2  )  )  }{  \frac{\omega}{c} 2R \sin( \omega_0 \tau / 2  ) }  \\
+%
+& =  \frac{ \omega \: e^2}{ 2 \pi R } \int d\tau \: e^{ i \omega \tau }  \left[ \frac{v^2}{c^2} \cos \omega_0 \tau - 1\right] \: \frac{ \sin(  \frac{\omega}{c} 2R \sin( \omega_0 \tau / 2  )  )  }{   \sin( \omega_0 \tau / 2  ) }  \\
+\end{aligned}
+\end{equation} \\
+
+Thus, we may write the power spectrum of synchrotron radiation as
+
+\begin{equation}
+\begin{aligned}
+\frac{  d \mathscr{P} (T) }{ d\omega}  & =  \frac{ \omega \: e^2}{ 2 \pi R } \int d\tau \: e^{ i \omega \tau } f \left(\omega_0 \tau \right)   \\
+\end{aligned}
+\end{equation} \\
+
+where
+
+
+\begin{equation}
+\begin{aligned}
+f \left( t \right) &=  \left[ \frac{v^2}{c^2} \cos t - 1\right] \: \frac{ \sin(  \frac{\omega}{c} 2R \sin( t/2  )  )  }{   \sin( t/2  ) }
+\end{aligned}
+\end{equation} \\
+
+
+It is clear that  $\frac{v^2}{c^2} \cos t - 1$ is $2\pi$ periodic so we need only show that $\text{sinc}(  \frac{\omega}{c} 2R \sin( t/2  ) )$ is also $2\pi$ periodic. Observe that $\sin( (t+2\pi n)/2  ) = (-1)^n\sin( t/2  ) $ for $n \in \mathbb{Z}$. So we have
+
+\begin{equation}
+\begin{aligned}
+\frac{ \sin(  \frac{\omega}{c} 2R \sin( (t+2\pi n)/2   )  )  }{   \sin( (t+2\pi n)/2    ) } & = \frac{ \sin(  \frac{\omega}{c} 2R (-1)^n \sin( t/2   )  )  }{ (-1)^n  \sin( t/2    ) } \\
+& = \frac{  (-1)^n \sin(  \frac{\omega}{c} 2R  \sin( t/2   )  )  }{ (-1)^n  \sin( t/2    ) } \\
+%
+& = \frac{  \sin(  \frac{\omega}{c} 2R  \sin( t/2   )  )  }{  \sin( t/2    ) } \\
+\end{aligned}
+\end{equation} \\
+
+Therefore, $\text{sinc}(  \frac{\omega}{c} 2R \sin( t/2  ) )$ is also $2\pi$ periodic. Thus, $f(t)$ is the product of two $2\pi$ periodic functions and is therefore also $2\pi$ periodic. \\
+
+\item Didn't make it here :(
+
+
+
+
+
+
+
+
+
+\end{enumerate}
+
+
+
+
+
+
+
+
+
+
+\newpage
+
+
+
+
+ 
+\noindent\rule{15cm}{0.4pt} \\
+
+$$\clubsuit$$
+
+\end{document}
+
+
+
+
+
+
+
+
+
+
+
+%\begin{equation}
+%\begin{split}
+%\end{split}
+%\end{equation}

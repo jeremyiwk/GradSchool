@@ -1,0 +1,231 @@
+\documentclass[]{article}
+%\usepackage{setspace}
+%\onehalfspacing
+\usepackage{amsmath,amssymb,amsthm}
+\renewcommand{\qedsymbol}{$\blacksquare$}
+\usepackage{amsmath}
+\usepackage{bm}
+\usepackage{amsfonts}
+\usepackage{mathrsfs}
+\usepackage{amssymb}
+\usepackage{enumerate}
+\usepackage{mdwlist}
+\usepackage{dirtytalk}
+\usepackage{xparse}
+\usepackage{physics}
+\usepackage{graphicx}
+\setcounter{MaxMatrixCols}{13}
+\setlength\parindent{0pt}
+\usepackage[none]{hyphenat}
+\usepackage[hmarginratio=1:1]{geometry}
+\begin{document}
+
+{\Large Physics 623 Homework 5}\\
+{Jeremy Welsh-Kavan}\\
+%\end{center}
+%\vspace{0.2 cm}
+\hfill \\
+\noindent\rule{15cm}{0.4pt} \\
+\hfill \\
+
+4.3.4. {\bf Classical atom} \\
+
+Consider a classical electron in a circular orbit in a Coulomb potential, for which the virial theorem yields $\overline{V} = 2E$. \\
+
+\begin{enumerate}[a)]
+
+\item Since the electron in a hydrogen atom is nonrelativistic, we can use the Larmor formula to describe the electromagnetic radiation of the electron as a point charge.
+
+\begin{equation}
+\begin{split}
+\mathscr{P} & = \frac{2e^2}{3c^3} \dot{\bm{v}}^2 \\
+\end{split}
+\end{equation}
+
+We can use the equation of motion for the electron to rewrite (1) in terms of $E$. 
+
+\begin{equation}
+\begin{split}
+m \dot{v} & = - \frac{e^2}{r^2} \\
+\dot{v} & = - \frac{V^2}{m e^2} \\
+\dot{\bm{v}}^2 & =  \frac{V^4}{m^2 e^4} \\
+\overline{ \dot{\bm{v}}^2 } & \approx \frac{\overline{V}^4}{m^2 e^4} \\
+\overline{ \dot{\bm{v}}^2 } & \approx \frac{ 16 E^4}{m^2 e^4}
+\end{split}
+\end{equation}
+
+where we have approximated $\overline{V^4}$ with $\overline{V}^4$ since we may assume the potential is roughly constant over one period of the electron's orbit. Therefore, the average power radiated by the electron is
+
+\begin{equation}
+\begin{split}
+\mathscr{P} & = \frac{2e^2}{3c^3}\frac{ 16 E^4}{m^2 e^4} \\
+\mathscr{P} & = \frac{32}{3e^2m^2c^3}  E^4 \\
+\end{split}
+\end{equation}
+
+
+\item We will show that the expected value of the potential diverges to $-\infty$ at finite time. We can rewrite (3) as a differential equation in $E$
+
+\begin{equation}
+\begin{split}
+- \dv{E}{t} & = \frac{32}{3e^2m^2c^3}  E^4 \\
+\end{split}
+\end{equation}
+
+which we can then rewrite in terms of $\overline{V}$ using the virial theorem. 
+
+\begin{equation}
+\begin{split}
+\frac{1}{2} \dv{\overline{V}}{t} & = - \frac{1}{16} \frac{32}{3e^2m^2c^3}  \overline{V}^4 \\  \dv{\overline{V}}{t} & = - \frac{4}{3e^2m^2c^3}  \overline{V}^4 \\
+\implies \overline{V}(t) & = \frac{1}{\left( \frac{4}{e^2m^2c^3} t + 1/\overline{V}_0^3  \right)^{1/3} }
+\end{split}
+\end{equation}
+
+We can assume that $\overline{V}_0 \approx -e^2/r_0$, where $r_0$ is the radius of the electron's orbit at $t=0$. Then we have
+
+\begin{equation}
+\begin{split}
+\overline{V}(t) & = \frac{1}{\left( \frac{4}{e^2m^2c^3} t - r_0^3/e^6  \right)^{1/3} } \\
+\implies \lim_{t \to \alpha^- } \overline{V}(t) & = - \infty 
+\end{split}
+\end{equation}
+
+since $ \frac{4}{e^2m^2c^3} t - r_0^3/e^6  \to 0^-$ as $t \to \alpha^-$, where $\alpha = \frac{ r_0^3 m^2c^3 }{ 4 e^4   }$. \\
+
+If the radius of the initial orbit is $r_0 = 10^{-8}$ cm then the time it takes for the electron to reach the nucleus is $105$ ps $\approx 10^{-10}$ seconds. \\
+
+\end{enumerate}
+
+\hfill \\
+\noindent\rule{15cm}{0.4pt} \\
+
+4.3.5. {\bf Absence of dipole radiation} \\
+
+Consider a system of particles whose charge and current densities are 
+
+\begin{equation}
+\begin{split}
+\rho(\bm{x} ,t) & = \sum_j e_j \delta(\bm{x} - \bm{r}_j(t)) \\
+\bm{j}( \bm{x}, t) & = \sum_j e_j \bm{v}_j (t) \delta(\bm{x} - \bm{r}_j(t)) \\
+\end{split}
+\end{equation}
+
+respectively. Assume that $e_j/m_j = \mu $ for all $j$, where $m_j$ is the mass of the $j^\text{th}$ particle and $\mu$ is fixed. Assume also that there are no external forces or torques on the system. The electric and magnetic dipole moments of this system of charges are then given by
+
+\begin{equation}
+\begin{split}
+\bm{d}(t) & = \int d\bm{y} \; \bm{y} \rho(\bm{y} ,t) \\
+\bm{m}(t) & = \frac{1}{2c} \int d\bm{y} \; \bm{y} \times \bm{j}(\bm{y} ,t) \\
+\implies \bm{d}(t) & =  \sum_j e_j \bm{r}_j(t) \\
+\bm{m}(t) & = \frac{1}{2c} \sum_j e_j \bm{r}_j (t) \times  \bm{v}_j (t) \\
+\end{split}
+\end{equation}
+
+We may rewrite (8) in terms of the masses of the particles and again in terms of the center of mass and angular momentum of the system
+
+\begin{equation}
+\begin{split}
+\bm{d}(t) & =  \mu \sum_j m_j \bm{r}_j(t) \\
+\bm{m}(t) & = \frac{\mu}{2c} \sum_j m_j \bm{r}_j (t) \times  \bm{v}_j (t) \\
+\implies \bm{d}(t) & =  \mu M \: \bm{r}_\text{cm}(t) \\
+\bm{m}(t) & = \frac{\mu}{2c} \sum_j  \bm{l}_j (t) = \frac{\mu}{2c} \bm{L}(t) \\
+\end{split}
+\end{equation}
+
+where $M $ is the total mass of the system, $ \bm{r}_\text{cm}(t)$ is the center of mass of the system, and $ \bm{L}(t) $ is the total angular momentum of the system. Since the total force and total torque on the system are both zero, we have
+
+\begin{equation}
+\begin{split}
+\ddot{\bm{d}}(t) & =  \mu M \: \bm{a}_\text{cm}(t) = \mu \bm{F}_\text{ext} = \bm{0} \\
+\dot{\bm{m}}(t) & = \frac{\mu}{2c} \dot{\bm{L}}(t) =  \frac{\mu}{2c} \bm{\tau}_\text{ext} = \bm{0} \\
+\end{split}
+\end{equation}
+
+Therefore, the total power due to electric and magnetic dipole radiation is
+
+\begin{equation}
+\begin{split}
+\mathscr{P} & = \frac{2}{3c^3} \left[ \ddot{\bm{d}}^2 + \ddot{\bm{m}}^2 \right] \\
+& = 0 \\
+\end{split}
+\end{equation}
+
+\hfill \\
+\noindent\rule{15cm}{0.4pt} \\
+
+4.3.6. {\bf Rotating dipole} \\
+
+An electric dipole moment $\bm{d}$ rotates uniformly with angular velocity $\omega$ in a plane. We attempt to find the radiated power per solid angle, and the total radiated power, averaged over one rotational period. Since $\bm{d}$ rotates in the plane, we can let $\bm{d} = (d, 0, 0) $ at $t = 0$ so that, as a function of time, $\bm{d}(t) = (d \cos\omega t , d \sin\omega t , 0) $. The power per solid angle, $\Omega$, radiated by the dipole is given by
+
+\begin{equation}
+\begin{split}
+\dv{\mathscr{P}}{\Omega} & = \frac{1}{4\pi c^3} \left( \hat{\bm{x}} \times \ddot{\bm{d}} \right)^2
+\end{split}
+\end{equation}
+
+To compute the average power per solid angle radiated in one rotational period, we can simply compute 
+
+\begin{equation}
+\begin{split}
+\overline{\dv{\mathscr{P}}{\Omega}} & = \frac{\omega}{2\pi} \int_{0}^{2\pi/\omega} dt \frac{1}{4\pi c^3} \left( \hat{\bm{x}} \times \ddot{\bm{d}} \right)^2
+\end{split}
+\end{equation}
+
+With $\hat{\bm{x}} = (\cos\phi\sin\theta, \sin\phi\sin\theta, \cos\theta)$ and $ \ddot{\bm{d}} = - \omega^2 \bm{d}(t)$, the power per solid angle, averaged over one rotational period, radiated by the dipole is
+
+\begin{equation}
+\begin{split}
+\overline{\dv{\mathscr{P}}{\Omega}} & = \frac{\omega^4}{4\pi c^3}  \frac{\omega}{2\pi} \int_{0}^{2\pi/\omega} dt  \left(   \hat{\bm{x}} \times \bm{d}  \right)^2 \\
+& =  \frac{\omega^4}{4\pi c^3}  \frac{\omega}{2\pi} \int_{0}^{2\pi/\omega} dt \frac{1}{4}(3 + \cos 2\theta - 2\cos(2(\phi - \omega t))\sin^2\theta    ) \\
+& = \frac{ \omega^4 d^2}{8 \pi c^3} \left(  1 + \cos^2\theta \right) \\
+\end{split}
+\end{equation}
+
+To get the total power radiated, averaged over one rotational period, we just integrate (14) over $\Omega$. This yields
+
+\begin{equation}
+\begin{split}
+\overline{\mathscr{P}} & = \int d\Omega \overline{\dv{\mathscr{P}}{\Omega}} \\
+& =  \frac{ \omega^4 d^2}{8 \pi c^3} \int_0^{2\pi} \int_0^\pi d\phi d\theta\;   (1 + \cos^2\theta )\sin\theta  \\
+& = \frac{2  \omega^4  d^2}{3 c^3} \\
+\end{split}
+\end{equation}
+
+
+
+
+
+
+
+
+
+
+\hfill \\
+\noindent\rule{15cm}{0.4pt} \\
+
+
+
+
+
+%\begin{equation}
+%\begin{split}
+%\end{split}
+%\end{equation}
+
+
+$$\clubsuit$$
+\end{document}
+
+
+
+
+
+%+ \lambda \frac{\hbar c\alpha}{|\bm{r}_1 - \bm{r}_2|}
+
+
+
+
+%\begin{equation}
+%\begin{split}
+%\end{split}
+%\end{equation}

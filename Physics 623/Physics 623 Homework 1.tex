@@ -1,0 +1,312 @@
+\documentclass[]{article}
+%\usepackage{setspace}
+%\onehalfspacing
+\usepackage{amsmath,amssymb,amsthm}
+\renewcommand{\qedsymbol}{$\blacksquare$}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{mathrsfs}
+\usepackage{amssymb}
+\usepackage{enumerate}
+\usepackage{mdwlist}
+\usepackage{dirtytalk}
+\usepackage{xparse}
+\usepackage{physics}
+\usepackage{graphicx}
+\setcounter{MaxMatrixCols}{13}
+\setlength\parindent{0pt}
+\usepackage[none]{hyphenat}
+\usepackage[hmarginratio=1:1]{geometry}
+\begin{document}
+%\begin{center}
+{\Large Physics 623 Homework 1}\\
+{Jeremy Welsh-Kavan}\\
+%\end{center}
+\vspace{0.2 cm}
+\begin{center}
+\noindent\rule{15cm}{0.4pt} \\
+\end{center}
+2.3.1. {\bf Quadrupole moments} \\
+\\
+\begin{enumerate}[c)]
+\item We consider a homogenously charged ellipsoid, $(x/a)^2 + (y/b)^2 + (z/c)^2 \leq 1$, and compute the quadrupole moments, $Q_{2m}$, where
+\begin{equation}
+Q_{lm} = \sqrt{ \frac{4\pi}{2l+1}} \int_{0}^{\infty}dr \text{ } r^2 r^l \int d\Omega \rho(r,\Omega)Y_{l}^{m}(\Omega)^* \\
+\end{equation}
+Since the ellipsoid is homogenously charged, 
+\begin{equation}
+\rho(x,y,z) = \begin{cases}
+\rho_0, \text{ } (x/a)^2 + (y/b)^2 + (z/c)^2 \leq 1 \\
+0, \text{ } \text{otherwise} \\
+\end{cases}
+\end{equation}
+The spherical harmonics are given by
+\begin{equation}
+\begin{split}
+Y_{2}^{-2}(\theta,\phi) & =  \frac{1}{4} \sqrt{\frac{15}{2 \pi }} e^{-2 i \phi } \sin ^2(\theta ) \\
+Y_{2}^{-1}(\theta,\phi) & =  \frac{1}{2} \sqrt{\frac{15}{2 \pi }} e^{-i \phi } \sin (\theta ) \cos (\theta )\\
+Y_{2}^{0}(\theta,\phi) & = \frac{1}{4} \sqrt{\frac{5}{\pi }} \left(3 \cos ^2(\theta )-1\right) \\
+Y_{2}^{1}(\theta,\phi) & =  -\frac{1}{2} \sqrt{\frac{15}{2 \pi }} e^{i \phi } \sin (\theta ) \cos (\theta ) \\
+Y_{2}^{2}(\theta,\phi) & = \frac{1}{4} \sqrt{\frac{15}{2 \pi }} e^{2 i \phi } \sin ^2(\theta ) \\
+\end{split}
+\end{equation}
+And $Q_{lm}$ are thus given by
+\begin{equation}
+\begin{split}
+Q_{2,-2} & = \frac{1}{2}\sqrt{\frac{3}{2}} \int_{0}^{\infty}\int dr d\Omega \text{ } r^4 \rho(r,\Omega)e^{2 i \phi } \sin ^2(\theta ) \\
+Q_{2,-1} & = \sqrt{\frac{3}{2}}  \int_{0}^{\infty}\int dr d\Omega \text{ }  r^4 \rho(r,\Omega)e^{ i \phi }  \sin (\theta ) \cos (\theta )\\
+Q_{2,0} & = \frac{1}{2} \int_{0}^{\infty}\int dr d\Omega \text{ } r^4 \rho(r,\Omega)  \left(3 \cos ^2(\theta )-1\right) \\
+Q_{2,1} & = -\sqrt{\frac{3}{2}}  \int_{0}^{\infty}\int dr d\Omega \text{ } r^4 \rho(r,\Omega)e^{- i \phi }  \sin (\theta ) \cos (\theta )\\
+Q_{2,2}  = Q_{2,-2}^* & =  \frac{1}{2}\sqrt{\frac{3}{2}} \int_{0}^{\infty}\int dr d\Omega \text{ } r^4 \rho(r,\Omega)e^{-2 i \phi } \sin ^2(\theta ) \\
+\end{split}
+\end{equation}
+We can relate the components of the quadrupole tensor, $Q_{ij}$, by writing the complex exponentials in terms of $\sin(\phi)$ and $\cos(\phi)$ and then rewriting the integrals in cartesian coordinates.
+
+\begin{equation}
+\begin{split}
+Q_{2,-2} & = \frac{1}{2}\sqrt{\frac{3}{2}} \int_{0}^{\infty}\int dr d\Omega \text{ } r^4 \rho(r,\Omega)\left( \cos^2(\phi) - \sin^2(\phi) + 2i \sin(\phi)\cos(\phi) \right)\sin ^2(\theta ) \\
+Q_{2,-1} & = \sqrt{\frac{3}{2}}  \int_{0}^{\infty}\int dr d\Omega \text{ }  r^4 \rho(r,\Omega)\left(  \cos(\phi) +i \sin(\phi)\right)\sin (\theta ) \cos (\theta )\\
+Q_{2,0} & = \frac{1}{2}\int_{0}^{\infty}\int dr d\Omega \text{ } r^4 \rho(r,\Omega)  \left(3 \cos ^2(\theta )-1\right) \\
+Q_{2,1} & = -\sqrt{\frac{3}{2}} \int_{0}^{\infty}\int dr d\Omega \text{ } r^4 \rho(r,\Omega)\left(  \cos(\phi)  - i \sin(\phi)\right) \sin (\theta ) \cos (\theta )\\
+Q_{2,2} & =  \frac{1}{2}\sqrt{\frac{3}{2}}\int_{0}^{\infty}\int dr d\Omega \text{ } r^4 \rho(r,\Omega)\left( \cos^2(\phi) - \sin^2(\phi) - 2i \sin(\phi)\cos(\phi) \right)\sin ^2(\theta ) \\
+\end{split}
+\end{equation}
+Recall that the components of the quadrupole tensor are given by
+\begin{equation}
+Q_{ij} = \frac{1}{2}\int d\textbf{x} \rho(\textbf{x}) \left(3x_ix_j -\delta_{i,j}\textbf{x}^2\right) \\
+\end{equation}
+Therefore, we have the following relations
+\begin{equation}
+\begin{split}
+Q_{2,-2} & = \frac{1}{2}\sqrt{\frac{3}{2}} \left( \frac{2}{3}(Q_{xx}  - Q_{yy} )+ \frac{4}{3}iQ_{xy}\right) \\
+Q_{2,-1} & = \frac{2}{3} \sqrt{\frac{3}{2}}\left(  Q_{xz} + iQ_{yz} \right)  \\
+Q_{2,0} & = Q_{zz}\\
+Q_{2,1} & = - \frac{2}{3} \sqrt{\frac{3}{2}}\left(  Q_{xz} - iQ_{yz} \right)  \\
+Q_{2,2} & =  \frac{1}{2}\sqrt{\frac{3}{2}}  \left(  \frac{2}{3}(Q_{xx}  - Q_{yy}) -\frac{4}{3}iQ_{xy}\right) \\
+\end{split}
+\end{equation}
+We know from part c) that $Q_{ij}=0$ for $i \ne j$. Therefore, we have
+\begin{equation}
+\begin{split}
+Q_{2,-2} & =  \frac{1}{\sqrt{6}}(Q_{xx}  - Q_{yy}) \\
+Q_{2,-1} & = 0 \\
+Q_{2,0} & = Q_{zz}\\
+Q_{2,1} & = 0 \\
+Q_{2,2} & =  \frac{1}{\sqrt{6}}(Q_{xx}  - Q_{yy}) \\
+\end{split}
+\end{equation}
+Where $Q_{xx}$, $Q_{yy}$, and $Q_{zz}$, which were calculated in part c), are given by
+\begin{equation}
+\begin{split}
+Q_{xx} & = \frac{2\pi abc \rho_0 }{15}( 2a^2 -b^2 -c^2) \\
+Q_{yy} & = \frac{2\pi abc \rho_0 }{15}( 2b^2 -a^2 -c^2) \\
+Q_{zz} & = \frac{2\pi abc \rho_0 }{15}( 2c^2 -a^2 -b^2) \\
+\end{split}
+\end{equation}
+So the nonzero $Q_{lm}$ are
+\begin{equation}
+\begin{split}
+Q_{2,2} & = \frac{\sqrt{6}\pi abc \rho_0 }{15}( a^2 -b^2 ) \\
+Q_{2,0} & =  \frac{2\pi abc \rho_0 }{15}( 2c^2 -a^2 -b^2) \\
+\end{split}
+\end{equation}
+\end{enumerate}
+\noindent\rule{15cm}{0.4pt} \\
+2.3.7. {\bf Electrostatic interaction II: Quadrupole in an
+external electric field} \\
+\\
+We will work in a coordinate system in which the center of the spheroid is the origin, the angle in the diagram is the spherical polar angle, and the spheroid is tilted into the y-axis. 
+\begin{enumerate}[a)]
+\item We calculate the interaction energy as in the text on page 64. The interaction energy, $U$, is given, to quadrupole order, by
+\begin{equation}
+\begin{split}
+U & = \phi_0 Q- \textbf{E}\cdot\textbf{d} + \frac{1}{3}\phi^{ij}Q_{ij}
+\end{split}
+\end{equation}
+where the quantities in (11) are defined as in the text. We first calculate $\phi_0$, $\textbf{E}$, and $\phi^{ij}$ for the lattice of charges whose charge density is $\rho_>(\textbf{x})$. Let the charges be located at 
+\begin{equation}
+\begin{split}
+\textbf{x}_1 & =\frac{1}{2}(B,B,A) \\
+\textbf{x}_2 & =\frac{1}{2}(-B,B,A) \\
+\textbf{x}_3 & =\frac{1}{2}(-B,-B,A) \\
+\textbf{x}_4 & =\frac{1}{2}(B,-B,A) \\
+\textbf{x}_5 & =\frac{1}{2}(B,B,-A) \\
+\textbf{x}_6 & =\frac{1}{2}(-B,B,-A) \\
+\textbf{x}_7 & =\frac{1}{2}(-B,-B,-A) \\
+\textbf{x}_8 & =\frac{1}{2}(B,-B,-A) \\
+\end{split}
+\end{equation}
+Then the potential, $\phi_>(\textbf{x})$, is given by
+\begin{equation}
+\begin{split}
+\phi_>(\textbf{x}) & = \frac{e}{|\textbf{x} - \textbf{x}_1|} + \frac{e}{|\textbf{x} - \textbf{x}_2|}  +\frac{e}{|\textbf{x} - \textbf{x}_3|} +\frac{e}{|\textbf{x} - \textbf{x}_4|} \\ &+\frac{e}{|\textbf{x} - \textbf{x}_5|} +\frac{e}{|\textbf{x} - \textbf{x}_6|} +\frac{e}{|\textbf{x} - \textbf{x}_7|} +\frac{e}{|\textbf{x} - \textbf{x}_8|}
+\end{split}
+\end{equation}
+So we have
+\begin{equation}
+\begin{split}
+\phi_0 & = \phi_>(\textbf{x} = \textbf{0}) \\
+\textbf{E} & = -\nabla \phi_>(\textbf{x} = \textbf{0}) \\
+\phi_{ij} & = \pdv{}{x^i}{x^j}\phi_>(\textbf{x} = \textbf{0}) \\
+\implies \phi_0 & = \frac{8e}{\sqrt{ \frac{A^2}{4} + \frac{B^2}{2} }} \\
+\textbf{E} & = \textbf{0} \\
+\phi_{xx} & = \frac{64e(A^2 - B^2)}{(A^2 + 2B^2)^{5/2}} \\
+\phi_{yy} & = \frac{64e(A^2 - B^2)}{(A^2 + 2B^2)^{5/2}} \\
+\phi_{zz} & = \frac{128e(A^2 - B^2)}{(A^2 + 2B^2)^{5/2}} \\
+\phi_{ij} & = 0, \text{	for $i\ne j$}
+\end{split}
+\end{equation}
+Therefore, the interaction energy, to quadrupole order, is
+\begin{equation}
+\begin{split}
+U & = \frac{8Qe}{\sqrt{ \frac{A^2}{4} + \frac{B^2}{2} }} + \frac{1}{3}\left(   \frac{64Q_{xx}e(A^2 - B^2)}{(A^2 + 2B^2)^{5/2}}   +   \frac{64Q_{yy}e(A^2 - B^2)}{(A^2 + 2B^2)^{5/2}}   +  \frac{128Q_{zz}e(A^2 - B^2)}{(A^2 + 2B^2)^{5/2}}  \right) \\
+\end{split}
+\end{equation}
+Since $Q_{ij}$ is traceless, $ Q_{xx} = - Q_{yy} - Q_{zz}$. So we can rewrite (15) as
+\begin{equation}
+\begin{split}
+U & = \frac{8Qe}{\sqrt{ \frac{A^2}{4} + \frac{B^2}{2} }} + \frac{1}{3}\left(   - \frac{64Q_{yy}e(A^2 - B^2)}{(A^2 + 2B^2)^{5/2}}  - \frac{64Q_{zz}e(A^2 - B^2)}{(A^2 + 2B^2)^{5/2}} \right) \\ &   +  \frac{1}{3}\left( \frac{64Q_{yy}e(A^2 - B^2)}{(A^2 + 2B^2)^{5/2}}   +  \frac{128Q_{zz}e(A^2 - B^2)}{(A^2 + 2B^2)^{5/2}}  \right) \\
+U  & = \frac{16Qe}{\sqrt{ A^2+ 2B^2 }} +  \frac{64Q_{zz}e(A^2 - B^2)}{3(A^2 + 2B^2)^{5/2}}  \\
+\end{split}
+\end{equation}
+\item The quadrupole tensor of an ellipsoid, $(x/a)^2 + (y/b)^2 + (z/c)^2 \leq 1$, in its principle axes coordinate system was calculated in problem set 8 and was found to be
+\begin{equation}
+\begin{split}
+Q_{ij} & = 
+\frac{1}{10}  Q\left(
+\begin{array}{ccc}
+   2
+   a^2-b^2-c^2 & 0 & 0 \\
+ 0 &  2 b^2-a^2-c^2 & 0 \\
+ 0 & 0 &  
+   2 c^2 -a^2-b^2\\
+\end{array}
+\right)\\
+\end{split}
+\end{equation}
+In this system, we set $a\to b$, $b \to b$, and $c \to a$ to get
+\begin{equation}
+\begin{split}
+Q_{ij}' & = 
+\frac{Q}{10} \left(b^2-a^2\right)\left(
+\begin{array}{ccc}
+ 1 & 0 & 0 \\
+ 0 &  1 & 0 \\
+ 0 & 0 & -2\\
+\end{array}
+\right)\\
+\end{split}
+\end{equation}
+We can apply a coordinate transformation that rotates (from the principle axis system) the $z$-axis around the $x$-axis into the $-y$-axis by $\theta$ in order to transform (18) into the coordinate system of the lattice. This yields $Q_{ij}$ by
+\begin{equation}
+\begin{split}
+Q_{ij} & = 
+\frac{Q}{10} \left(b^2-a^2\right)
+\left(
+\begin{array}{ccc}
+ 1 & 0 & 0 \\
+ 0 &  \cos(\theta) & -\sin(\theta) \\
+ 0 & \sin(\theta) & \cos(\theta) \\
+\end{array}
+\right)
+\left(
+\begin{array}{ccc}
+ 1 & 0 & 0 \\
+ 0 &  1 & 0 \\
+ 0 & 0 & -2\\
+\end{array}
+\right)
+\left(
+\begin{array}{ccc}
+ 1 & 0 & 0 \\
+ 0 &   \cos(\theta) & \sin(\theta) \\
+ 0 & -\sin(\theta) & \cos(\theta) \\
+\end{array}
+\right)
+\\
+Q_{ij} & = 
+\frac{Q}{10} \left(b^2-a^2\right)
+\left(
+\begin{array}{ccc}
+ 1 & 0 & 0 \\
+ 0 &  \cos(\theta)^2-2\sin(\theta)^2 & 3\cos(\theta)\sin(\theta) \\
+ 0 & 3\cos(\theta)\sin(\theta) & \sin(\theta)^2-2\cos(\theta)^2 \\
+\end{array}
+\right)
+\end{split}
+\end{equation}
+Finally, we may write $U$ as a function of $\theta$ as
+\begin{equation}
+\begin{split}
+U  & = \frac{16Qe}{\sqrt{ A^2+ 2B^2 }} +  \frac{32Qe \left(b^2-a^2\right)  \left(A^2 - B^2\right) \left(   \sin(\theta)^2-2\cos(\theta)^2 \right)}{15(A^2 + 2B^2)^{5/2}} \\
+\end{split}
+\end{equation}
+\item The interaction energy above has equilibria when  \\
+\begin{equation}
+\begin{split}
+\dv{U}{\theta}  & = \frac{32Qe \left(b^2-a^2\right)  \left(A^2 - B^2\right) }{15(A^2 + 2B^2)^{5/2}} 3\sin(2\theta) = 0\\
+\end{split}
+\end{equation}
+which occurs at $\theta = 0$ and $\theta = \pi/2$ (we will not distinguish between $\theta = 0$ and $\theta = \pi$). $U$ is minimized and maximized when \\
+\begin{equation}
+\begin{split}
+\dv[2]{U}{\theta}  & =  \frac{32Qe \left(b^2-a^2\right)  \left(A^2 - B^2\right) }{15(A^2 + 2B^2)^{5/2}} 6\cos(2\theta) > 0 \\
+\text{and} \\
+\dv[2]{U}{\theta}  & =  \frac{32Qe \left(b^2-a^2\right)  \left(A^2 - B^2\right) }{15(A^2 + 2B^2)^{5/2}} 6\cos(2\theta) < 0 \\ 
+\end{split}
+\end{equation}
+respectively. \\
+If $A>B$ and $a>b$ (prolate) then $U$ is minimized when $\theta = \pi/2$ and maximized when $\theta = 0$. \\ 
+If $A>B$ and $a<b$ (oblate) then $U$ is minimized when $\theta = 0$ and maximized when $\theta = \pi/2$. \\
+If $A<B$ and $a>b$ then $U$ is minimized when $\theta = 0$ and maximized when $\theta = \pi/2$. \\
+If $A<B$ and $a<b$ then $U$ is minimized when $\theta = \pi/2$ and maximized when $\theta = 0$. \\
+\end{enumerate}
+\noindent\rule{15cm}{0.4pt} \\
+2.3.8. {\bf Electric charges in an external field} \\
+\\
+We consider a static charge distribution, $\rho(\textbf{x})$, subject to a static potential, $\varphi(\textbf{x})$. We claim that the force, $\textbf{F}_{\text{el}}$, on the charge distribution obeys $\textbf{F}_{\text{el}} = -\nabla U$, where $U$ is the electrostatic interaction energy. 
+\begin{equation}
+\begin{split}
+\textbf{F}_{\text{el}} & = \int d\textbf{x} \text{ }\rho(\textbf{x}) \textbf{E}(\textbf{x}) \\
+\end{split}
+\end{equation}
+We can expand $\textbf{E}(\textbf{x})$ to dipole order around $\textbf{y}$ to get
+\begin{equation}
+\begin{split}
+\textbf{F}_{\text{el}}(\textbf{y}) & = \int d\textbf{x} \text{ }\rho(\textbf{x})\left( \textbf{E}(\textbf{y})  + \nabla_\textbf{y}\textbf{E}(\textbf{y} )(\textbf{x} - \textbf{y} )\right) \\
+\end{split}
+\end{equation}
+where $\nabla_\textbf{y}\textbf{E}(\textbf{y} )$ is the field gradient tensor (acting on the vector $(\textbf{x} - \textbf{y})$). We can rewrite $\textbf{E}(\textbf{y})$ as $-\nabla_\textbf{y}\varphi(\textbf{y})$, and exchange the integral with the gradients to get  \
+\begin{equation}
+\begin{split}
+\textbf{F}_{\text{el}}(\textbf{y}) & = \int d\textbf{x} \text{ }\rho(\textbf{x}) \textbf{E}(\textbf{y})  +  \int d\textbf{x} \text{ }\rho(\textbf{x})\nabla_\textbf{y}\textbf{E}(\textbf{y} )(\textbf{x} - \textbf{y} ) \\
+\textbf{F}_{\text{el}}(\textbf{y}) & = -\int d\textbf{x} \text{ }\rho(\textbf{x}) \nabla_\textbf{y}\varphi(\textbf{y})  +  \int d\textbf{x} \text{ }\rho(\textbf{x})\nabla_\textbf{y}\textbf{E}(\textbf{y} )(\textbf{x} - \textbf{y} ) \\
+\textbf{F}_{\text{el}}(\textbf{y}) & = - \nabla_\textbf{y} \left(  \varphi(\textbf{y}) \int d\textbf{x} \text{ }\rho(\textbf{x})  -  \textbf{E}(\textbf{y} ) \cdot \int d\textbf{x} \text{ }\rho(\textbf{x})(\textbf{x} - \textbf{y} )  \right)\\
+\textbf{F}_{\text{el}}(\textbf{y}) & = - \nabla_\textbf{y} \left(  \varphi(\textbf{y})Q -  \textbf{E}(\textbf{y} ) \cdot \textbf{d} + \textbf{E}(\textbf{y})\cdot\textbf{y}Q )  \right)\\
+\end{split}
+\end{equation}
+Now, evaluating (25) at $\textbf{y} = \textbf{0}$, we have
+\begin{equation}
+\begin{split}
+\textbf{F}_{\text{el}}(\textbf{y}) \Big|_{\textbf{y}=\textbf{0}} & = - \nabla_\textbf{y} \left(  \varphi(\textbf{y})Q -  \textbf{E}(\textbf{y} ) \cdot \textbf{d} \right) \Big|_{\textbf{y}=\textbf{0}} \\
+\textbf{F}_{\text{el}}(\textbf{y}) \Big|_{\textbf{y}=\textbf{0}} & = -  \nabla_\textbf{y} U  \Big|_{\textbf{y}=\textbf{0}} \\ 
+\implies \textbf{F}_{\text{el}} & = -  \nabla U  \\
+\end{split}
+\end{equation}
+In particular, supposing $Q=0$, then we have $\textbf{F}_{\text{el}}= \nabla \left(  \textbf{E}\cdot\textbf{d}\right)$, as expected.  \\
+\noindent\rule{15cm}{0.4pt} \\
+$$\clubsuit$$
+\end{document}
+
+
+
+%\left(\textbf{E}(\textbf{y}) + \textbf{\nabla}_\textbf{y} \textbf{E}(\textbf{x} - \textbf{y} ) \right) 
+
+
+
+
+
+%\begin{equation}
+%\begin{split}
+%\end{split}
+%\end{equation}

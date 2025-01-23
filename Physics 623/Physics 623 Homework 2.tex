@@ -1,0 +1,334 @@
+\documentclass[]{article}
+%\usepackage{setspace}
+%\onehalfspacing
+\usepackage{amsmath,amssymb,amsthm}
+\renewcommand{\qedsymbol}{$\blacksquare$}
+\usepackage{amsmath}
+\usepackage{bm}
+\usepackage{amsfonts}
+\usepackage{mathrsfs}
+\usepackage{amssymb}
+\usepackage{enumerate}
+\usepackage{mdwlist}
+\usepackage{dirtytalk}
+\usepackage{xparse}
+\usepackage{physics}
+\usepackage{stackengine}
+\renewcommand\useanchorwidth{T}
+\newcommand\obullet[1]{\ensurestackMath{\stackon[1pt]{#1}{\mkern2mu\bullet}}}
+\newcommand\ocirc[1]{\ensurestackMath{\stackon[1pt]{#1}{\mkern2mu\circ}}}
+\usepackage{graphicx}
+\setcounter{MaxMatrixCols}{13}
+\setlength\parindent{0pt}
+\usepackage[none]{hyphenat}
+\usepackage[hmarginratio=1:1]{geometry}
+\begin{document}
+%\begin{center}
+{\Large Physics 623 Homework 2}\\
+{Jeremy Welsh-Kavan}\\
+%\end{center}
+\vspace{0.2 cm}
+\begin{center}
+\noindent\rule{15cm}{0.4pt} \\
+\end{center}
+
+3.1.1. {\bf Electromagnetic waves and gauge invariance}
+
+\begin{enumerate}[a)]
+
+\item This seems trivial given that we know the field equations are unchanged by a gauge transformation but we calculate the effect of this gauge transformations on the field anyway. \\
+\hfill \\
+We claim that the Lorenz gauge, $\frac{1}{c} \pdv{\varphi}{t} + \nabla\cdot\textbf{A} = 0$, does not uniquely determine the potentials of an electromagnetic wave. In particular, if $f$ is an arbitrary scalar solution to the wave equation, $\square f = 0$, then the transformation, $\textbf{A}\to \textbf{A} + \nabla f$, $\varphi\to \varphi - \frac{1}{c}\pdv{f}{t}$, leaves both the wave equation for the 4-vector potential and the fields unchanged. \\
+We know that the action from Axiom 3 is invariant under the gauge transformation $A^\mu\to A^\mu - \partial^\mu\chi$. Which is equivalent to the above transformation as follows
+\begin{equation}
+\begin{split}
+A^\mu - \partial^\mu \chi & =  (\varphi,\textbf{A}) - (\frac{1}{c}\partial_t \chi, - \nabla \chi) \\
+\end{split}
+\end{equation}
+Therefore, Maxwell's equations are also invariant under this gauge transformation. Setting $\chi = f$, we have 
+
+\begin{equation}
+\begin{split}
+\square A^\mu - \square\partial^\mu f & =  \square A^\mu - \partial^\mu \square f \\
+& = \square A^\mu \\
+\end{split}
+\end{equation}
+
+since $\square f = 0$. Therefore, if $\square A^\mu = 0$ then $\square (A^\mu - \partial^\mu f )= 0$. \\
+\hfill \\
+For the $\textbf{E}$ and $\textbf{B}$ fields, we have that $\textbf{E} = -\grad\varphi - \frac{1}{c}\partial_t \textbf{A}$ and $\textbf{B} = \curl \textbf{A}$. Therefore, under the transformation, $\textbf{A}\to \textbf{A} + \nabla f$, $\varphi\to \varphi - \frac{1}{c}\pdv{f}{t}$, we have
+
+\begin{equation}
+\begin{split}
+\square \textbf{E} & =  - \square \grad( \varphi - \frac{1}{c}\partial_t f)  - \square\partial_t (\textbf{A} + \nabla f )\\
+& = - \grad( \square \varphi - \frac{1}{c}\partial_t \square f)  -\partial_t (\square \textbf{A} + \nabla \square f )\\
+& = - \grad( \square \varphi )  -\partial_t (\square \textbf{A} )\\
+& = - \square (\grad\varphi +  \frac{1}{c}\partial_t \textbf{A} ) \\ 
+& = \square \textbf{E} \\
+\square \textbf{B} & =  \square (\curl ( \textbf{A} + \grad f))\\
+\square \textbf{B} & = \square ( \curl\textbf{A} + \curl\grad f) \\
+\square \textbf{B} & = \square ( \curl\textbf{A} )\\ 
+& = \square \textbf{B} \\
+\end{split}
+\end{equation}
+
+\item Given $\varphi$ there exists $f$ such that $\frac{1}{c}\partial_t f = \varphi$. Therefore, by a), we can always choose (transform) $\varphi$ to $\varphi - \frac{1}{c}\partial_t f = 0$ such that the wave equations for the 4-vector potential and the fields are unchanged. Additionally, by a) we can make this choice in Lorenz gauge. In which case, $\div\textbf{A} = 0 $.  
+
+\end{enumerate}
+
+\noindent\rule{15cm}{0.4pt} \\
+\hfill \\
+3.1.2. { \bf Plane waves} \\
+\hfill \\
+Consider the scalar field
+
+\begin{equation}
+\begin{split}
+\psi(\bm{x},t) & = \cos(  \bm{k}\cdot\bm{x} - \omega t )  \\
+\end{split}
+\end{equation}
+and let $|\bm{k}| = k$. 
+\begin{enumerate}[a)]
+
+\item We deduce a necessary and sufficient condition for $\psi$ to be a solution of the wave equation. \\
+
+\begin{enumerate}[i)]
+
+\item Suppose $\psi (\bm{x},t)$ satisfies $\square \psi = 0$. Then
+
+\begin{equation}
+\begin{split}
+0 & = \square \psi  (\bm{x},t) \\
+\implies \frac{1}{c^2} \pdv[2]{\psi}{t}  & = \laplacian \psi \\
+-\frac{\omega^2}{c^2} \cos(  \bm{k}\cdot\bm{x} - \omega t )  & = - |\bm{k}|^2 \cos(  \bm{k}\cdot\bm{x} - \omega t ) \\
+\implies \frac{\omega^2}{k^2} & = c^2 \\
+\end{split}
+\end{equation}
+
+\item Now suppose $\omega^2= c^2k^2$. Then 
+
+\begin{equation}
+\begin{split}
+\laplacian \psi (\bm{x},t) & =  - |\bm{k}|^2 \cos(  \bm{k}\cdot\bm{x} - \omega t ) \\
+& = - k^2  \cos(  \bm{k}\cdot\bm{x} - \omega t ) \\ 
+\frac{1}{c^2} \pdv[2]{ \psi (\bm{x},t) }{t} & = - \frac{\omega^2 }{c^2} \cos(  \bm{k}\cdot\bm{x} - \omega t ) \\
+& = - \frac{\omega^2 }{c^2} \cos(  \bm{k}\cdot\bm{x} - \omega t ) \\
+& = - k^2 \cos(  \bm{k}\cdot\bm{x} - \omega t ) \\
+& = \laplacian \psi (\bm{x},t) \\
+\end{split}
+\end{equation}
+\end{enumerate}
+Thus, $\omega^2= c^2k^2$ is a necessary and sufficient condition for (4) to be a solution to the wave equation. \\
+
+\item Let $D$ be a Lorentz boost into the coordinate system defined by $x_\mu = {D^{\nu}}_\mu x'_\nu$. Let $\psi'(\bm{x}',t')$ be the same function, (4), of the transformed coordinates. Define $k^\mu = (\frac{\omega}{c},\bm{k})$, which we emphasize is not {\it necessarily} a Minkowski vector. \\
+Since $\psi (\bm{x},t)$ is a Minkowski scalar, it ought to be invariant under the transformation, $D$, so we must have $\psi (\bm{x},t) = \psi'(\bm{x}',t')$. If it is to be invariant for all $(ct,\bm{x})$, then we must have $\bm{k}'\cdot\bm{x}' - \omega't' = \bm{k}\cdot\bm{x} - \omega t$. \\
+We can rewrite this as $x'_\nu k'^\nu  = x_\mu k^\mu$ and differentiate both sides with respect to $x'_\nu$ to get $ k'_\nu = \pdv{x_\mu}{x'_\nu}k_\mu$. But $\pdv{x_\mu}{x'_\nu} = {D^\nu}_\mu$, so $  k'^\nu =  {D^\nu}_\mu k^\mu$. Therefore, $k^\mu$ transforms as a Minkowski vector.  \\ 
+\hfill \\
+Suppose $D$ is a Lorentz boost in the $x$-direction to a frame with velocity $v$ with respect to the original frame, and that $\bm{k}=k\hat{x}$. Then, with $\beta = v/c$ and $\gamma = 1/\sqrt{1-v^2/c^2}$, we have
+
+\begin{equation}
+\begin{split}
+ \omega't' - k'x'  = x'_\nu k'^\nu & = {(D^{-1})^\mu}_\nu x_\mu {D^\nu}_\alpha k^\alpha \\
+x'_\nu k'^\nu & =  ({(D^{-1})^\mu}_0 x_\mu )( {D^0}_0 k^ 0 + {D^0}_1 k^1) + ({(D^{-1})^\mu}_1 x_\mu )( {D^1}_0 k^ 0 + {D^1}_1 k^1) \\
+x'_\nu k'^\nu & =  ({(D^{-1})^0}_0 x_0 + {(D^{-1})^1}_0 x_1)( {D^0}_0 k^ 0 + {D^0}_1 k^1) \\ &+ ({(D^{-1})^0}_1 x_0  +  {(D^{-1})^1}_1 x_1)( {D^1}_0 k^ 0 + {D^1}_1 k^1) \\
+x'_\nu k'^\nu & =  (\gamma ct - \beta \gamma x)( \gamma\frac{\omega}{c} -\beta\gamma k) + (\beta\gamma ct - \gamma x)( \gamma k -\beta\gamma \frac{\omega}{c}) \\
+x'_\nu k'^\nu & = \gamma^2(\beta^2 - 1)( kx  - \omega t) \\
+x'_\nu k'^\nu & = \omega t - kx   \\
+x'_\nu k'^\nu & = x_\mu k^\mu \\
+\end{split}
+\end{equation}
+
+\end{enumerate}
+
+\noindent\rule{15cm}{0.4pt} \\
+\hfill \\
+
+3.1.3. {\bf Spherical waves} \\
+\hfill \\
+
+Consider the wave equation
+
+\begin{equation}
+\begin{split}
+\left( \frac{1}{c^2}\pdv[2]{t} - \laplacian \right) f(\bm{x},t) & = 0
+\end{split}
+\end{equation}
+
+We wish to find the most general, spherically symmetric, solution to (8) of the form $f(\bm{x},t) = u(r,t)/r$. In this case, (8) reduces to 
+
+\begin{equation}
+\begin{split}
+\left( \frac{1}{c^2}\pdv[2]{t} -  \frac{1}{r^2} \pdv{r}\left( r^2 \pdv{r} \right)   \right) \frac{u(r,t)}{r} & = 0 \\
+\frac{1}{c^2}\pdv[2]{t} \frac{u(r,t)}{r} - \frac{1}{r^2} \pdv{r}\left( r^2 \pdv{r} \frac{u(r,t)}{r}\right) & = 0 \\
+\frac{1}{c^2}\pdv[2]{t} \frac{u(r,t)}{r} - \frac{1}{r^2} \pdv{r}\left( r^2 (  \frac{\partial_r u(r,t)}{r}  -  \frac{u(r,t)}{r^2} )\right) & = 0 \\
+\frac{1}{c^2}\pdv[2]{t} \frac{u(r,t)}{r} - \frac{1}{r^2} \pdv{r}\left( r \partial_r u(r,t)  -  u(r,t) )\right) & = 0 \\
+\frac{1}{c^2}\pdv[2]{t} \frac{u(r,t)}{r} - \frac{1}{r^2} \left(  r \partial_r^2 u(r,t)   +  \partial_r u(r,t)  -   \partial_ru(r,t) )\right) & = 0 \\
+\frac{1}{r} \left( \frac{1}{c^2}\pdv[2]{t} - \partial_r^2 \right) u(r,t) & = 0 \\
+\end{split}
+\end{equation}
+
+Since $1/r \ne 0$,  d’Alembert's solution solves (9). Therefore, the most general solution to (8), of the form $f(\bm{x},t) = u(r,t)/r$, is
+
+\begin{equation}
+\begin{split}
+f(\bm{x},t) = \frac{u_1(r - ct) }{r} + \frac{u_2(r +  ct) }{r} \\
+\end{split}
+\end{equation}
+
+where $u_1(x)$ and $u_2(x)$ are any twice differentiable functions defined on $\mathbb{R}$. \\ 
+
+\noindent\rule{15cm}{0.4pt} \\
+\hfill \\
+
+3.1.4. {\bf Cosmological redshift} \\
+
+\begin{enumerate}[a)]
+
+\item 
+
+The frequency shift due to the nonrelativistic Doppler effect is given by 
+
+\begin{equation}
+\begin{split}
+\frac{\omega}{\omega_0} & = 1 - \frac{v}{c}\\
+\end{split}
+\end{equation}
+
+Since $\lambda_0/\lambda = \omega/\omega_0$, by Hubble's observation, we have
+
+\begin{equation}
+\begin{split}
+1 - \left(1 - \frac{v}{c} \right) & = \frac{Hr}{c}\\
+v & = Hr \\
+\end{split}
+\end{equation}
+
+\item If the galaxy travels at a constant velocity $v$ then the time it takes to reach $r$ is  $r/v = 1/H \approx 1.4 \times 10^{10}$ years.  \\
+
+\item The problem with Hubble's original estimate of $\approx 1.8\times 10^9$ is that this is significantly younger than the age of the Earth. There are fossils of cyanobacteria that are 3.5 billion years old. \footnote{ https://ucmp.berkeley.edu/bacteria/cyanofr.html }
+
+\end{enumerate}
+
+\noindent\rule{15cm}{0.4pt} \\
+\hfill \\
+
+3.2.1. {\bf General solution of the wave equation} \\
+
+By corollary (1) in $\S$ 2.2, one can rewrite $\hat{f}(\bm{k},t) = a^0_{\bm{k}} \cos( \omega_{\bm{k}} t) + \frac{\dot{a}^0_{\bm{k}}}{\omega_{\bm{k}}}\sin( \omega_{\bm{k}} t)$ as 
+
+\begin{equation}
+\begin{split}
+f(\bm{x},t) & = \frac{1}{(2\pi)^3}\int d\bm{k}e^{i\bm{k}\cdot\bm{x}}  \left[ f^+_{\bm{k}} e^{-i\omega_{\bm{k}}t} + f^-_{-\bm{k}} e^{i\omega_{\bm{k}}t}   \right] \\
+f(\bm{x},t) & = \frac{1}{(2\pi)^3}\int d\bm{k}  \left[ f^+_{\bm{k}} e^{i(\bm{k}\cdot\bm{x}-\omega_{\bm{k}} t )} + f^-_{-\bm{k}} e^{  i(\bm{k}\cdot\bm{x}+  \omega_{\bm{k}} t  ) }   \right] \\
+\end{split}
+\end{equation}
+
+In 1 dimension, and substituting $\omega_k = ck$, (11) has the form 
+
+\begin{equation}
+\begin{split}
+f(x,t) & = \frac{1}{2\pi}\int dk  \left[ f^+_{k} e^{i(kx-\omega_{k} t )} + f^-_{-k} e^{  i(kx+  \omega_{k} t  ) }   \right] \\
+f(x,t) & = \frac{1}{2\pi}\int dk  \left[ f^+_{k} e^{ i k ( x - c t )} + f^-_{-k} e^{  i k( x +  c t  ) }   \right] \\
+\end{split}
+\end{equation}
+
+which is a solution to $\S$ 2.2 $(\ast)$ of the same form as d’Alembert's solution. \\
+Now let $f(x,t) = u_1(x-ct) + u_2(x+ct)$ where $u_1(x),u_2(x)$ are twice differentiable functions on $\mathbb{R}$, as in d’Alembert's solution. Consider the Fourier transforms of $u_1(x)$ and $u_2(x)$,
+
+\begin{equation}
+\begin{split}
+\hat{u}_1(k) & := \int dx \text{ }u_1(x) e^{-ikx} \\
+\hat{u}_2(k) & := \int dx \text{ }u_2(x) e^{-ikx} \\
+\end{split}
+\end{equation}
+
+We can rewrite d’Alembert's solution in terms of the Fourier transforms in (13) as
+
+\begin{equation}
+\begin{split}
+f(x,t) & = u_1(x-ct) + u_2(x+ct)  \\ 
+f(x,t) & = \frac{1}{2\pi} \int dk \text{ } \hat{u}_1(k) e^{ik(x-ct)} + \frac{1}{2\pi} \int dk \text{ } \hat{u}_2(k) e^{ik(x+ct)} \\
+\end{split}
+\end{equation}
+
+which has the same form as in Corollary 1 of $\S$ 2.2 under the identification, $\hat{u}_1(k) = f^+_{k} $, $\hat{u}_2(k)  =  f^-_{-k}  $. \\
+
+\hfill \\
+\hfill \\
+\hfill \\
+\noindent\rule{15cm}{0.4pt} \\
+4.1.1. {\bf Wave equations for the electromagnetic fields}
+
+Maxwell's equations say
+
+\begin{equation}
+\begin{split}
+\div \bm{B} & = 0   \\
+\frac{1}{c} \partial_t \bm{B} + \curl\bm{E}  &= 0 \\
+\div \bm{E}  &= 4\pi\rho \\
+-\frac{1}{c} \partial_t \bm{E} + \curl \bm{B}  &= \frac{4\pi}{c} \bm{j} \\
+\end{split}
+\end{equation}
+
+We claim that 
+
+\begin{equation}
+\begin{split}
+\square\bm{E} = -4\pi\left( \grad\rho + \frac{1}{c^2}\partial_t \bm{j} \right) \\
+\end{split}
+\end{equation}
+
+and
+
+\begin{equation}
+\begin{split}
+\square\bm{B} =  \frac{4\pi}{c}\curl \bm{j} \\
+\end{split}
+\end{equation}
+
+To show (16), we can subtract the gradient of (M3) from the time derivative of (M4). \\
+
+\begin{equation}
+\begin{split}
+\frac{1}{c^2}\partial^2_t \bm{E} - \frac{1}{c}\partial_t(\curl\bm{B})  - \grad(\div\bm{E}) & =  - 4\pi\grad\rho - \frac{4\pi}{ c^2} \partial_t \bm{j} \\
+\frac{1}{c^2}\partial^2_t \bm{E} - \frac{1}{c}\partial_t(\curl\bm{B})  -  \laplacian\bm{E} - \curl(\curl{E})  & =  - 4\pi\grad\rho - \frac{4\pi}{ c^2} \partial_t \bm{j} \\
+\square\bm{E} - \curl\left(  \frac{1}{c}\partial_t\bm{B} + \curl{E}  \right) & = -4\pi\left( \grad\rho + \frac{1}{c^2}\partial_t \bm{j} \right) \\
+\square\bm{E} - \curl\left( \bm{0}  \right) & = -4\pi\left( \grad\rho + \frac{1}{c^2}\partial_t \bm{j} \right) \\
+\square\bm{E} & = -4\pi\left( \grad\rho + \frac{1}{c^2}\partial_t \bm{j} \right) \\
+\end{split}
+\end{equation}
+
+
+To show (17), we subtract the negative curl of (M4) from the time derivative of (M2).
+
+\begin{equation}
+\begin{split}
+\frac{1}{c^2}\partial^2_t\bm{B} + \frac{1}{c}\partial_t\curl\bm{E} - \frac{1}{c}\partial_t\curl\bm{E} + \curl(\curl\bm{B}) & = \frac{4\pi}{c}\curl\bm{j} \\
+\frac{1}{c^2}\partial^2_t\bm{B} + \curl(\curl\bm{B})   & = \frac{4\pi}{c}\curl\bm{j} \\
+\frac{1}{c^2}\partial^2_t\bm{B} + \grad(\div{B}) - \laplacian\bm{B}   & = \frac{4\pi}{c}\curl\bm{j} \\
+\square\bm{B} & = \frac{4\pi}{c}\curl\bm{j} \\
+\end{split}
+\end{equation}
+since $\div{B} = 0$. \\
+
+
+
+
+\hfill \\
+\noindent\rule{15cm}{0.4pt} \\
+$$\clubsuit$$
+\end{document}
+
+
+
+
+
+
+
+
+
+
+%\begin{equation}
+%\begin{split}
+%\end{split}
+%\end{equation}

@@ -1,0 +1,554 @@
+\documentclass[]{article}
+%\usepackage{setspace}
+%\onehalfspacing
+\usepackage{amsmath,amssymb,amsthm}
+\renewcommand{\qedsymbol}{$\blacksquare$}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{mathrsfs}
+\usepackage{amssymb}
+\usepackage{bm}
+\usepackage{enumerate}
+\usepackage{mdwlist}
+\usepackage{dirtytalk}
+\usepackage{xparse}
+\usepackage{physics}
+\usepackage[cmtip,all]{xy}
+\newcommand{\longsquiggly}{\xymatrix{{}\ar@{~>}[r]&{}}}
+\usepackage{graphicx}
+\usepackage{xcolor}% http://ctan.org/pkg/xcolor
+\usepackage{hyperref}% http://ctan.org/pkg/hyperref
+\hypersetup{
+  colorlinks=true,
+  linkcolor=blue!50!red,
+  urlcolor=green!70!black
+}
+\setcounter{MaxMatrixCols}{13}
+\setlength\parindent{0pt}
+\usepackage[none]{hyphenat}
+\usepackage[hmarginratio=1:1]{geometry}
+\begin{document}
+
+{\Large Physics 614 Final Exam}\\
+{Jeremy Welsh-Kavan}\\
+\hfill \\
+\noindent\rule{15cm}{0.4pt} \\
+
+\begin{enumerate}[1.]
+
+{\bf \item Phonons in a Wigner crystal} \\
+
+Consider a $2D$ Wigner crystal whose phonon vibration frequencies, $\omega$, obey the dispersion relation $\omega(\bm{k})  = \alpha \sqrt{ k}$, where $k = | \bm{k} |$ and $\alpha > 0$ is a constant. Keeping in mind the fact that in $2D$, vibrations can have only 2 polarizations and that the integration over $\bm{k}$ has only a factor of $kdk$, the density of states is given by \\
+
+
+\begin{equation}
+\begin{aligned}
+\sum_{\text{polariz.}} \sum_{\bm{k}} \to \frac{2 V }{(2 \pi)^2 } \int d\bm{k} \to \frac{ V }{\pi  } \int k dk & \to  \frac{ 2 V }{ \pi \alpha^4} \int \omega^3 d\omega \\
+\implies g(\omega) & = \frac{ 2 V }{ \pi \alpha^4}  \omega^3  \\
+\end{aligned}
+\end{equation} \\
+
+Now, the total energy in the crystal is given by \\
+
+
+\begin{equation}
+\begin{aligned}
+\expval{E} & = \int_{0}^{\omega_D} d\omega \: \frac{ \hbar \omega \: g(\omega) }{ e^{ \beta \hbar \omega} - 1 }  \\
+%
+& =  \frac{ 2 V }{ \pi \alpha^4}   \int_{0}^{\omega_D} d\omega \: \frac{  \omega^3 }{ e^{ \beta \hbar \omega} - 1 }  \\
+%
+& =  \frac{ 2 V }{ \pi \alpha^4 \hbar^4 \beta^4}   \int_{0}^{x_D} dx \: \frac{  x^3 }{ e^{ x} - 1 }  \\
+%
+& =  \frac{ 2 V k_B^4}{ \pi \alpha^4 \hbar^4 }  T^4 \int_{0}^{T_D/T} dx \: \frac{  x^3 }{ e^{ x} - 1 }  \\
+%
+\end{aligned}
+\end{equation} \\
+
+For low temperatures, $T \ll T_D$, we can replace $T_D/T$ with $\infty$, yielding, \\
+
+\begin{equation}
+\begin{aligned}
+\expval{E} & =  \frac{ 2 V k_B^4}{ \pi \alpha^4 \hbar^4 }  T^4 \int_{0}^{\infty} dx \: \frac{  x^3 }{ e^{ x} - 1 }  \\
+%
+\end{aligned}
+\end{equation} \\
+
+But since $C_V = \partial \expval{E} /\partial T$, we have that $C_V \propto T^3$. Which is not what we were asked to show, but I'm not sure what went wrong. \\
+
+
+
+
+
+
+\noindent\rule{15cm}{0.4pt} \\
+
+{\bf \item Ultrarelativistic Bose-Einstein condensation} \\
+
+
+We consider an ideal gas of $N$ ultra-relativistic spinless bosons in a volume $V$, with energy momentum relation $\epsilon( \bm{k} ) = \hbar k c$, where $k = | \bm{k} |$.  \\
+
+We claim that this system exhibits Bose-Einstein condensation at a finite temperature. We first find that the density of states for this system is \\
+
+\begin{equation}
+\begin{aligned}
+\sum_{\bm{k}} \to \frac{ V }{ (2\pi)^3 } \int d\bm{k} & \to  \frac{ V }{ 2 \pi^2 } \int k^2 dk \to  \frac{ V }{ 2 \hbar^3 c^3 \pi^2 } \int \epsilon^2 d\epsilon   \\
+\implies g( \epsilon ) & =     \frac{ V }{ 2  \pi^2   \hbar^3 c^3  }  \epsilon^2    \\
+\end{aligned}
+\end{equation} \\
+
+Following roughly the procedure outlined in the lecture notes, we find that the density $\rho$ is given by \\
+
+\begin{equation}
+\begin{aligned}
+N  & =   \frac{ V }{ 2  \pi^2   \hbar^3 c^3  } \int_{0}^{\infty} d\epsilon \: \frac{ \epsilon^2  }{ z^{-1} e^{\beta \epsilon } - 1 } \\
+%
+N & =  \frac{ 1 }{ 2  \lambda^3  }   \int_{0}^{\infty} dy  \: \frac{  y^2 }{  z^{-1} e^y - 1   } \\
+\rho \lambda^3 & = g_3(z) \\
+\end{aligned}
+\end{equation} \\
+
+
+where $\lambda =  \pi^{2/3}   \hbar c \beta$ is the thermal deBroglie wavelength for massless particles. Note that the particles in this system still have mass but this is a useful quantity anyway. But, as in the case of non-relativistic bosons, as $T \to 0$, we must have $\lambda^3$ increase. However, since $g_3(z)$ is bounded above by $g_3(1) = \zeta(3)$, there must be a temperature $T_c$ at which the equation above becomes invalid. Thus, the critical temperature, at which Bose-Einstein condensation occurs, is given by \\
+
+
+
+\begin{equation}
+\begin{aligned}
+\rho \left( \frac{ \pi^{2/3} \hbar c }{ k_B T_c }  \right)^3 & = \zeta(3) \\
+\end{aligned}
+\end{equation} \\
+
+The constant $\zeta(3)$ is named Apéry's constant. \\
+
+
+
+
+
+
+
+
+
+
+
+
+\noindent\rule{15cm}{0.4pt} \\
+
+
+
+
+
+{\bf \item Fermi gas equilibrium} \\
+
+We consider a closed $3D$ cylinder of volume $V$, separated into two compartments, labeled $1$ and $2$, by a free-sliding piston. The piston allows the exchange of energy and volume but not of particles. Suppose two ideal Fermi gases are placed into the two compartments. and that the particles in compartment $1$ have spin $\frac{1}{2}$, while the particles in compartment $2$ have spin $\frac{ 3}{2}$, and that all particles have the same mass. \\
+
+Recall that the density of states for a Fermi gas with spin $s$ is given by \\
+
+\begin{equation}
+\begin{aligned}
+g( \epsilon ) & = ( 2 s + 1 ) \frac{ V}{ 4\pi^2 } \left(  \frac{ 2m }{ \hbar^2 } \right)^{3/2} \epsilon^{1/2} \\
+\end{aligned}
+\end{equation} \\
+
+In which case the density of states for particles in compartments $1$ and $2$ are \\
+
+\begin{equation}
+\begin{aligned}
+g_1( \epsilon ) & = 2 \frac{ V_1 }{ 4\pi^2 } \left(  \frac{ 2m }{ \hbar^2 } \right)^{3/2} \epsilon^{1/2} \\
+%
+g_2( \epsilon ) & = 4 \frac{ V_2 }{ 4\pi^2 } \left(  \frac{ 2m }{ \hbar^2 } \right)^{3/2} \epsilon^{1/2} \\
+%
+\end{aligned}
+\end{equation} \\
+
+
+
+\begin{itemize}
+
+\item At low $T$, the pressure in each compartment is dominated by the degeneracy pressure of each gas. We can set these equal since the system is assumed to be in equilibrium. Let $P_1$ be the degeneracy pressure of the gas in compartment $1$ and $\epsilon_1^F$ its Fermi energy, and similarly for the gas in compartment $2$. Then the following relation yields the ratio $\rho_1/\rho_2$ at equilibrium: \\
+
+
+\begin{equation}
+\begin{aligned}
+P_1 & = P_2 \\
+%
+\frac{ 2 }{ 5 } \frac{ N_1 }{ V_1 } \epsilon_1^F & = \frac{ 2 }{ 5 } \frac{ N_2 }{ V_2 } \epsilon_2^F \\
+%
+\frac{  \rho_1 }{ \rho_2 } & = \frac{  \epsilon_1^F }{ \epsilon_2^F } \\
+%
+\frac{  \rho_1 }{ \rho_2 } & = \frac{  \left[  \frac{ 1 }{ 2 } \rho_1  \right]^{2/3}   }{  \left[  \frac{ 1 }{ 4 } \rho_2  \right]^{2/3}   } \\
+%
+\frac{  \rho_1 }{ \rho_2 }  & = 4 \\
+%
+\end{aligned}
+\end{equation} \\
+
+
+
+\item For $T \to \infty$, we can simply integrate the density of states of each gas over $\mathbb{R}_{>0}$ against the Fermi-Dirac distribution. This yields \\
+
+
+
+\begin{equation}
+\begin{aligned}
+\rho_1 & = \frac{ 1 }{ V_1 } \int_{0}^{\infty} d\epsilon \: \frac{ g_1(\epsilon) }{ z^{-1} e^{\beta \epsilon } +1 } \\
+%
+\rho_2 & = \frac{ 1 }{ V_2 }  \int_{0}^{\infty} d\epsilon \: \frac{ g_2(\epsilon) }{ z^{-1} e^{\beta \epsilon } +1 } \\
+%
+\implies \rho_1 & = 2 \frac{ 1 }{ 4\pi^2 } \left(  \frac{ 2m }{ \hbar^2 } \right)^{3/2}  \int_{0}^{\infty} d\epsilon \: \frac{ \epsilon^{1/2} }{ z^{-1} e^{\beta \epsilon } +1 } \\
+%
+\rho_2 & = 4 \frac{ 1 }{ 4\pi^2 } \left(  \frac{ 2m }{ \hbar^2 } \right)^{3/2}  \int_{0}^{\infty} d\epsilon \: \frac{ \epsilon^{1/2} }{ z^{-1} e^{\beta \epsilon } +1 } \\
+%
+\end{aligned}
+\end{equation} \\
+
+Therefore, the ratio of densities, $\rho_1/\rho_2$ is just \\
+
+\begin{equation}
+\begin{aligned}
+\frac{ \rho_1 }{ \rho_2 } & = \frac{ 1 }{2 } \\
+\end{aligned}
+\end{equation} \\
+
+
+
+
+
+
+
+
+
+\end{itemize}
+
+
+
+
+\noindent\rule{15cm}{0.4pt} \\
+
+
+
+\newpage
+
+
+
+
+{\bf \item Virial expansion and the liquid-gas critical point} \\
+
+We consider an equation of state that includes three terms in the virial expansion, \\
+
+\begin{equation}
+\begin{aligned}
+P & = \frac{ k_B T}{ v} \left(  1 + \frac{ B_2(T) }{v} + \frac{ B_3(T) }{ v^2 }   \right) \\
+\end{aligned}
+\end{equation} \\
+
+where $v = V/N = 1 /\rho$ is the reduced volume. \\ 
+
+\begin{enumerate}[i.]
+
+
+\item Suppose $B_3(T) \le 0$. In order to find a liquid-gas critical point of the Van der Waals type, we need to find solutions to $ \partial P /\partial v = \partial^2 P / \partial v^2 = 0$. To do this, we can look for $T_c$ such that all roots of the equation of state coincide. That is, we can write the equation of state as \\
+
+\begin{equation}
+\begin{aligned}
+Pv^3 - k_B T v^2 - k_B T B_2(T) v - k_B T B_3(T) & = P_c ( v - v_c)^3  \\
+\end{aligned}
+\end{equation} \\
+
+However, if $B_3(T) \le 0$ then the last term on the left hand side is positive or zero, in which case the three roots of the equation will never coincide. Therefore, the first and second derivatives will never be zero simultaneously so no liquid-gas critical point of the Van der Waals type can occur. \\
+
+\item Assume that the system does have a liquid-gas critical point at temperature $T_c$ and reduced volume $v_c$. \\ 
+
+\begin{itemize}
+
+\item I couldn't figure this one out, but based on the next two, it looks like we should find that \\
+
+
+\begin{equation}
+\begin{aligned}
+3  B_3 ( T_c ) & = B_2 ( T_c )^2 \\
+\end{aligned}
+\end{equation} \\
+
+
+
+
+
+\item To find a relation between $v_c$, $B_2(T_c)$, and $B_3(T_c)$ we can differentiate the equation of state setting $ \partial P /\partial v = 0 $ and $ \partial^2 P / \partial v^2 = 0$. These equations yield \\
+
+\begin{equation}
+\begin{aligned}
+2 B_2( T_c ) + \frac{ 3 B_3 ( T_c ) }{v_c} + v_c & = 0 \\
+3 B_2( T_c ) + \frac{ 6 B_3 ( T_c ) }{v_c} + v_c & = 0 \\
+\end{aligned}
+\end{equation} \\
+
+respectively. Subtracting the first from the second yields \\
+
+\begin{equation}
+\begin{aligned}
+B_3 ( T_c ) & =  - \frac{ v_c }{3}  B_2( T_c )  \\
+\end{aligned}
+\end{equation} \\
+
+This also gives an equation for $v_c$ in terms of $B_2(T_c)$ and $B_3(T_c)$: \\
+
+\begin{equation}
+\begin{aligned}
+v_c  & =  - 3 \frac{ B_3 ( T_c ) }{ B_2( T_c )  } \\
+\end{aligned}
+\end{equation} \\
+
+From the first, we also have \\
+
+\begin{equation}
+\begin{aligned}
+v_c  & =  - B_2( T_c )\\
+\end{aligned}
+\end{equation} \\
+
+
+
+\item Plugging these back into the original equation of state, we have \\
+
+\begin{equation}
+\begin{aligned}
+\frac{  P_c v_c }{ k_B T_c } & =  1 + \frac{ B_2(T_c) }{v_c} + \frac{ B_3(T_c) }{ v_c^2 }  \\
+%
+& =  1 + \frac{ B_2(T_c) }{v_c} - \frac{1}{3} \frac{ B_2(T_c) }{ v_c }  \\
+%
+& =  1 + \frac{ 2 }{3 }\frac{ B_2(T_c) }{v_c} \\
+%
+& =  1 - \frac{ 2 }{3 }\frac{ v_c }{v_c} \\
+%
+\frac{  P_c v_c }{ k_B T_c } & =   \frac{ 1 }{3 } \\
+%
+\end{aligned}
+\end{equation} \\
+
+\end{itemize}
+
+\item The cubic equation of state from the homework problem is \\
+
+\begin{equation}
+\begin{aligned}
+P & = \frac{k_B T }{v} - \frac{1}{2} \frac{ b }{ v^2 } + \frac{1}{6} \frac{ c }{ v^3 } \\
+\end{aligned}
+\end{equation} \\
+
+Solving for $B_2(T)$ and $B_3(T)$ gives \\
+
+\begin{equation}
+\begin{aligned}
+k_B T \frac{ B_2(T) }{ v^2 } & = - \frac{1}{2} \frac{ b }{ v^2 } \\
+\implies B_2(T) & =  - \frac{1}{2} \frac{ b }{ k_B T} 
+\end{aligned}
+\end{equation} \\
+
+and \\
+
+\begin{equation}
+\begin{aligned}
+k_B T \frac{ B_3(T) }{ v^3 } & =  \frac{1}{6} \frac{ c }{ v^3 }\\
+\implies B_3(T) & =   \frac{1}{6} \frac{ c }{k_B T } \\
+\end{aligned}
+\end{equation} \\
+
+Starting with $v_c = c/b$, we have \\
+
+\begin{equation}
+\begin{aligned}
+v_c & = \frac{ c }{ b } \\ 
+%
+& =  - \frac{ 6 B_3(T_c) }{ 2 B_2(T_c) } \\
+%
+& =  - 3 \frac{  B_3(T_c) }{ B_2(T_c) } \\
+\end{aligned}
+\end{equation} \\
+
+Next, we know that $k_B T_c = b^2 / 2c$, which requires that \\
+
+
+\begin{equation}
+\begin{aligned}
+k_B T_c & = \frac{  b^2  }{  2c  } \\
+%
+& = \frac{  ( 2 k_B T_c  B_2 ( T_c ) )^2  }{  12 k_B T_c B_3 ( T_c ) } \\
+%
+& = \frac{ 1}{3} k_B T_c \frac{ B_2 ( T_c )^2 }{ B_3 ( T_c ) } \\
+%
+\implies 3 B_3 (T_c ) & = B_2 ( T_c )^2 \\
+\end{aligned}
+\end{equation} \\
+
+Finally, given $P_c = b^3 / 6 c^2 $, we have \\
+
+\begin{equation}
+\begin{aligned}
+P_c & = \frac{ b^3 }{ 6 c^2 } \\
+%
+& =  \frac{ b^2 }{ 2 c } \frac{ b }{ 3 c} \\
+%
+& = \frac{ 1 }{3 } \frac{  k_B T_c }{ v_c } \\
+\implies \frac{ P_c v_c }{ k_B T_c } & = \frac{ 1 }{3 } \\
+\end{aligned}
+\end{equation} \\
+
+since the first two are consistent, so too must be the last one. \\
+
+
+
+\end{enumerate}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+\noindent\rule{15cm}{0.4pt} \\
+
+
+
+
+
+{\bf \item Three-state spin system: mean-field theory} \\
+
+We consider a system of $N$ spins indexed by $i$, arranged in a lattice with coordination number $q$ under periodic boundary conditions. Denote spin $i$ by $S_i \in \{ -1, 0 , 1\}$. Let $\{S_i\}$ denote a particular configuration of all $N$ spins. Define the Hamiltonian of the system as \\
+
+\begin{equation}
+\begin{aligned}
+H \left(  \{S_i\} \right) & = -J \sum_{ \expval{ij}  } S_i S_j - B \sum_{i=1}^N S_i \\
+\end{aligned}
+\end{equation} \\
+
+where $J>0$. \\
+
+
+
+\begin{enumerate}[i.]
+
+
+\item We wish to use mean-field theory to derive an equation which implicitly defines the average magnetization, $m = \sum \expval{ S_i }/N $, of the system in equilibrium with some external field, $B$, at $\beta = 1/k_B T$. We follow the same procedure as in the lecture and in § 5.2.1 of Tong's notes. \\
+
+We can rewrite the spins in terms of the average magnetization $m$, as \\
+
+\begin{equation}
+\begin{aligned}
+\left( ( S_i - m) + m \right)  \left(  (S_j - m) + m \right)  & = (S_i - m)( S_j - m ) + m(S_j - m) + m(S_i -m) + m^2 \\
+\end{aligned}
+\end{equation} \\
+
+Since we assume that fluctuations between spins on neighboring sites are small, we neglect the first term in the sum above. We may then rewrite the Hamiltonian as \\
+
+\begin{equation}
+\begin{aligned}
+H \left(  \{S_i\} \right) & = -J \sum_{ \expval{ij}  } m(S_i + S_j) - m^2  - B \sum_{i=1}^N S_i \\
+%
+& =  \frac{1}{2} J N q m^2  - (J q m  + B ) \sum_{i=1}^N S_i \\
+\end{aligned}
+\end{equation} \\
+
+Since we have reduced the problem to that of a non-interacting system, the partition function for $N$ spins, $\mathcal{Z}_N$, can be rewritten as $\mathcal{Z}_N = \mathcal{Z}_1^N$. We compute this in terms of the Hamiltonian above to get \\
+
+\begin{equation}
+\begin{aligned}
+\mathcal{Z}_N & = \mathcal{Z}_1^N  \\
+%
+& = \sum_{  \{ S_i\} }  e^{ -  \beta  H \left(  \{S_i\} \right) } \\
+%
+& = \left(  e^{ - \beta   \frac{1}{2} J q m^2  }  \sum_{ k = -1 }^1    e^{  \beta  (J q m  + B )k  }   \right)^N \\
+%
+& =   e^{ - \beta   \frac{1}{2} J N q m^2  } \left(   e^{  \beta  (J q m  + B)   }   + e^{  - \beta  (J q m  + B )  }  +  1 \right)^N \\
+%
+\mathcal{Z}_N & =   e^{ -   \frac{1}{2} \beta  J N q m^2  } \left(   2 \cosh( \beta  (J q m  + B)   )  +  1 \right)^N \\
+%
+\end{aligned}
+\end{equation} \\
+
+For self-consistency, we must have $m = \frac{ 1 }{ \beta N} \pdv{ \log \mathcal{Z}_N }{ B}$. Thus, \\
+
+\begin{equation}
+\begin{aligned}
+m & =  \frac{ 1 }{ \beta N} \pdv{ \log \mathcal{Z}_N }{ B} \\
+%
+& = \frac{ 1 }{ \beta } \pdv{B} \left(   \log(  2 \cosh( \beta  (J q m  + B)   )  +  1  )  + \text{const.} \right) \\
+%
+& = \frac{  2 \sinh(  \beta  (J q m  + B)   )  }{ 2  \cosh( \beta  (J q m  + B)   )  +  1  } \\
+%
+m & = \frac{   \sinh(  \beta  (J q m  + B)   )  }{   \cosh( \beta  (J q m  + B)   )  +  1/2  } \\
+\end{aligned}
+\end{equation} \\
+
+\item Suppose $B = 0$. Since the function above behaves similarly to $\tanh(x)$, we can perform a similar calculation as in the lecture notes. In particular, this function is a sigmoid which behaves linearly around $m = 0$. Let $m = f(m)$ be the relation above. Then we need only find the temperature $T_c$ at which $f'(0) = 1$. \\
+
+\begin{equation}
+\begin{aligned}
+m & = \frac{   \sinh(  \beta  (J q m  + B)   )  }{   \cosh( \beta  (J q m  + B)   )  +  1/2  } \\
+m & = \frac{2}{3} \beta Jq m + \mathcal{O}(m^3) \\
+\end{aligned}
+\end{equation} \\
+
+So $T_c$ is given by \\
+
+\begin{equation}
+\begin{aligned}
+k_B T_c & = \frac{2}{3}  Jq  
+\end{aligned}
+\end{equation} \\
+
+
+
+\item We expect this system to have the same critical exponents as in the Ising model since the series expansion of the free energy, $F = - k_B T \log \mathcal{Z}_N$, contains precisely the same powers of $m$ as in the Ising model. \\
+
+
+\end{enumerate}
+
+
+\end{enumerate}
+
+
+
+\noindent\rule{15cm}{0.4pt} \\
+
+$$\clubsuit$$
+
+\end{document}
+
+
+
+
+
+
+
+
+
+
+
+%\begin{equation}
+%\begin{aligned}
+%\end{aligned}
+%\end{equation}

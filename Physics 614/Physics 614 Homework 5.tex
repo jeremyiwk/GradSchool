@@ -1,0 +1,396 @@
+\documentclass[]{article}
+%\usepackage{setspace}
+%\onehalfspacing
+\usepackage{amsmath,amssymb,amsthm}
+\renewcommand{\qedsymbol}{$\blacksquare$}
+\usepackage{amsmath}
+\usepackage{bm}
+\usepackage{amsfonts}
+\usepackage{mathrsfs}
+\usepackage{amssymb}
+\usepackage{enumerate}
+\usepackage{mdwlist}
+\usepackage{dirtytalk}
+\usepackage{xparse}
+\usepackage{physics}
+\usepackage{graphicx}
+\setcounter{MaxMatrixCols}{13}
+\setlength\parindent{0pt}
+\usepackage[none]{hyphenat}
+\usepackage[hmarginratio=1:1]{geometry}
+\begin{document}
+
+{\Large Physics 614 Homework 5}\\
+{Jeremy Welsh-Kavan}\\
+%\end{center}
+%\vspace{0.2 cm}
+\hfill \\
+\noindent\rule{15cm}{0.4pt} \\
+
+{\bf 1. High-temperature limit of the Fermi gas} \\
+
+We claim that the equation of state for an ideal Fermi gas with spin $s$ and incorporating the first quantum correction at high temperatures is
+
+\begin{equation} \label{eq:1}
+\begin{aligned}
+P & = \rho k_B T \left( 1 + \frac{ \rho \lambda^3 }{ 4 \sqrt{2} (2s+1) }   \right) \\
+\end{aligned}
+\end{equation} \\
+
+where $\rho = N/V$ and $\lambda = h/\sqrt{ 2\pi m k_B T }$. Recall that the grand potential, $\Phi$, for the Fermi gas satisfies 
+
+\begin{equation}\label{eq:2}
+\begin{aligned}
+\Phi & = -k_B T \sum_\alpha \ln( 1+ e^{ - \beta(\epsilon_\alpha - \mu) }) = - PV\\
+\end{aligned}
+\end{equation} \\
+
+and that the density of states for a Fermi gas with spin $s$ is given by 
+
+\begin{equation}\label{eq:3}
+\begin{aligned}
+g(\epsilon) = (2s +1 ) \frac{V}{4\pi^2} \left( \frac{ 2m }{ \hbar^2} \right)^{3/2} \epsilon^{1/2} \\
+\end{aligned}
+\end{equation} \\
+
+With equation (\ref{eq:3}), and $z = e^{\beta\mu}$ we can write equation (\ref{eq:2}) as an integral over $\epsilon$ 
+
+\begin{equation}\label{eq:4}
+\begin{aligned}
+PV & =   k_B T \int_0^\infty d\epsilon \; g(\epsilon)  \ln( 1+ z e^{ - \beta\epsilon }) \\
+P & = \frac{ 2s +1  }{4\pi^2 \beta} \left( \frac{ 2m }{ \hbar^2} \right)^{3/2} \int_0^\infty d\epsilon \;  \epsilon^{1/2}  \ln( 1+ z e^{ - \beta\epsilon }) \\
+P  & = \frac{ 2s +1  }{4\pi^2 \beta} \left( \frac{ 2m }{ \beta \hbar^2} \right)^{3/2} \int_0^\infty dy\;  y^{1/2}  \ln( 1+ z e^{ - y }) \\
+P  & =  - \frac{ 2s +1  }{4\pi^2 \beta} \left( \frac{ 2m }{ \beta \hbar^2} \right)^{3/2} \frac{2}{3} \int_0^\infty dy\; \frac{  - z e^{ -y }  y^{3/2}  }{ 1 + z e^{ -y }  } \\
+P & =  \frac{ 2s +1  }{4\pi^2 \beta} \left( \frac{ 2m }{ \beta \hbar^2} \right)^{3/2} \frac{2}{3} \int_0^\infty dy\; \frac{   y^{3/2}  }{  z^{-1} e^{ y } +1   } \\
+P  & =  \frac{ 2s +1  }{4\pi^2 \beta } \left( \frac{ 2m }{ \beta \hbar^2} \right)^{3/2} \frac{\sqrt{\pi }}{2} \left( -g_{5/2}(-z)  \right) \\
+P  & =  \frac{ 2s +1  }{\beta } \left( \frac{ m }{ 2 \pi \beta \hbar^2} \right)^{3/2}  \left( -g_{5/2}(-z)  \right) \\
+P  & =  \frac{ 2s +1  }{\beta } \left( \frac{ 2 \pi m k_B T}{  h^2 } \right)^{3/2}  \left( -g_{5/2}(-z)  \right) \\
+P  & = - (2s +1 ) \frac{ k_B T }{ \lambda^3 }  g_{5/2}(-z) \\
+\end{aligned}
+\end{equation} \\
+
+We can also write the density, $\rho$, as
+
+\begin{equation}\label{eq:5}
+\begin{aligned}
+N & = \int_0^\infty d\epsilon \; \frac{ g(\epsilon) }{ z^{-1}e^{ \beta \epsilon}  + 1} \\
+\rho & =  (2s +1 ) \frac{1}{4\pi^2} \left( \frac{ 2m }{ \beta \hbar^2} \right)^{3/2}  \int_0^\infty d\epsilon \; \frac{ y^{1/2} }{ z^{-1}e^{y}  + 1} \\
+\rho & =  (2s +1 ) \frac{1}{4\pi^2} \left( \frac{ 2m }{ \beta \hbar^2} \right)^{3/2} \left( - \frac{ \sqrt{\pi}}{2} g_{3/2}(-z) \right) \\
+\rho\lambda^3  & = - (2s +1 )  g_{3/2}(-z) \\
+\end{aligned}
+\end{equation} \\
+
+Now, dividing equation (\ref{eq:4}) by equation (\ref{eq:5}), we have
+
+\begin{equation}\label{eq:6}
+\begin{aligned}
+P & = \rho k_B T \frac{ g_{5/2}(-z) }{ g_{3/2}(-z) }
+\end{aligned}
+\end{equation} \\
+
+We can expand the quotient in equation (\ref{eq:6}) to lowest nontrivial order in $z$ (using Mathematica out of laziness) around $z=0$ since equation (\ref{eq:5}) requires that $z\to 0$ as $T \to \infty$. This yields
+
+
+\begin{equation}\label{eq:7}
+\begin{aligned}
+P & = \rho k_B T \left(  1 + \frac{z}{4\sqrt{2}} \right) \\
+\end{aligned}
+\end{equation} \\
+
+We can now expand equation (\ref{eq:5}) to first nontrivial order to solve for $z$, which gives
+
+\begin{equation}\label{eq:8}
+\begin{aligned}
+\rho\lambda^3  & =  (2s +1 ) z \\
+\implies z & = \frac{ \rho\lambda^3 }{2s + 1} \\
+\end{aligned}
+\end{equation} \\
+
+Thus, the equation of state for the ideal Fermi gas in the high temperature limit is
+
+\begin{equation}\label{eq:9}
+\begin{aligned}
+P & = \rho k_B T \left(  1 + \frac{\rho\lambda^3}{4\sqrt{2} ( 2s + 1)}  \right) \\
+\end{aligned}
+\end{equation} 
+
+\hfill \\
+\noindent\rule{15cm}{0.4pt} \\
+
+{\bf 2. Degenerate Fermi gas in 1D and 2D} \\
+
+
+\begin{enumerate}[i.]
+
+\item To find the Fermi energy we first find the Fermi momentum which is given by counting the states in the volume of $k$ space of radius $k_F$.
+
+\begin{equation}\label{eq:10}
+\begin{aligned}
+\frac{2 k_F}{2\pi /L} (2s+1) & = N \\
+k_F & = \frac{N}{L} \frac{ \pi}{2s+1} \\
+\end{aligned}
+\end{equation} \\
+
+So the Fermi energy, $\epsilon_F$, is just
+
+\begin{equation}\label{eq:11}
+\begin{aligned}
+\epsilon_F & = \frac{\hbar^2 k^2}{2m} \\
+\epsilon_F & = \frac{\hbar^2 }{2m}\left[   \frac{N}{L} \frac{ \pi}{2s+1}  \right]^2 \\
+\end{aligned}
+\end{equation} \\
+
+We can compute the density of states to find the average internal energy. Set $g(\epsilon) = A \epsilon^{-1/2}$. Then
+
+\begin{equation}\label{eq:12}
+\begin{aligned}
+N & = \int_0^{\epsilon_F} d\epsilon \; g(\epsilon) \\
+N & = 2 A \epsilon_F^{1/2}  \\
+\implies g(\epsilon) & = \frac{N}{2} \left(\epsilon_F \: \epsilon \right)^{-1/2} \\
+\end{aligned}
+\end{equation} \\
+
+With this, the average internal energy is just
+
+\begin{equation}\label{eq:13}
+\begin{aligned}
+\expval{E} & = \int_0^{\epsilon_F} d\epsilon \; \epsilon \: g(\epsilon) \\
+\expval{E} & =  \frac{N}{2 \epsilon_F^{1/2}} \int_0^{\epsilon_F} d\epsilon \; \epsilon^{1/2} \\
+\expval{E} & =  \frac{N}{3 \epsilon_F^{1/2}} \epsilon_F^{3/2} \\
+\expval{E} & =  \frac{N}{3} \epsilon_F \\
+\end{aligned}
+\end{equation} \\
+
+In which case, the degeneracy pressure is
+
+\begin{equation}\label{eq:14}
+\begin{aligned}
+P & = \frac{1}{L} \left( N \epsilon_F -  \expval{E}\right) \\
+P & = \frac{1}{L} \left( N \epsilon_F -  \frac{N}{3} \epsilon_F \right) \\
+P & = \frac{2}{3} \frac{N}{L} \epsilon_F \\
+\end{aligned}
+\end{equation} \\
+
+\item In a two dimensional box of side length $L$, the Fermi momentum is
+
+\begin{equation}\label{eq:15}
+\begin{aligned}
+\frac{\pi k_F^2 }{ (2\pi/L)^2 } (2s+1) & = N \\
+k_F^2 & = \frac{N}{L^2} \frac{4 \pi }{2s+1 } \\
+\end{aligned}
+\end{equation} \\
+
+and the Fermi energy is
+
+
+\begin{equation}\label{eq:16}
+\begin{aligned}
+\epsilon_F & = \frac{\hbar^2 k^2}{2m} \\
+\epsilon_F & = \frac{\hbar^2 }{m}   \frac{N}{L^2} \frac{2 \pi }{2s+1 } \\
+\end{aligned}
+\end{equation} \\
+
+Solving for the density of states, $g(\epsilon) = A $, we have
+
+\begin{equation}\label{eq:17}
+\begin{aligned}
+N & = A \int_0^{\epsilon_F} d\epsilon \;  \\
+\implies g(\epsilon) & = \frac{N}{\epsilon_F} \\
+\end{aligned}
+\end{equation} \\
+
+Using this to find the average internal energy gives
+
+\begin{equation}\label{eq:18}
+\begin{aligned}
+\expval{E} & =  \frac{N}{\epsilon_F} \int_0^{\epsilon_F} d\epsilon \; \epsilon \: g(\epsilon) \\
+\expval{E} & =  \frac{N}{2 } \epsilon_F \\
+\end{aligned}
+\end{equation} \\
+
+Finally, the degeneracy pressure is
+
+\begin{equation}\label{eq:19}
+\begin{aligned}
+P & = \frac{1}{L^2} \left( N \epsilon_F -  \expval{E}\right) \\
+P & =  \frac{1}{2} \frac{N}{L^2}  \epsilon_F  \\
+\end{aligned}
+\end{equation} 
+
+\end{enumerate}
+
+\hfill \\
+\noindent\rule{15cm}{0.4pt} \\
+
+
+{\bf 3. Ultrarelativistic degenerate Fermi gas} \\
+
+We consider an ideal gas of $N$ ultrarelativistic fermions of spin $s$ in a volume $V$ in $3D$, which have the energy-momentum relation $\epsilon(\bm{k}) = \hbar k c$, where $c$ is the speed of light, $\bm{k}$ is the wavevector indexing the plane-wave energy eigenstate, and $k = |\bm{k}|$. And we work in the $T\to 0$ limit. \\
+
+\begin{enumerate}[i.]
+
+\item We first compute the density of states, $g(\epsilon)$ for this system.
+
+\begin{equation}\label{eq:20}
+\begin{aligned}
+\sum_{\bm{k}}(2s+1) \to \frac{V(2s+1)}{(2\pi)^3} \int d\bm{k} & \to  \frac{V(2s+1)}{2\pi^2} \int k^2 dk \to  \frac{V(2s+1)}{2\pi^2 \hbar^3 c^3} \int \epsilon^2 d\epsilon  \\
+& \implies g(\epsilon) =  \frac{V(2s+1)}{2\pi^2 \hbar^3 c^3}  \epsilon^2
+\end{aligned}
+\end{equation} \\
+
+The Fermi energy is then given by 
+
+\begin{equation}\label{eq:21}
+\begin{aligned}
+N & = \int_0^{\epsilon_F} d\epsilon \; g(\epsilon) \\
+N & =  \frac{V(2s+1)}{6\pi^2 \hbar^3 c^3}    \epsilon_F^3 \\
+\implies \epsilon_F & = \left(  \frac{6\pi^2 N \hbar^3 c^3}{V(2s+1)}   \right)^{1/3}
+\end{aligned}
+\end{equation} \\
+
+which allows us to rewrite the density of states as $g(\epsilon) = 3N \epsilon^2/ \epsilon_F^3$
+
+\item The average internal energy, $\expval{E}$, is given simply in terms of $\epsilon_F$ by
+
+\begin{equation}\label{eq:22}
+\begin{aligned}
+\expval{E} & = \int_0^{\epsilon_F} d\epsilon \; \epsilon \: g(\epsilon) \\
+\expval{E} & = \frac{3N}{\epsilon_F^3 } \int_0^{\epsilon_F} d\epsilon \; \epsilon^3 \:  \\
+\expval{E} & = \frac{3}{4 } N \epsilon_F \\
+\end{aligned}
+\end{equation} \\
+
+The average internal energy of the ultrarelativistic Fermi gas is higher than the nonrelativistic gas. In the relativistic case, $g(\epsilon) \sim \epsilon^2$ while in the nonrelativistic case, $g(\epsilon) \sim \epsilon^{1/2}$. Therefore, for $\epsilon < \epsilon_F$, the distribution of states for the relativistic case will be more heavily skewed towards $\epsilon_F$. Whereas, for the nonrelativistic case, there are a larger number of states near $\epsilon = 0$. \\
+
+
+\item The degeneracy pressure is then
+
+\begin{equation}\label{eq:23}
+\begin{aligned}
+P & =  \frac{1}{V} \left( N \epsilon_F -  \expval{E}\right) \\
+P & =  \frac{1}{V} \left( N \epsilon_F -  \frac{3}{4 } N \epsilon_F   \right) \\
+P & =  \frac{ 1} {4} \frac{N}{V} \epsilon_F  \\
+\end{aligned}
+\end{equation} \\
+
+which we may also write as 
+
+\begin{equation}\label{eq:24}
+\begin{aligned}
+P & =  \frac{1}{V} \left( \frac{4}{3} \expval{E}  -  \expval{E}  \right) \\
+P & =    \frac{1}{3}  \frac{\expval{E} }{V}   \\
+\end{aligned}
+\end{equation} 
+
+
+
+\end{enumerate}
+
+\hfill \\
+\noindent\rule{15cm}{0.4pt} \\
+
+
+
+{\bf  4. Low-temperature Fermi gas from Sommerfeld expansion} \\
+
+\begin{enumerate}[i.]
+
+\item For the ideal Fermi gas in $3D$, $g(\epsilon) = A \epsilon^{1/2} $. First obverse that
+
+\begin{equation}\label{eq:25}
+\begin{aligned}
+N & = \int_0^\infty d\epsilon \; \frac{ g(\epsilon) }{e^{\beta(\epsilon - \mu)} +1 } \\
+\frac{N}{A} & =  \int_0^\infty d\epsilon \; \frac{ \epsilon^{1/2} }{e^{\beta(\epsilon - \mu)} +1 } \\
+\end{aligned}
+\end{equation}\\
+
+And recall that $A =  3N/ 2\epsilon_F^{3/2}$. So we have
+
+\begin{equation}\label{eq:26}
+\begin{aligned}
+\frac{N}{A} & =  \int_0^\infty d\epsilon \; \frac{ \epsilon^{1/2} }{e^{\beta(\epsilon - \mu)} +1 } \\
+\implies  \frac{2}{3} \epsilon_F^{3/2} & =  \int_0^\infty d\epsilon \; \frac{ \epsilon^{1/2} }{e^{\beta(\epsilon - \mu)} +1 } \\
+\end{aligned}
+\end{equation}\\
+
+Now, using the Sommerfield expansion, we can rewrite equation (26) as follows:
+
+\begin{equation}\label{eq:27}
+\begin{aligned}
+\frac{2}{3} \epsilon_F^{3/2} & =  \int_0^\infty d\epsilon \; \frac{ \epsilon^{1/2} }{e^{\beta(\epsilon - \mu)} +1 } \\
+\frac{2}{3} \epsilon_F^{3/2} & \approx \int_0^\mu d\epsilon \: \epsilon^{1/2} + \frac{\pi^2}{6} (k_B T)^2 \frac{1}{2\sqrt{\mu}} \\ 
+\end{aligned}
+\end{equation}\\
+
+Solving for $\mu$, we have 
+
+\begin{equation}\label{eq:28}
+\begin{aligned}
+\frac{2}{3} \epsilon_F^{3/2} & \approx \frac{2}{3} \mu^{3/2} + \frac{\pi^2}{6} (k_B T)^2 \frac{1}{2\sqrt{\mu}} \\ 
+\mu^{3/2} & \approx  \epsilon_F^{3/2} -  \frac{\pi^2}{8} (k_B T)^2 \frac{1}{\sqrt{\mu}} 
+\end{aligned}
+\end{equation}\\
+
+In the low $T$ limit, $\mu \approx \epsilon_F$, so we can rewrite equation (28) as
+
+\begin{equation}\label{eq:29}
+\begin{aligned}
+\mu^{3/2} & \approx  \epsilon_F^{3/2} -  \frac{\pi^2}{8} (k_B T)^2 \frac{1}{\sqrt{\epsilon_F}} \\
+\mu^{3/2} & \approx  \epsilon_F^{3/2} \left[ 1 -  \frac{\pi^2}{8} (k_B T)^2 \frac{1}{\epsilon_F^2 } \right]  \\
+\mu & \approx  \epsilon_F \left[ 1 -  \frac{\pi^2}{8}  \left( \frac{  T  }{T_F } \right)^2 \right]^{2/3}  \\
+\mu & \approx  \epsilon_F \left[ 1 -  \frac{\pi^2}{12}  \left( \frac{  T  }{T_F } \right)^2 \right]  \\
+\end{aligned}
+\end{equation}\\
+
+via the binomial expansion. \\
+
+\item We can perform a similar calculation to approximate $\expval{E}$:
+
+
+\begin{equation}\label{eq:30}
+\begin{aligned}
+\expval{E} & = \int_0^\infty d\epsilon \; \frac{ \epsilon \: g(\epsilon) }{ e^{\beta(\epsilon - \mu)} +1} \\
+\expval{E} & = A \int_0^\infty d\epsilon \; \frac{  \epsilon^{3/2} }{ e^{\beta(\epsilon - \mu)} +1} \\
+\expval{E} & \approx A  \int_0^\mu d\epsilon \; \epsilon^{3/2} + \frac{\pi^2}{6} (k_B T)^2 (g(\mu)\mu)' \\
+\expval{E} & \approx A \frac{2}{5} \mu^{5/2} + A \frac{\pi^2}{4} (k_B T)^2 \mu^{1/2}  \\
+\expval{E} & \approx A \frac{2}{5} \left( \mu^{5/2}   + \frac{5 \pi^2}{8} (k_B T)^2 \mu^{1/2} \right) \\
+\expval{E} & \approx A \frac{2}{5} \left( \epsilon_F^{5/2} \left( 1 -  \frac{5\pi^2}{24}  \left( \frac{  T  }{T_F } \right)^2  \right)   + \frac{5 \pi^2}{8} (k_B T)^2 \epsilon_F^{1/2}  \left( 1 -  \frac{\pi^2}{24}  \left( \frac{  T  }{T_F } \right)^2   \right) \right) \\
+\expval{E} & \approx A \frac{2}{5} \epsilon_F^{5/2}  \left( 1 -  \frac{5\pi^2}{24}  \left( \frac{  T  }{T_F } \right)^2    + \frac{5 \pi^2}{8} \left( \frac{T}{T_F} \right)^2  \left( 1 -  \frac{\pi^2}{24}  \left( \frac{  T  }{T_F } \right)^2   \right) \right) \\
+\expval{E} & \approx A \frac{2}{5} \epsilon_F^{5/2}  \left( 1 + \frac{5\pi^2}{12}  \left( \frac{  T  }{T_F } \right)^2 + \mathcal{O}\left( \left( \frac{T}{T_F} \right)^4 \right)\right) \\
+\expval{E} & \approx  \frac{2}{5} \epsilon_F^2 \:  g(\epsilon_F)   \left( 1 +  \frac{5\pi^2}{12}  \left( \frac{  T  }{T_F } \right)^2 \right) \\
+\end{aligned}
+\end{equation}\\
+
+
+\end{enumerate}
+
+
+\hfill \\
+\noindent\rule{15cm}{0.4pt} \\
+
+
+
+
+
+%\begin{equation}\label{eq:1}
+%\begin{split}
+%\end{split}
+%\end{equation}
+
+
+$$\clubsuit$$
+\end{document}
+
+
+
+
+
+%+ \lambda \frac{\hbar c\alpha}{|\bm{r}_1 - \bm{r}_2|}
+
+
+
+
+%\begin{equation}
+%\begin{split}
+%\end{split}
+%\end{equation}

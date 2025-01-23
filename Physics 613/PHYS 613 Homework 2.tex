@@ -1,0 +1,389 @@
+\documentclass[]{book}
+%\usepackage{setspace}
+%\onehalfspacing
+\usepackage{amsmath,amssymb,amsthm}
+\renewcommand{\qedsymbol}{$\blacksquare$}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{mathrsfs}
+\usepackage{amssymb}
+\usepackage{enumerate}
+\usepackage{mdwlist}
+\usepackage{dirtytalk}
+\usepackage{xparse}
+\usepackage{physics}
+\usepackage{graphicx}
+\setcounter{MaxMatrixCols}{13}
+\setlength\parindent{0pt}
+\usepackage[none]{hyphenat}
+\usepackage[hmarginratio=1:1]{geometry}
+\begin{document}
+\begin{center}
+{\Large Physics 613 Homework 2}\\
+{Jeremy Welsh-Kavan}\\
+\end{center}
+\vspace{0.2 cm}
+\begin{center}
+\noindent\rule{15cm}{0.4pt} \\
+\end{center}
+I decided to LaTex my homework this time. I hope this is helpful.
+\begin{enumerate}[1)]
+\item
+We can model the earth's atmosphere as a diatomic ideal gas of $N$ particles of mass $m$. Suppose the heat capacity at constant volume is $C_v = \frac{5}{2}Nk_B$. We can compute the mass density profile, $\rho(z)$, pressure profile, $P(z)$, and temperature profile, $T(z)$. \\
+Consider a volume of air whose base lies at $z$ with cross sectional area $A$ and with height $dz$. This volume of air has mass $A\rho(z)dz$. The downward force on the volume is $AP(z+dz) + gA\rho(z)dz$. And the upward force is $AP(z)$. So, assuming mechanical equilibrium, we have
+\begin{equation}
+\begin{split}
+AP(z+dz) + gA\rho(z)dz & = AP(z)\\ 
+\frac{P(z+dz) - P(z)}{dz} & = -g\rho(z) \\ 
+\dv{P}{z} &  = -g\rho(z) \\ 
+ \end{split}
+\end{equation} \\
+We also have $\rho(z) = Nm/V$. We know that air rising in altitude occurs adiabatically so $T^\frac{5}{2}V =T_0^\frac{5}{2}V _0$ and, by the ideal gas law, $T^\frac{7}{2}/P = T_0^\frac{7}{2}/P_0$. So we can rewrite the (1) entirely in terms of pressure. 
+\begin{equation}
+\begin{split}
+\dv{P}{z} &  = -\frac{mg}{k_BT} P \\ 
+\dv{P}{z} &  = -\frac{mg}{k_BT_0} P_0^\frac{2}{7} P^\frac{5}{7}  \\ 
+\implies P(z) & = P_0 \left( 1 - \frac{2mg}{7k_BT_0}z\right)^\frac{7}{2} \\
+ \end{split}
+\end{equation} \\
+With the same relation, we can use (1) to write the temperature profile. 
+\begin{equation}
+\begin{split}
+\dv{P}{z} = \frac{7P_0}{2T_0^\frac{7}{2}} T^\frac{5}{2}\dv{T}{z} &  = -\frac{mg}{k_BT} P_0 \frac{T^\frac{7}{2}}{T_0^\frac{7}{2}} \\ 
+\dv{T}{z} & = -\frac{2mg}{7k_B} \\
+\implies T(z) & = T_0 -\frac{2mg}{7k_B}z \\
+\end{split}
+\end{equation} \\
+And we can use (1) again to write $\rho(z)$
+\begin{equation}
+\begin{split}
+\rho(z) & = - \frac{1}{g} \dv{P}{z} \\
+\rho(z) & = \frac{m}{k_B} \frac{P_0}{T_0}  \left( 1 - \frac{2mg}{7k_BT_0}z\right)^\frac{5}{2}
+ \end{split}
+\end{equation} \\
+We can use these to calculate the temperature and fractional pressure at the summit of Mt. Everest. Taking $m = \frac{1}{4} m_{O_2} + \frac{3}{4} m_{N_2 }$, $z_E = 8800 m$, $T_0 = 310 K$, and $g = 9.8 m/s^2$, we have
+\begin{equation}
+\begin{split}
+T(z_E) & \approx  224 K = -56.47 ^{\circ} F\\
+ \end{split}
+\end{equation} \\
+whereas the actual temperature at the summit of Everest is about $-44.39^{\circ}F$. The fractional density is about $0.44$ or $44\%$, whereas the actual air density at the summit of Everest is about $33\%$ of the air density at sea level. \\
+\noindent\rule{15cm}{0.4pt} \\
+\item
+We consider a system of $N \gg1$ identical particles of mass $m$ confined to a half infinite cylinder with cross-sectional area $A$ under the force of gravity. We investigate the thermodynamics of this system in the microcanonical ensemble at total energy, $E$. \\
+We first calculate $\Omega_<(E)$ in order to find the phase space volume, $\Omega(E)$. The Hamiltonian of this system is given by
+\begin{equation}
+H(\text{p},\text{q}) = \sum_\alpha \frac{|\vec{p}_\alpha|^2}{2m} + \sum_\alpha mgz_\alpha = E
+\end{equation}
+where $\alpha = 1,\dots, N$. The equation
+\begin{equation}
+\sum_\alpha |\vec{p}_\alpha|^2 = 2m(E -  \sum_\alpha mgz_\alpha)
+\end{equation}
+describes a region in phase space whose cross sections at each value of $\sum_\alpha z_\alpha$ are $3N$-spheres of radius $\sqrt{2m(E -  \sum_\alpha mgz_\alpha)}$ with volume
+\begin{equation}
+V_p = V_{3N}\left(2m(E -  \sum_\alpha mgz_\alpha)\right)^{3N/2}
+\end{equation}
+Where $V_{3N}$ is the volume of the unit $3N$-sphere. $\Omega_<(E)$ is then given by
+\begin{equation}
+\begin{split}
+\Omega_<(E) & =  V_{3N}A^N\int_0^{E/mg}\dots \int_0^{E/mg - \sum_\alpha^{N-1}z_\alpha}d^{N}z \left(2m(E -  \sum_\alpha mgz_\alpha)\right)^{3N/2} \\ 
+\Omega_<(E) & =V_{3N}A^N\left( 2mE\right)^{3N/2}\int_0^{E/mg}\dots \int_0^{E/mg - \sum_\alpha^{N-1}z_\alpha}d^{N}z \left(1 -  \sum_\alpha \frac{mgz_\alpha}{E}\right)^{3N/2} \\ 
+\end{split}
+\end{equation}
+We can assume that $mg\sum_\alpha z_\alpha \ll E$, so that $mg\sum_\alpha z_\alpha /E \ll 1$, since the contribution of the potential energy to the total energy is small. I think this is justified by the equipartition theorem or maybe the fact that this is a thermal system. In which case, we can use the approximation, $(1-x)^y \approx e^{-xy}$ for $x \ll 1$. So we can rewrite (4) as
+\begin{equation}
+\begin{split}
+\Omega_<(E) & =V_{3N}A^N\left( 2mE\right)^{3N/2}\int_0^{E/mg}\dots \int_0^{E/mg - \sum_\alpha^{N-1}z_\alpha}d^{N}z    \text{ } \text{exp}\left( -\frac{3Nmg}{2E} \sum_\alpha z_\alpha \right) \\
+\end{split}
+\end{equation}
+If we replace $E/mg - \sum_\alpha z_\alpha$ with $E/mg$, the error will be of order $e^{-3N^2/2}$. So we can neglect the sums in each bound and write
+\begin{equation}
+\begin{split}
+\Omega_<(E) & =V_{3N}A^N\left( 2mE\right)^{3N/2} \left[ \int_0^{E/mg} dz    \text{ } \text{exp}\left( -\frac{3Nmg}{2E} z \right) \right]^N \\
+\Omega_<(E) & =V_{3N}A^N\left( 2mE\right)^{3N/2}  \left(\frac{E \left(2-2
+   e^{-3 N/2}\right)}{\text{3mg}
+   N}\right)^N \\ 
+\Omega_<(E) & \approx V_{3N}A^N\left( 2mE\right)^{3N/2}  \left(\frac{2 E}{\text{3mg}
+   N}\right)^N \\ 
+\Omega_<(E) & \approx V_{3N}A^N  \left(\frac{2 (2m)^{3/2}}{\text{3mg}
+   N}\right)^N E^{5N/2} \\ 
+\end{split}
+\end{equation}
+An expression for $\Omega(E)$ follows easily.
+\begin{equation}
+\begin{split}
+\Omega(E) & =  \pdv{\Omega_<(E)}{E} \\
+\Omega(E) & = C(m ,N,A) \frac{5N}{2} E^{5N/2-1} \\
+\Omega(E) & = C(m ,N,A) \frac{5N}{2} E^{5N/2} \\
+\end{split}
+\end{equation}
+Where $C(m ,N,A)$ is the prefactor in the last line of (6). Thermodynamic quantities of interest are 
+\begin{equation}
+\begin{split}
+S & = k_B\text{ln}(\Omega(E)) \\
+\frac{1}{T} & = \left( \pdv{S}{E} \right)_{N,V} \\
+C & = T \left( \pdv{S}{T} \right)_{N,V} \\
+\implies S & = \frac{5Nk_B }{2}\text{ln}(E) + constants \\
+T(E) & = \frac{2E}{5Nk_B} \\
+C(T) & = \frac{5}{2} Nk_B
+\end{split}
+\end{equation}
+The particle number density, $\rho(z,T)$, will be the proportion of the phase space volume at each $z$ to the total phase space volume, for a given $T$. We return to our full expression for $\Omega_<(E)$ and integrate over all but one of $z_\alpha$. We can assume that the height of the $N^{\text{th}}$ particle is equal to the average height of a particle. Let
+\begin{equation}
+\begin{split}
+\Omega_<(z,E) & =V_{3N} A^N\left( 2mE\right)^{3N/2} \left(\frac{2 E}{\text{3mg}
+   N}\right)^{N-1} \text{ } \text{exp}\left( - \frac{3Nmg}{2E}  z \right)  \\ 
+\Omega_<(z,E) & =V_{3N} A^N\left( 2m\right)^{3N/2} \left(\frac{2 }{\text{3mg}
+   N}\right)^{N-1} E^{5N/2-1}\text{ } \text{exp}\left( - \frac{3Nmg}{2E}  z \right)  \\ 
+\text{and}\\
+\Omega(z,E) & =  \pdv{\Omega_<(z, E)}{E} \\
+\rho(z, E) & = N\frac{\Omega(z,E)}{\Omega(E)} \\
+\rho(z, E) & =  \frac{3Nmg}{10E^2}e^{-\frac{3Nmgz}{2E}}\left( 3Nmgz  + E(5N-2) \right)\\
+\rho(z, E) & =  \frac{3N^2mg}{2E}e^{-\frac{3Nmgz}{2E}} \left( \frac{3mgz}{5E}  + \frac{(5N-2)}{5N} \right)\\
+\rho(z, E) & \approx  \frac{3N^2mg}{2E}e^{-\frac{3Nmgz}{2E}} \left( \frac{3mgz}{5E}  + 1 \right)\\
+\end{split}
+\end{equation}
+Replacing $E$ with $5Nk_BT/2$, we have
+\begin{equation}
+\begin{split}
+\rho(z, T) & =  N\frac{3 mg}{5k_BT}e^{-\frac{3mgz}{5k_BT}}\left( \frac{6mgz}{25Nk_BT}  +1 \right)\\
+\rho(z, T) & =  N\frac{3 mg}{5k_BT}e^{-\frac{3mgz}{5k_BT}}\\
+\end{split}
+\end{equation}
+Since we have assumed that $Nk_BT \gg mgz$. We note that, as $T$ increases, the distribution of particles throughout the cylinder becomes uniform. \\
+\noindent\rule{15cm}{0.4pt} \\
+\item
+We now perform some similar calculations in the canonical ensemble. The Hamiltonian is unchanged so the partition function is
+\begin{equation}
+\begin{split}
+\mathcal{Z}(N,V,T) & = \int d^{3N}\text{p} d^{3N} \text{q} \text{ } e^{-\beta H(\text{p},\text{q})} \\
+\mathcal{Z}(N,V,T) & = A^N\left[ \int_{-\infty}^{\infty} d\text{p} \text{ } e^{-\frac{\beta p^2}{2m} } \right]^{3N}  \left[ \int_{0}^{\infty} dz \text{ }e^{-\beta mgz} \right]^{N} \\
+\mathcal{Z}(N,V,T) & = A^N \left( 2\pi m k_B T \right)^{3N/2} \left( \frac{k_B T}{mg} \right)^{N} \\
+\mathcal{Z}(N,V,T) & = A^N \left( \frac{2\pi m^{1/3} }{g^{2/3}} \right)^{3N/2}   (k_BT)^{5N/2} \\
+\end{split}
+\end{equation}
+This yields the free energy, $F$, and entropy, $S$, from which we derive the other thermodynamic quantities of interest. 
+\begin{equation}
+\begin{split}
+F & = -k_B T \ln \left( \mathcal{Z}(N,V,T) \right)\\
+S & = - \left( \pdv{F}{T}\right)_{N,V}\\
+E & = - \left(  \pdv{\ln \mathcal{Z}}{\beta} \right)_{N,V} \\ 
+C(T) & = T \left( \pdv{S}{T}\right)_{N,V} \\
+\implies F(T) & = -\frac{5Nk_B T}{2}\ln (T) + constants \\
+S(T) & = \frac{5Nk_B}{2}\ln (T) + constants \\
+E(T) & = \frac{5Nk_B T}{2} \\
+C(T) & = \frac{5Nk_B}{2} \\
+\end{split}
+\end{equation}
+To find $\rho(z,T)$ we can perform a similar calculation as the one in problem 2). This time we define
+\begin{equation}
+\begin{split}
+\mathcal{Z}(z, T) := \mathcal{Z}(z, N, V, T) & : =  A^N \left( 2\pi m k_B T \right)^{3N/2} \left( \frac{k_B T}{mg} \right)^{N-1} e^{-\beta mgz}\\
+\rho(z,T) & = \frac{ \mathcal{Z}(z, N, V, T)}{ \mathcal{Z}(N, V, T)} \\ 
+\rho(z,T) & = \frac{Nmg}{k_BT} e^{-mgz/k_BT}\\
+\end{split}
+\end{equation}
+The results for $E$, $C$, $T$, and $S$ are equivalent to the results calculated in the microcanonical ensemble. Equation (13) and the number density found in the microcanonical ensemble look similar except for the factor of $\frac{3}{5}$ which I suspect is an artifact of the repeated approximations. We expect these to be equivalent formulations in the limit as $N \to \infty$ since the fluctuations in energy decrease like $1/\sqrt{N}$. It seems reasonable that the two formulations are equivalent if we make more aggressive approximations for $N$. \\
+None of the results calculated in either ensemble is equivalent to the 1-particle case since we can no longer assume that the particle's behavior averaged over space is equal to its behavior averaged over time. The ergodic assumption is violated (?). \\
+\noindent\rule{15cm}{0.4pt} \\
+\item
+We consider a system of particles of mass $m$ interacting gravitationally, in thermal equilibrium at temperature $T$. \\
+\begin{enumerate}[a)]
+\item We will assume the particles move in a ``mean field'', $\phi(\vec{r})$, which satisfies
+\begin{equation}
+\begin{split}
+\nabla^2\phi(\vec{r}) & = 4\pi Gm^2 \rho(\vec{r})
+\end{split}
+\end{equation}
+where $\rho(\vec{r})$ is the mean number density.
+\item The Hamiltonian for this system is
+\begin{equation}
+\begin{split}
+H & = \sum_\alpha \frac{|\vec{p}_\alpha|^2}{2m} + \phi(\vec{r}) \\
+\end{split}
+\end{equation}
+From this, we can calculate a partition function, $\mathcal{Z}(N,V,T)$, and define the mean number density as in the previous problem. 
+\begin{equation}
+\begin{split}
+\mathcal{Z}(N,V,T) & = \int d^{3N}\vec{\text{p}} \text{ } d^{3N}\vec{\text{r}} \text{ } e^{-\beta H} \\
+\mathcal{Z}(N,V,T) & = (2\pi m k_B T)^{3N/2} \int   d^{3N}\vec{\text{r}} \text{ } e^{-\beta \phi(\vec{r})}\\
+\mathcal{Z}(\vec{r}, N,V,T) & = (2\pi m k_B T)^{3N/2} e^{-\beta \phi(\vec{r})}\\
+\rho(\vec{r}) & = \frac{\mathcal{Z}(\vec{r},N,V,T)}{\mathcal{Z}(N,V,T)}\\
+\rho(\vec{r}) & = \frac{e^{-\beta \phi(\vec{r})} }{\int d^{3N}\vec{\text{r}} \text{ } e^{-\beta \phi(\vec{r})}}\\
+\rho(\vec{r}) & = \frac{e^{-\beta \phi(\vec{r})} }{ \mathcal{Z}_r}\\
+\end{split}
+\end{equation}
+\item
+We will assume a spherically symmetric mean number density and postulate a solution
+\begin{equation}
+\begin{split}
+\rho(\vec{r}) & = \rho_0 \left(\frac{r_0}{r} \right)^\alpha \\
+\end{split}
+\end{equation}
+In which case we must have
+\begin{equation}
+\begin{split}
+\mathcal{Z}_r\rho_0 \left(\frac{r_0}{r} \right)^\alpha & = e^{-\beta \phi(\vec{r})} \\
+\implies \phi(\vec{r}) & = - k_BT \ln \left(\mathcal{Z}_r\rho_0 \left(\frac{r_0}{r} \right)^\alpha \right) \\
+\phi(\vec{r}) & = k_BT \ln \left( \frac{r^\alpha}{  \mathcal{Z}_r\rho_0 r_0^\alpha}   \right) \\
+\end{split}
+\end{equation}
+as well as \\
+\begin{equation}
+\begin{split}
+\nabla^2\phi(\vec{r}) & = 4\pi Gm^2 \rho(\vec{r}) \\
+\frac{1}{r^2}\pdv{r}\left( r^2 \pdv{\phi}{r} \right) & = 4\pi Gm^2 \rho_0 \left(\frac{r_0}{r} \right)^\alpha \\
+\alpha k_BT \frac{1}{r^2} & = 4\pi Gm^2 \rho_0 \left(\frac{r_0}{r} \right)^\alpha \\
+\end{split}
+\end{equation}
+We can conclude that $\alpha = 2$, and that $k_BT = 2\pi Gm^2 \rho_0 r_0^2$. The gravitational force experienced by a particle at $r$ is 
+\begin{equation}
+\begin{split}
+F_G & = -\nabla \phi(\vec{r}) \\
+F_G & = -\frac{2k_BT}{r} \hat{e}_r \\ 
+\end{split}
+\end{equation}
+Based on the results of this problem, it seems reasonable to conclude that the gravitational force falls off as $1/r$, rather than $1/r^2$, at long distances in galaxies. However, it's not obvious that the mean field approximation is valid at long distances since fewer particles exist at long distances. This means greater deviations from the mean field in both $\rho(\vec{r})$ and $\phi(\vec{r})$. \\
+Therefore, at long distances, it also seems reasonable to assume a particle will experience the regular gravitational force from the center of mass of the entire system. Or, perhaps, some mix of the two given by a more precise approximation than the mean field. 
+\end{enumerate}
+\noindent\rule{15cm}{0.4pt} \\
+\item
+We consider a pendulum of mass $m$ and length $l$ in a gravitational field $g$ in thermal equilibrium with a heat bath at temperature $T$. Let $\theta$ measure the angle that the pendulum makes to the vertical. Treating the system classically, the Hamiltonian is
+\begin{equation}
+\begin{split}
+H & = \frac{\text{p}_\theta^2}{2ml^2} + mgl(1 - \cos\theta ) \\
+\end{split}
+\end{equation}
+The partition function is
+\begin{equation}
+\begin{split}
+\mathcal{Z}(N,V,T) & = \int_{-\infty}^{\infty}d\text{p}_\theta e^{-\beta\frac{\text{p}_\theta^2}{2ml^2}} \int_{-\pi}^{\pi} d\theta e^{ -\beta mgl(1-\cos\theta) } \\
+\mathcal{Z}(N,V,T) & = 2\pi\sqrt{2\pi l^2mk_B T}e^{-\frac{mgl}{k_BT}} I_0 (\frac{mgl}{k_BT})
+\end{split}
+\end{equation}
+Where $I_0(z)$ is the zeroth modified Bessel function of the first kind. We will consider the regime in which $k_BT \gg mgl$ and expand the transcendental functions to first order in $mgl/k_BT$. This yields a simpler expression for the partition function
+\begin{equation}
+\begin{split}
+\mathcal{Z}(N,V,T) & = \sqrt{8\pi^3 ml^2}\sqrt{k_BT}\left( 1 - \frac{mgl }{ k_BT}\right) \\
+\mathcal{Z}(N,V,T) & = \sqrt{8\pi^3 ml^2}\left( \sqrt{k_BT} - mgl \frac{1}{\sqrt{ k_BT}}\right) \\
+\end{split}
+\end{equation}
+The free energy, entropy, and heat capacity at constant $l$ are
+\begin{equation}
+\begin{split}
+F & = -k_B T \ln(\mathcal{Z}(N,V,T)) \\ 
+S & = - \left(\pdv{F}{T}\right)_{l} \\ 
+C_l & = T \left( \pdv{S}{T}   \right)_{l} \\
+\implies F & = -\frac{1}{2} k_BT \ln \left( k_BT \right) -k_BT \ln \left( 1 - \frac{mgl }{ k_BT}\right) + constants \\
+S & = k_B \left(\frac{mgl/k_BT}{1-mgl/k_BT}+ \ln
+   \left(1-\frac{mgl}{k_B T}\right)+\ln (k_B
+   T)+\frac{1}{2}\right) \\
+C_l & = \frac{1}{2} k_B -k_B \left(\frac{ mgl/k_BT
+   }{mgl/k_BT-1}\right)^2 \\
+\end{split}
+\end{equation}
+We use the fact that the tension $\tau$ and length $l$ are related to the free energy in the same way as the pressure and volume of an ideal gas. 
+\begin{equation}
+\begin{split}
+\tau & = -\left( \pdv{F}{l} \right)_{T} \\
+\tau & = \frac{mg}{mgl/k_BT - 1} \\
+\end{split}
+\end{equation}
+The change in the free energy with respect to length represents the amount of energy per unit length of the pendulum in the system that is available to do work. I'm not exactly sure where this tension comes from. As $T \to \infty$, $\tau \to -mg$, which is the tension of the pendulum at rest. At smaller values of $T$, $|\tau| > mg$ so $\tau$ decreases at higher temperatures. \\
+We can calculate the specific heat at constant tension for this system, again using the fact that tension and length are related in the same way as pressure and volume for the ideal gas. \\
+\begin{equation}
+\begin{split}
+C_\tau - C_l & = T \left( \pdv{\tau}{T}\right)_{l} \left( \pdv{l}{T}\right)_{\tau} \\
+C_\tau - C_l & = T\frac{\left( \pdv{\tau}{T}\right)_{l}^2 }{\left( \pdv{\tau}{l}\right)_{T}} \\
+C_\tau - C_l & = - k_B  \left(\frac{\frac{mgl}{k_BT}}{\frac{mgl}{k_BT}-1} \right)^2\\
+C_\tau & = C_l - k_B \frac{\tau^2 l^2}{k_B^2T^2} \\
+\end{split}
+\end{equation}
+\noindent\rule{15cm}{0.4pt} \\
+\item
+We now treat the pendulum quantum mechanically. In this case we will utilize the small angle approximation so that the energy spectrum is just that of the quantum harmonic oscillator. In this system, energy eigenvalues are
+\begin{equation}
+\begin{split}
+E_n = \hbar \sqrt{\frac{g}{l}} (n +\frac{1}{2}) \\
+\end{split}
+\end{equation}
+And the partition function is
+\begin{equation}
+\begin{split}
+\mathcal{Z} & = \sum_{n=0}^{\infty} e^{- \beta\hbar \sqrt{\frac{g}{l}} (n +\frac{1}{2})}\\
+\mathcal{Z} & = e^{-\frac{\hbar}{2k_BT} \sqrt{\frac{g}{l}}} \sum_{n=0}^{\infty} (e^{- \beta\hbar \sqrt{\frac{g}{l}}})^n\\
+\mathcal{Z} & = \frac{e^{-\frac{\hbar}{2k_BT} \sqrt{\frac{g}{l}}}}{1 -e^{- \frac{\hbar}{k_BT} \sqrt{\frac{g}{l}}} } \\
+\mathcal{Z} & = \frac{1}{2 \sinh (\frac{\hbar}{2k_BT} \sqrt{\frac{g}{l}})} \\ 
+\end{split}
+\end{equation}
+We also have
+\begin{equation}
+\begin{split}
+F &= -k_BT \ln \mathcal(Z) \\
+S & = - \left(\pdv{F}{T}\right)_{l} \\ 
+C_l & = T \left( \pdv{S}{T}   \right)_{l} \\
+\implies F &= k_BT \ln(2 \sinh (\frac{\hbar}{2k_BT} \sqrt{\frac{g}{l}})) \\
+S & =  - k_B\left( \ln(2 \sinh (\frac{\hbar}{2k_BT} \sqrt{\frac{g}{l}})) + \frac{\hbar}{2k_BT} \sqrt{\frac{g}{l}} \coth(\frac{\hbar}{2k_BT}\sqrt{\frac{g}{l}})\right) \\
+C_l & = k_B \left(\sqrt{\frac{g}{l}} \frac{\hbar}{2k_BT}\right)^2 \csch(\frac{\hbar}{2k_BT}\sqrt{\frac{g}{l}})^2
+\end{split}
+\end{equation}
+Using the fact that tension and length are related as in problem 5), we have
+\begin{equation}
+\begin{split}
+\tau & = -\left( \pdv{F}{l} \right)_{T} \\
+\tau & = \sqrt{\frac{g}{l^3}} \frac{\hbar}{4} \coth(\frac{\hbar}{2k_BT}\sqrt{\frac{g}{l}})  
+\end{split}
+\end{equation}
+From the previous problem we also know that
+\begin{equation}
+\begin{split}
+C_\tau - C_l & = T\frac{\left( \pdv{\tau}{T}\right)_{l}^2 }{\left( \pdv{\tau}{l}\right)_{T}} \\
+C_\tau - C_l & = k_B \left( \frac{\hbar}{2k_BT}\sqrt{\frac{g}{l}}\right)^3 \frac{2\csch(\frac{\hbar}{2k_BT}\sqrt{\frac{g}{l}})^2}{1 - 3\sinh(\frac{\hbar}{2k_BT}\sqrt{\frac{g}{l}})} \\ 
+C_\tau & = k_B  \left(\sqrt{\frac{g}{l}} \frac{\hbar}{2k_BT}\right)^2 \csch(\frac{\hbar}{2k_BT}\sqrt{\frac{g}{l}})^2  \left[ 1 + \frac{\hbar}{2k_BT}\sqrt{\frac{g}{l}} \frac{2}{1 - 3\sinh(\frac{\hbar}{2k_BT}\sqrt{\frac{g}{l}})} \right]
+\end{split}
+\end{equation}
+I suspect that this is basically never a good approximation. However, in order for quantum mechanics to be a reasonable approximation, we need the action scale to be on the order of $\hbar$. Therefore, this only has a hope of being a valid approximation if $k_BT \sqrt{l/g} \approx \mathcal{O}(\hbar)$. \\
+We might recover the classical result if we made the same approximations in each regime but since we treated the pendulum as a quantum harmonic oscillator, we cannot expect to recover the classical limit. Moreover, at high temperatures, the pendulum has enough energy to overcome the first energy barrier in the potential and no longer has oscillatory behavior about a minimum. Instead, it traverses the entire periodic potential. \\
+\noindent\rule{15cm}{0.4pt} \\
+\item 
+We apply the same method as in problem 6) of homework 1. In a constant entropy process \\
+\begin{equation}
+\begin{split}
+dT & = \left(\pdv{T}{l} \right)_{S} dl \\
+\end{split}
+\end{equation}
+Which we can write in terms of known quantities as follows
+\begin{equation}
+\begin{split}
+\left(\pdv{T}{l} \right)_{S} \left(\pdv{l}{S}\right)_{T} \left(\pdv{S}{T}\right)_{l} & = -1 \\
+\left(\pdv{T}{l} \right)_{S} & = - \frac{T}{C_l}  \left(\pdv{S}{l}\right)_{T} \\
+\dv{T}{l} & =   - \frac{T}{C_l}  \left(\pdv{S}{l}\right)_{T}  \\
+\end{split}
+\end{equation}
+Based on the expressions for $S$ and $C_l$, one might assume there is absolutely no hope of this simplifying. But, astoundingly, 
+\begin{equation}
+\begin{split}
+\dv{T}{l} & =   - \frac{T}{2l}  \\
+\implies \ln( \frac{T}{T_0} ) & = -\frac{1}{2} \ln( \frac{l}{l_0}) \\
+T(l) & = T_0 \sqrt{\frac{l_0}{l}}
+ \end{split}
+\end{equation} \\
+\end{enumerate} 
+\noindent\rule{15cm}{0.4pt} \\
+\end{document}
+
+%\Omega(z,E) & = \lambda(m, N, E)   e^{-\frac{3 g m N^2 z}{2 E}} (E+g m N z)
+
+%\mathcal{Z}(N,V,T) & = 2\pi\sqrt{2\pi l^2mk_B T}\\
+
+
+
+
+
+
+
+
+%\begin{equation}
+%\begin{split}
+%\end{split}
+%\end{equation}

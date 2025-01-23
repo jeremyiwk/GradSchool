@@ -1,0 +1,246 @@
+\documentclass[]{book}
+%\usepackage{setspace}
+%\onehalfspacing
+\usepackage{amsmath,amssymb,amsthm}
+\renewcommand{\qedsymbol}{$\blacksquare$}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{mathrsfs}
+\usepackage{amssymb}
+\usepackage{enumerate}
+\usepackage{mdwlist}
+\usepackage{dirtytalk}
+\usepackage{xparse}
+\usepackage{physics}
+\usepackage{yfonts}
+\usepackage{graphicx}
+\setcounter{MaxMatrixCols}{13}
+\setlength\parindent{0pt}
+\usepackage[none]{hyphenat}
+\usepackage[hmarginratio=1:1]{geometry}
+\begin{document}
+%\begin{center}
+{\Large Physics 613 Final Exam}\\
+{Jeremy Welsh-Kavan}\\
+%\end{center}
+\vspace{0.2 cm}
+\begin{center}
+\noindent\rule{15cm}{0.4pt} \\
+\end{center}
+\begin{enumerate}[1)]
+\item We consider a system of two distinguishable particles, each of mass $m$, confined to a box of volume $V$. Let $\textbf{r}_1$ and $\textbf{r}_2$ be the position of particle 1 and 2 respectively and let $r = |\textbf{r}_1- \textbf{r}_2|$. Suppose the particles interact with potential
+\begin{equation}
+\begin{split}
+V(r) & = \begin{cases}
+-\epsilon_0 , \text{ } r< a \\
+0 ,  \text{ } r \ge a \\
+\end{cases}
+\end{split}
+\end{equation}
+We calculate $T(E)$ and $P(V,E)$ in the microcanonical ensemble. The Hamiltonian for this system is 
+\begin{equation}
+\begin{split}
+H & = \frac{\textbf{p}_1^2}{2m} + \frac{\textbf{p}_2^2}{2m} + V(r) = E \\
+\end{split}
+\end{equation}
+For fixed $r$, this defines the equation of a 6-sphere of radius $\sqrt{2m(E-V(r))}$. We can compute $\Omega_<(E)$ by integrating the ``volume" of this sphere over $\textbf{r}_1$ and $\textbf{r}_2$.
+\begin{equation}
+\begin{split}
+\Omega_<(E) & = V_6 \int \text{d}\textbf{r}_1\text{d}\textbf{r}_2 \text{ }(2m(E-V(r))^3 \\
+\Omega_<(E) & = V_6(2mE)^3 \int \text{d}\textbf{r}_1\text{d}\textbf{r}_2 \text{ }\left(1-\frac{V(r)}{E}\right)^3 \\
+\Omega_<(E) & = V_6(2mE)^3 \left (\int_{V-\{r<a\}}  \text{d}\textbf{r}_1\text{d}\textbf{r}_2  + \int_{r<a } \text{d}\textbf{r}_1\text{d}\textbf{r}_2 \left(1+\frac{\epsilon_0}{E}\right)^3\right) \\
+\Omega_<(E) & = V_6(2mE)^3 \left(V^2 +  \left(1+\frac{\epsilon_0}{E}\right)^3 \left(\frac{4\pi a^3}{3}\right)^2\right) \\ 
+\Omega_<(E) & \approx \frac{V_6}{V^2}(2mE)^3 \\
+\end{split}
+\end{equation}
+Where we have assumed that the $V - 4\pi a^3/3 \approx V$. From this we can calculate the phase space volume, $\Omega(E)$.
+\begin{equation}
+\begin{split}
+\Omega(E) & = \pdv{\Omega_<(E)}{E} \\
+\Omega(E) & = V_6 (2m)^3 \left( 3E^2 \left(V^2 +  \left(1+\frac{\epsilon_0}{E}\right)^3 \left(\frac{4\pi a^3}{3}\right)^2\right) - 3\epsilon_0E \left(1+\frac{\epsilon_0}{E}\right)^2 \left(\frac{4\pi a^3}{3}\right)^2\right) \\
+\Omega(E) & \approx V_6V^2 3(2m)^3E^2 \\
+\end{split}
+\end{equation}\\
+Again using the assumption that $V \gg a^3$ so that $a^6/V^2 \approx 0$. Now we can calculate the entropy from which we can calculate $T(E)$ and $P(V,E)$. 
+\begin{equation}
+\begin{split}
+S & = k_B \ln( \Omega(E)) \\ 
+S & = k_B \ln \left[ V_6 (2m)^3 \left( 3E^2 \left(V^2 +  \left(1+\frac{\epsilon_0}{E}\right)^3 \left(\frac{4\pi a^3}{3}\right)^2\right) \right.\right.  \\  & \left.\left. - 3\epsilon_0E \left(1+\frac{\epsilon_0}{E}\right)^2 \left(\frac{4\pi a^3}{3}\right)^2\right) \right] \\
+S & \approx 2k_B\ln(E) + k_B\ln( V_6V^2 3(2m)^3) \\
+S & \approx 2k_B\ln(E) + 2k_B\ln(V) \\
+\frac{1}{T} & = \left( \pdv{S}{E}\right)_{N,V} \\
+P & = T\left( \pdv{S}{V}\right)_{N,E} \\
+\implies T & = \frac{E}{2k_B} \\
+P & = \frac{2k_BT}{V} \\
+\end{split}
+\end{equation}\\
+The pressure behaves as the pressure for an ideal gas at all energies. This indicates that our approximations were too aggressive or incorrect. I suspect that at negative energies, the pressure drops to zero or becomes negative since the only physical way this can happen is if the particles are within $a$ of each other. In this case, the particles are only capable performing negative work on their surroundings, so the pressure will be negative. \\
+\noindent\rule{15cm}{0.4pt} \\
+\item We consider $N$ identical particles, each of mass $m$, under the influence of gravity, confined to an inverted conical volume of radius $R$ and height $h$. We assume the system is in equilibrium with its surroundings at temperature $T$. \\
+\begin{enumerate}[a)] 
+\item We calculate the partition function starting with the Hamiltonian. Here, $\alpha = 1,2,...,N$. We will assume the contribution of the maximum potential energy to the total energy is small so that $mgh \ll k_BT$. \\
+I'm not sure why LaTeX decided to add so much space below... \\
+\begin{equation}
+\begin{split}
+H & = \sum_\alpha \left(\frac{\textbf{p}^2_\alpha}{2m} + mgz_\alpha\right) \\
+\mathcal{Z} & = \frac{1}{N!}\int \text{d}\vec{\textbf{p}} \text{d}\vec{\textbf{r}} \text{ } e^{-\beta H} \\
+\mathcal{Z} & = \frac{1}{N!}\int \text{d}\vec{\textbf{p}} \text{d}\vec{\textbf{r}} \text{ } \prod_{\alpha}e^{-\frac{\textbf{p}^2_\alpha}{2mk_BT} } \prod_\alpha e^{-\frac{mgz_\alpha}{k_BT}}\\
+\mathcal{Z} & = \frac{1}{N!}\left(2\pi m k_BT\right)^{3N/2} \prod_\alpha \int \text{d}\vec{\textbf{r}} \text{ } e^{-\frac{mgz}{k_BT}} \\
+\mathcal{Z} & = \frac{1}{N!}\left(2\pi m k_BT\right)^{3N/2} \left[ \int_{0}^{h}\int_{0}^{\frac{Rz}{h}}\int_{0}^{2\pi} r\text{d}\phi \text{d}r \text{d}z \text{ } e^{-\frac{mgz}{k_BT}} \right]^N \\
+\mathcal{Z} & = \frac{1}{N!}\left(2\pi m k_BT\right)^{3N/2} \left[2\pi \int_{0}^{h}\int_{0}^{\frac{Rz}{h}} r \text{d}r \text{d}z \text{ } e^{-\frac{mgz}{k_BT}} \right]^N \\
+\mathcal{Z} & \approx \frac{1}{N!}\left(2\pi m k_BT\right)^{3N/2} \left(\frac{\pi R^2}{h^2}\right)^N  \left[\int_{0}^{h}  \text{d}z \text{ }z^2 \left( 1-\frac{mgz}{k_BT} \right) \right]^N \\
+\mathcal{Z} & \approx \frac{1}{N!}\left(2\pi m k_BT\right)^{3N/2} \left(\pi R^2\right)^N  \left[ \frac{h}{3} - \frac{h^2mg}{4k_BT} \right]^N \\
+\mathcal{Z} & \approx \frac{1}{N!}\left(2\pi m k_BT\right)^{3N/2} \left(\frac{\pi R^2h}{3}\right)^N  \left[ 1 - \frac{3mgh}{4k_BT} \right]^N \\
+\mathcal{Z} & \approx \frac{1}{N!}\left(2\pi m k_BT\right)^{3N/2} V_{\text{cone}}^N  \left[ 1 - \frac{3mgh}{4k_BT} \right]^N \\
+\end{split}
+\end{equation}
+From this we can compute the free energy, entropy, and specific heat of the system. 
+\begin{equation}
+\begin{split}
+F & = -k_B T \ln \left( \mathcal{Z}(N,V,T) \right)\\
+S & = - \left( \pdv{F}{T}\right)_{N,V}\\
+C(T) & = T \left( \pdv{S}{T}\right)_{N,V} \\
+\implies F & = -\frac{3N}{2}k_BT \ln \left(  T \right) -N k_BT \ln \left(  1 - \frac{3mgh}{4k_BT} \right) + \text{const} \\
+S & = \frac{3N}{2}k_B \left( \ln \left(  T \right) + 1\right) + N k_B \ln \left(  1 - \frac{3mgh}{4k_BT} \right) + N k_B\frac{\frac{3mgh}{4k_BT}}{ 1 - \frac{3mgh}{4k_BT} }\\ 
+S & = \frac{3N}{2}k_B \left( \ln \left(  T \right) + 1\right) + N k_B \ln \left(  1 - \frac{3mgh}{4k_BT} \right) + N k_B\frac{1}{  \frac{4k_BT}{3mgh}-1 }\\ 
+C(T) & = \frac{3}{2}Nk_B + Nk_BT \left(  \frac{\frac{3mgh}{4k_BT^2}}{1-\frac{3mgh}{4k_BT}} - \frac{\frac{4k_B}{3mgh}}{\left(  \frac{4k_BT}{3mgh}-1\right)^2}\right) \\ 
+C(T) & = \frac{3}{2}Nk_B + Nk_B \frac{1}{\left( 1- \frac{4k_BT}{3mgh }\right)^2}  \\ 
+\end{split}
+\end{equation}
+At low temperature 
+\begin{equation}
+\begin{split}
+C(T) & \sim \frac{3}{2}Nk_B + Nk_B\left( 1 + \frac{8k_BT}{3mgh }\right) \\
+\end{split}
+\end{equation}
+and at high temperature, 
+\begin{equation}
+\begin{split}
+C(T) & \sim \frac{3}{2}Nk_B  \\
+\end{split}
+\end{equation}
+Let $\epsilon >0$ and suppose $C(T) = \frac{3}{2}Nk_B$ to within an error of $\epsilon$, i.e. $\frac{C(T)}{Nk_B} - \frac{3}{2} < \epsilon$. Then we have
+\begin{equation}
+\begin{split}
+\frac{1}{\left( 1- \frac{4k_BT}{3mgh }\right)^2} & < \epsilon \\
+\left( \frac{4k_BT}{3mgh } -1 \right) & > \frac{1}{\sqrt{\epsilon}} \\
+\implies k_BT & > mgh\frac{3}{4} \left(\frac{1}{\sqrt{\epsilon}} + 1 \right)
+\end{split}
+\end{equation}
+\item We calculate the mean number density as a function of height, $\rho(z)$.
+\begin{equation}
+\begin{split}
+\rho(z) & = N \frac{\mathcal{Z}(z)}{\mathcal{Z}} \\
+\rho(z) & = N \left[ \frac{h^3}{3} - \frac{h^4mg}{4k_BT} \right]^{-1} z^2 \left( 1-\frac{mgz}{k_BT} \right) \\
+\end{split}
+\end{equation}
+\item 
+Let $S = R/h$ and consider the pressure holding $S$ fixed. Starting at the $7^{\text{th}}$ line of (4), we can rewrite the partition function as 
+\begin{equation}
+\begin{split}
+\mathcal{Z} & = \frac{1}{N!}\left(2\pi m k_BT\right)^{3N/2} \left(\pi S^2 \right)^N \left[ \frac{h^3}{3} - \frac{h^4mg}{4k_BT} \right]^{N}  \\
+\end{split}
+\end{equation}
+and the free energy as
+\begin{equation}
+\begin{split}
+F & = -\frac{3}{2}Nk_BT\ln(T) -Nk_BT \ln(\frac{h^3}{3} - \frac{h^4mg}{4k_BT}) + f(S) \\
+\end{split}
+\end{equation}
+The pressure at the top of the cone is given by
+\begin{equation}
+\begin{split}
+P_{\text{top}} = -\left( \pdv{F}{V}\right)_{N,T} & = -\left( \pdv{F}{h}\right)_{N,T}\left( \pdv{h}{V} \right)_{N,T} \\ 
+P_{\text{top}} & = - \frac{3}{\pi R^2}\left( \pdv{F}{h}\right)_{N,T} \\
+P_{\text{top}} & = \frac{3Nk_BT}{\pi R^2 }\frac{h^2 - \frac{mgh^3}{k_BT}}{\frac{h^3}{3} - \frac{h^4mg}{4k_BT}} \\
+P_{\text{top}} & = \frac{3k_BT}{\pi R^2 } \rho(z=h)  \\
+\end{split}
+\end{equation}
+\item The ratio $P_{\text{top}}/ \rho(z=h)$ is
+\begin{equation}
+\begin{split}
+\frac{P_{\text{top}}}{ \rho(z=h)} & = \frac{3k_BT}{\pi R^2} \\
+\frac{P_{\text{top}}}{ \rho(z=h)} & = \frac{k_BT}{V/h} 
+\end{split}
+\end{equation}
+which has units of $[[J]]/[[m^2]]$. We can think of this as the energy per particle per unit area contained in the layer of particles at the top of the cone. The characteristic energy of the system is $k_BT$ and as the radius of the cone increases, this quantity should decrease. So it should be proportional to $k_BT/V$. But I'm not sure how to eliminate the $h$ dependence.  
+\end{enumerate}
+\noindent\rule{15cm}{0.4pt} \\
+\item Consider an arbitrary ideal gas in the Grand canonical ensemble. The grand canonical partition function is given by 
+\begin{equation}
+\begin{split}
+\mathcal{Q}(\mu, V, T) & = \sum_{i} e^{-\alpha N_i - \beta E_i}
+\end{split}
+\end{equation}
+which we can rewrite in terms of the partition function for the canonical ensemble as
+\begin{equation}
+\begin{split}
+\mathcal{Q}(\mu, V, T) & = \sum_{n} e^{-\mu n/k_BT} \mathcal{Z}(n, V,T) \\
+\end{split}
+\end{equation}
+For an arbitrary ideal gas of $n$ particles, the partition function is
+\begin{equation} you 
+\begin{split}
+\mathcal{Z}(n, V,T) & = \frac{1}{n!}\left( V f(T)\right)^n \\
+\end{split}
+\end{equation}
+where $f(T)$ is an unknown function which depends on the internal degrees of freedom of each particle type in the gas. We can now write the grand canonical partition function as
+\begin{equation}
+\begin{split}
+\mathcal{Q}(\mu, V, T) & = \sum_{n} \frac{\left(V f(T)e^{-\alpha} \right)^n}{n!}\\
+\mathcal{Q}(\mu, V, T) & = e^{Vf(T) e^{-\alpha}}
+\end{split}
+\end{equation}
+The mean number of particles, $\overline{N}$, is
+\begin{equation}
+\begin{split}
+\overline{N} & = \frac{1}{\mathcal{Q}} \sum_{n} n e^{-\alpha n}\mathcal{Z}(n) \\
+\overline{N} & = - \left( \pdv{\ln(\mathcal{Q})}{\alpha}\right)_{V,T} \\
+\overline{N} & = Vf(T)e^{-\alpha} \\
+\end{split}
+\end{equation}
+
+The probability that the ideal gas has exactly $N$ particles is $P(N) = e^{-\alpha N}\mathcal{Z}(N) / \mathcal{Q}$ which we can rewrite as
+\begin{equation}
+\begin{split}
+P(N) & = \frac{\mathcal{Z}(N)e^{-\alpha N}}{\mathcal{Q}} \\
+P(N) & = \frac{(Vf(T))^Ne^{-\alpha N}}{N!e^{Vf(T)e^{-\alpha}}} \\
+P(N) & = \frac{\left(\overline{N}e^\alpha \right)^Ne^{-\alpha N}}{N! e^{\overline{N}}} \\
+P(N) & = \frac{\overline{N}^N}{N! e^{\overline{N}}} \\
+\end{split}
+\end{equation}
+\noindent\rule{15cm}{0.4pt} \\
+\item 
+Now suppose we have a non-interacting gas moving in an external potential $\varphi(\textbf{r})$. In this case, the only thing that changes is the canonical partition function,
+\begin{equation}
+\begin{split}
+\mathcal{Z}(n,V,T) & = \frac{f(T)^n}{n!} \left[ \int \text{d}\textbf{r}\text{ } e^{-\beta \varphi(\textbf{r})} \right]^n\\
+\end{split}
+\end{equation}
+But we can just define $\xi(T) := f(T)\int \text{d}\textbf{r}\text{ } e^{-\beta \varphi(\textbf{r})} $. In which case, $Z(n) = \xi^n/n!$. Therefore, $\mathcal{Q}$ is the same for the purposes of calculating $P(N)$, so we have
+\begin{equation}
+\begin{split}
+P(N) & = \frac{\overline{N}^N}{N! e^{\overline{N}}} \\
+\end{split}
+\end{equation}
+for this system as well. \\
+\noindent\rule{15cm}{0.4pt} \\
+\item We expect these to be the same since the addition of the potential adds no additional energetic preference for more or less particles for any given $N$, since the potential is external. If we had added an interaction potential (22) would no longer be a product of identical integrals. In which case, (19) would no longer hold. But, since the number of particles in the system is energetically independent from the potential, the probabilities of $P(N)$ are equal. 
+\end{enumerate}
+\noindent\rule{15cm}{0.4pt} \\
+$$\clubsuit$$
+\end{document}
+
+
+
+
+%e^{-\frac{Nmgh}{k_BT}} \left[ \frac{2k_B^3T^3}{m^3g^3}e^{\frac{mgh}{k_BT}}  -  \frac{2k_B^3T^3}{m^3g^3} - \frac{h^2k_BT}{mg} - \frac{hk_B^2T^2}{m^2g^2} \right]^N \\
+
+
+
+
+
+%\begin{equation}
+%\begin{split}
+%\end{split}
+%\end{equation}

@@ -1,0 +1,413 @@
+\documentclass[]{article}
+%\usepackage{setspace}
+%\onehalfspacing
+\usepackage{amsmath,amssymb,amsthm}
+\renewcommand{\qedsymbol}{$\blacksquare$}
+\usepackage{amsmath}
+\usepackage{bm}
+\usepackage{amsfonts}
+\usepackage{mathrsfs}
+\usepackage{amssymb}
+\usepackage{enumerate}
+\usepackage{mdwlist}
+\usepackage{dirtytalk}
+\usepackage{xparse}
+\usepackage{physics}
+\usepackage{graphicx}
+\setcounter{MaxMatrixCols}{13}
+\setlength\parindent{0pt}
+\usepackage[none]{hyphenat}
+\usepackage[hmarginratio=1:1]{geometry}
+\begin{document}
+
+{\Large Physics 633 Homework 3}\\
+{Jeremy Welsh-Kavan}\\
+%\end{center}
+%\vspace{0.2 cm}
+\hfill \\
+\noindent\rule{15cm}{0.4pt} \\
+
+\begin{enumerate}[1)]
+
+\item We claim that
+
+\begin{equation}
+\begin{split}
+U(t,t_0) & = U_0(t,t_0) - \frac{i}{\hbar} \int_{t_0}^{t} dt_1 U_0(t, t_1) V(t_1) U(t_1,t_0) \\
+\end{split}
+\end{equation}
+
+is a solution to the differential equation
+
+\begin{equation}
+\begin{split}
+\partial_t U(t,t_0) & = - \frac{i}{\hbar} \left[ H_0 + V(t) \right] U(t,t_0) \\
+\end{split}
+\end{equation}
+
+To show this, we will simply differentiate both sides of (1) and use the equations of motion for the time evolution operators. \\
+
+\begin{equation}
+\begin{split}
+\partial_t U(t,t_0) & = \partial_t  U_0(t,t_0) - \frac{i}{\hbar} \partial_t  \left[ \int_{t_0}^{t} dt_1 U_0(t, t_1) V(t_1) U(t_1,t_0) \right] \\
+& = - \frac{i}{\hbar} H_0 U_0(t,t_0) - \frac{i}{\hbar}  \left[  U_0(t, t) V(t) U(t,t_0) - \frac{i}{\hbar}  \int_{t_0}^{t} dt_1  H_0 U_0(t, t_1) V(t_1) U(t_1,t_0) \right]  \\
+& = - \frac{i}{\hbar} H_0 U_0(t,t_0) - \frac{i}{\hbar}  \left[  U_0(t, t) V(t) U(t,t_0)  - \frac{i}{\hbar} H_0 \int_{t_0}^{t} dt_1  U_0(t, t_1) V(t_1) U(t_1,t_0) \right]  \\
+& = - \frac{i}{\hbar} H_0 U_0(t,t_0) - \frac{i}{\hbar}  \left[ V(t) U(t,t_0)  + H_0 \left( U(t,t_0) - U_0(t,t_0) \right) \right]  \\
+& = - \frac{i}{\hbar} H_0 U_0(t,t_0)  + \frac{i}{\hbar} H_0  U_0(t,t_0)  - \frac{i}{\hbar} \left[  V(t) U(t,t_0)  + H_0  U(t,t_0)  \right] \\
+& = - \frac{i}{\hbar} \left[ H_0    +  V(t)   \right] U(t,t_0) \\
+\end{split}
+\end{equation}
+
+where we have used the fact that $U_0(t,t) = I$. \\
+
+\hfill \\
+\noindent\rule{15cm}{0.4pt} \\
+
+
+\item The retarded Green's operator for a Hamiltonian, $H$, is given by
+
+\begin{equation}
+\begin{split}
+G^+(E) &=  - \lim_{\delta \to 0^+}  \frac{i}{\hbar} \int_{0}^{\infty} d\tau \; e^{i(E-H)\tau/\hbar} e^{-\tau\delta/\hbar} \\
+& = \frac{1}{E - H + i0^+} \\
+\end{split}
+\end{equation}
+
+We compute (4) for the free particle Hamiltonian, $H = \bm{p}^2/2m$. \\
+
+\begin{enumerate}[a)]
+
+\item For the free particle in $1D$, $H = \hat{p}^2/2m$. So we have
+
+\begin{equation}
+\begin{split}
+G^+(E) & = \frac{1}{E -  \hat{p}^2/2m + i0^+} \\
+\implies G^+(x,x_0 ; E) & = \bra{x}  \frac{1}{E -  \hat{p}^2/2m + i0^+} \ket{x_0} \\
+G^+(x,x_0 ; E) & = \int dp \;\bra{x}  \frac{1}{E -  \hat{p}^2/2m + i0^+} \ket{p}\braket{p}{x_0} \\
+G^+(x,x_0 ; E) & = \int dp \;  \frac{1}{E -  p^2/2m + i0^+} \braket{x}{p}  \braket{p}{x_0} \\
+G^+(x,x_0 ; E) & = \frac{1}{ 2\pi \hbar }\int dp \;  \frac{ e^{ ip(x-x_0)/\hbar  }}{E -  p^2/2m + i0^+}\\
+G^+(x,x_0 ; E) & = \frac{1}{ 2\pi } \int dk \;  \frac{ e^{ ik(x-x_0)  }}{E -  (\hbar k)^2/2m + i0^+}\\
+G^+(x,x_0 ; E) & =  \frac{2m}{\hbar^2} \frac{1}{ 2\pi }  \int dk \;  \frac{ e^{ ik(x-x_0)  }}{ \alpha^2 -  k^2}\\
+G^+(x,x_0 ; E) & =  \frac{2m}{\hbar^2} \frac{1}{ \sqrt{ 2\pi } }  \sqrt{ \frac{\pi}{2}  } \frac{ e^{i\alpha |x - x_0|}  }{i \alpha} \\
+G^+(x,x_0 ; E) & =  \frac{m}{\hbar^2} \frac{ e^{i\alpha |x - x_0|}  }{i \alpha} \\
+\end{split}
+\end{equation}
+
+where $ \alpha^2 = 2m\left( E + i0^+ \right)/\hbar^2$. So we have that the retarded Green's function for the free particle in 1D is
+
+\begin{equation}
+\begin{split}
+G^+(x,x_0 ; E) & = \frac{m}{\hbar^2}  \frac{ e^{i \sqrt{2mE/\hbar^2}  |x - x_0|}  }{i  \sqrt{2mE/\hbar^2}} \\
+\end{split}
+\end{equation}
+
+\item The 2D case proceeds similarly but with a different Fourier transform
+
+\begin{equation}
+\begin{split}
+G^+(E) & = \frac{1}{E -  \hat{\bm{p}}^2/2m + i0^+} \\
+\implies G^+(\bm{x},\bm{x}_0 ; E) & = \bra{x}  \frac{1}{E -  \hat{\bm{p}}^2/2m + i0^+} \ket{x_0} \\
+G^+(\bm{x},\bm{x}_0 ; E) & = \int d\bm{p} \;\bra{\bm{x}}  \frac{1}{E -  \hat{\bm{p}}^2/2m + i0^+} \ket{\bm{p}}\braket{\bm{p}}{\bm{x}_0} \\
+G^+(\bm{x},\bm{x}_0 ; E) & = \int d\bm{p}  \;  \frac{1}{E -  p^2/2m + i0^+} \braket{\bm{x}}{\bm{p}}  \braket{\bm{p}}{\bm{x}_0} \\
+G^+(\bm{x},\bm{x}_0 ; E) & = \frac{1}{( 2\pi \hbar)^2} \int d\bm{p}  \;  \frac{  e^{i \bm{p} \cdot (\bm{x} - \bm{x}_0 )/ \hbar}    }{E -  p^2/2m + i0^+}  \\
+G^+(\bm{x},\bm{x}_0 ; E) & =  \frac{2m}{\hbar^2}  \frac{1}{( 2\pi \hbar)^2} \int p \: dp \: d\theta  \;  \frac{  e^{i p  |\bm{x} - \bm{x}_0 | \cos\theta / \hbar }    }{\alpha^2 -  (p/\hbar)^2}  \\
+G^+(\bm{x},\bm{x}_0 ; E) & =  \frac{2m}{\hbar^2}  \frac{1}{( 2\pi )^2} \int k \: dk \: d\theta  \;  \frac{  e^{i k  |\bm{x} - \bm{x}_0 | \cos\theta}    }{\alpha^2 -  k^2}  \\
+G^+(\bm{x},\bm{x}_0 ; E) & =  \frac{2m}{\hbar^2}  \frac{1}{2\pi } \int k \: dk \:  \;  \frac{ J_0 \left(k |\bm{x} - \bm{x}_0 | \right)   }{\alpha^2 -  k^2}  \\
+G^+(\bm{x},\bm{x}_0 ; E) & =  \frac{2m}{\hbar^2}  \frac{1}{2\pi } \frac{2}{\pi} \int_{1}^{\infty} \: du \int k \: dk \: \;  \frac{ \sin\left(u k |\bm{x} - \bm{x}_0 | \right)   }{ \left(   \alpha^2 -  k^2 \right)  \sqrt{ u^2 -1 }}  \\
+G^+(\bm{x},\bm{x}_0 ; E) & =  -  \frac{2m}{\hbar^2}  \frac{1}{2\pi } \int_{1}^{\infty} du \: \frac{ e^{i  \alpha u |\bm{x} - \bm{x}_0 |  }    }{\sqrt{ u^2 -1 }  }  \\
+G^+(\bm{x},\bm{x}_0 ; E) & =    \frac{m}{2 i \hbar^2} H_0\left(   \sqrt{2mE/\hbar^2}   |\bm{x} - \bm{x}_0 | \right) \\
+\end{split}
+\end{equation}
+
+
+\end{enumerate}
+
+\hfill \\
+\noindent\rule{15cm}{0.4pt} \\
+
+\item From equation (4) in Part II of the reading, we have that the third order correction to the transition amplitude is
+
+\begin{equation}
+\begin{split}
+\tilde{K}_\text{fi}^{(3)}(t) & = \frac{i}{\hbar^3} \sum_{jk} \int_{0}^{t} dt_3 \int_{0}^{t_3} dt_2 \int_{0}^{t_2} dt_1 V_{\text{f} i} V_{jk} V_{k \text{i}} e^{ i E_{\text{f} j} t_3 /\hbar } e^{ i E_{jk} t_2 /\hbar } e^{ i E_{k \text{i} } t_1 /\hbar } \\
+\end{split}
+\end{equation}
+
+If $V$ is time independent, then (8) can be written as
+
+\begin{equation}
+\begin{split}
+\tilde{K}_\text{fi}^{(3)}(t) & = \frac{i}{\hbar^3} \sum_{jk} V_{\text{f} i} V_{jk} V_{k \text{i}}  \int_{0}^{t} dt_3 \int_{0}^{t_3} dt_2 \int_{0}^{t_2} dt_1  e^{ i E_{\text{f} j} t_3 /\hbar } e^{ i E_{jk} t_2 /\hbar } e^{ i E_{k \text{i} } t_1 /\hbar } \\
+\end{split}
+\end{equation}
+
+As with the second order correction, we can introduce two copies of the integral
+
+\begin{equation}
+\begin{split}
+-e^{-i E_k (t_2 - t_1)/\hbar} \Theta(t_2 - t_1) & = \frac{1}{2\pi i} \int_{-\infty}^{\infty} dE \frac{  e^{-i E(t_2 - t_1)/\hbar}  }{ E + i0^+ - E_k    }
+\end{split}
+\end{equation}
+
+So (9) becomes
+
+\begin{equation}
+\begin{split}
+\tilde{K}_\text{fi}^{(3)}(t) & = \frac{i}{\hbar^3} \sum_{jk} V_{\text{f} i} V_{jk} V_{k \text{i}}  \int_{0}^{t} dt_3 \int_{0}^{t_3} dt_2 \int_{0}^{t_2} dt_1 \;  e^{ i E_{\text{f} j} t_3 /\hbar } e^{ i E_{jk} t_2 /\hbar } e^{ i E_{k \text{i} } t_1 /\hbar } \\
+\tilde{K}_\text{fi}^{(3)}(t) & = \frac{i}{\hbar^3} \sum_{jk} V_{\text{f} i} V_{jk} V_{k \text{i}}  \int_{0}^{t} dt_3 \int_{0}^{t_3} dt_2 \int_{0}^{t_2} dt_1 \;  e^{i E_\text{f} t_3 / \hbar}  e^{ - i E_\text{i} t_1 / \hbar}  e^{ - i E_j ( t_3  - t_2) / \hbar}  e^{- i E_k ( t_2 - t_1) / \hbar}      \\
+%
+\tilde{K}_\text{fi}^{(3)}(t) & = \frac{i}{\hbar^3}  \frac{1}{(2\pi i)^2} \sum_{jk} V_{\text{f} i} V_{jk} V_{k \text{i}} \left[   \int_{0}^{t} dt_3 \int_{0}^{t_3} dt_2 \int_{0}^{t_2} dt_1    \right. \\ & \left.  \int_{-\infty}^{\infty} dE_1 \int_{-\infty}^{\infty} dE_2 \; \frac{  e^{i E_\text{f} t_3 / \hbar}  e^{ - i E_\text{i} t_1 / \hbar} e^{ - i E_2 ( t_3  - t_2) / \hbar}  e^{- i E_1 ( t_2 - t_1) / \hbar}  }{   \left(  E_1 + i0^+ - E_k \right) \left(  E_2 + i0^+ - E_j \right)   }  \right] \\ 
+%
+\tilde{K}_\text{fi}^{(3)}(t) & = \frac{i}{\hbar^3}  \frac{1}{(2\pi i)^2} \sum_{jk} V_{\text{f} i} V_{jk} V_{k \text{i}} \left[   \int_{0}^{t} dt_3 \int_{0}^{t} dt_2 \int_{0}^{t} dt_1    \right. \\ & \left.  \int_{-\infty}^{\infty} dE_1 \int_{-\infty}^{\infty} dE_2 \; \frac{  e^{i ( E_\text{f} - E_2  ) t_3 / \hbar}  e^{  i ( E_1 -  E_\text{i} )t_1 / \hbar} e^{ i ( E_2 - E_1) t_2 / \hbar}  }{   \left(  E_1 + i0^+ - E_k \right) \left(  E_2 + i0^+ - E_j \right)   }  \right] \\
+%
+\tilde{K}_\text{fi}^{(3)}(t) & = i \frac{(2\pi)^3}{(2\pi i)^2} \sum_{jk} V_{\text{f} i} V_{jk} V_{k \text{i}} \left[  \int_{-\infty}^{\infty} dE_1 \int_{-\infty}^{\infty} dE_2 \; \right. \\& \left.    \frac{  e^{i ( E_\text{f} - E_2  ) t / 2 \hbar}  e^{  i ( E_1 -  E_\text{i} )t / 2 \hbar}  \delta_t ( E_\text{f} -  E_2  )   \delta_t ( E_1 -  E_\text{i}  )  \delta_t ( E_1 -  E_2 )     }{   \left(  E_1 + i0^+ - E_k \right) \left(  E_2 + i0^+ - E_j \right)   }  \right] \\
+%
+\tilde{K}_\text{fi}^{(3)}(t) & \approx - 2\pi i \sum_{jk} V_{\text{f} i} V_{jk} V_{k \text{i}} \left[  \int_{-\infty}^{\infty} dE_1 \;   \frac{  e^{i  E_\text{fi} t / 2 \hbar}  \delta_t ( E_\text{f} -  E_1  )   \delta_t ( E_1 -  E_\text{i}  )      }{   \left(  E_1 + i0^+ - E_k \right) \left(  E_1 + i0^+ - E_j \right)   }  \right] \\
+%
+\tilde{K}_\text{fi}^{(3)}(t) & \approx - 2\pi i \sum_{jk}  \frac{  V_{\text{f} i} V_{jk} V_{k \text{i}}        }{   \left(  E_\text{i}  - E_j+ i0^+  \right) \left(  E_\text{i}  - E_k + i0^+ \right)   } e^{i  E_\text{fi} t / 2 \hbar}   \delta_t ( E_\text{fi} )  \\
+%
+\end{split}
+\end{equation}
+
+where we have used the fact that $\delta_t( E_i - E_j) \approx \delta( E_i - E_j)$. \\
+
+\hfill \\
+\noindent\rule{15cm}{0.4pt} \\
+
+\item Starting with
+
+\begin{equation}
+\begin{split}
+\tilde{K}_\text{fi}(t) = \braket{\textbf{ f }}{\textbf{ i }} & - \frac{i}{\hbar} \int_{0}^{t} d t_1 V_\text{fi} e^{i E_\text{fi} t_1 /\hbar}  - \frac{1}{\hbar^2} \sum_k \int_0^t dt_2 \int_0^{t_2} dt_1 V_{\text{f} k} V_{k \text{i} } e^{ i E_{\text{f} k} t_2/\hbar}  e^{ i E_{k \text{i} } t_1/\hbar} \\
+& + \frac{i}{\hbar^3} \sum_{jk} \int_0^t dt_3 \int_0^{t_3} dt_2 \int_0^{t_2} dt_1 V_{\text{f}j} V_{jk} V_{k \text{i}} e^{ i E_{\text{f} j} t_3/\hbar} e^{ i E_{j k } t_2/\hbar} e^{ i E_{k \text{i} } t_1/\hbar} \\
+\end{split}
+\end{equation}
+
+we attempt to show that (12) reproduces the correct time dependent transition amplitude for a transition between two degenerate levels. Assuming $ \braket{\textbf{ f }}{\textbf{ i }}= 0$ and $V_\text{ff} = V_\text{ii} = 0$, (12) simplifies to
+
+\begin{equation}
+\begin{split}
+\tilde{K}_\text{fi}(t) & =  - \frac{i}{\hbar} \int_{0}^{t} d t_1 V_\text{fi} e^{i E_\text{fi} t_1 /\hbar}    + \frac{i}{\hbar^3}  \int_0^t dt_3 \int_0^{t_3} dt_2 \int_0^{t_2} dt_1 \; V_\text{fi} |V_\text{fi}|^2 e^{ i E_{\text{fi}} t_3/\hbar} e^{ i E_\text{if} t_2/\hbar} e^{ i E_{ \text{fi} } t_1/\hbar} \\
+\end{split}
+\end{equation}
+
+We can eliminate the time ordering of the integral using the chronological operator $\mathscr{T}$
+
+\begin{equation}
+\begin{split}
+\tilde{K}_\text{fi}(t) & = -2\pi i V_\text{fi} e^{i E_\text{fi} t /2\hbar}  \delta_t(E_\text{fi}) + \frac{i}{3! \hbar^3} \int_0^t dt_3 \int_0^{t} dt_2 \int_0^{t} dt_1 \;  \mathscr{T}  V_\text{fi} |V_\text{fi}|^2e^{ i E_{\text{fi}} t_3/\hbar} e^{ i E_\text{if} t_2/\hbar} e^{ i E_{ \text{fi} } t_1/\hbar} \\
+%
+\tilde{K}_\text{fi}(t) & = -2\pi i V_\text{fi} e^{i E_\text{fi} t /2\hbar}  \delta_t(E_\text{fi}) + \frac{i}{3! \hbar^3} \left( 2 \pi \hbar V_\text{fi} e^{i E_\text{fi} t/2\hbar } \delta_t(E_\text{fi} )  \right)^2 \left( 2 \pi \hbar V_\text{if} e^{i E_\text{if} t/2\hbar } \delta_t(E_\text{if} ) \right) \\
+\end{split}
+\end{equation}
+% - \frac{i}{\hbar} \int_{0}^{t} d t_1 V_\text{fi} e^{i E_\text{fi} t_1 /\hbar} 
+
+Since the levels are degenerate we can take the limit of (14) as $E_\text{f} \to E_\text{i}$ to get
+
+\begin{equation}
+\begin{split}
+\tilde{K}_\text{fi}(t) & = -2\pi i V_\text{fi} \frac{t}{2\pi \hbar} + \frac{i}{3! \hbar^3} \left( 2 \pi \hbar V_\text{fi}  \frac{t}{2\pi \hbar}  \right)^2 \left( 2 \pi \hbar V_\text{if}  \frac{t}{2\pi \hbar}  \right) \\
+%
+\tilde{K}_\text{fi}(t) & = -i V_\text{fi} \frac{t}{ \hbar} + \frac{i}{3! \hbar^3} \left( V_\text{fi} t  \right)^2 \left(  V_\text{if} t \right) \\
+\end{split}
+\end{equation}
+
+Finally, as in the section on Rabi oscillations, we can set $V_\text{fi} = \hbar\Omega/2$ to get
+
+\begin{equation}
+\begin{split}
+\tilde{K}_\text{fi}(t) & = -i \left( \frac{\Omega t}{2 } - \frac{1}{3!} \left( \frac{ \Omega t  }{2}\right)^3 \right)  \\
+\end{split}
+\end{equation}
+
+And this is clearly the expansion of $\sin( \frac{\Omega t}{2 })$. We can expand to the next term, giving
+
+\begin{equation}
+\begin{split}
+\tilde{K}_\text{fi}(t) & = -i \left( \frac{\Omega t}{2 } - \frac{1}{3!} \left( \frac{ \Omega t  }{2}\right)^3  + \frac{1}{5!}  \left( \frac{ \Omega t  }{2}\right)^5 + \dots\right)  \\
+\end{split}
+\end{equation}
+
+And the probability amplitude is
+
+\begin{equation}
+\begin{split}
+P(t) = |\tilde{K}_\text{fi}(t)|^2 & = \frac{ \Omega^2 t^2 }{4} +  \frac{ \Omega^4 t^4 }{4} \\
+\end{split}
+\end{equation}
+
+
+
+
+
+
+
+
+\hfill \\
+\noindent\rule{15cm}{0.4pt} \\
+
+
+\item 
+
+\begin{enumerate}[a)]
+
+\item	Consider a harmonic perturbation of the form
+
+\begin{equation}
+\begin{split}
+V(t) & = \frac{1}{2}   \left(  V_0 e^{ - i \omega t} +  V_0^\dagger e^{ i \omega t}  \right)
+\end{split}
+\end{equation}
+
+In order to compute the second order correction to the propagator, we just need to apply equation (4) in the reading on static perturbations. Equation (4) in the reading then reads
+
+\begin{equation}
+\begin{split}
+\tilde{K}^{(2)}_\text{fi} (t) & = - \frac{1}{\hbar^2} \sum_k \int_0^t dt_2 \int_0^{t_2} dt_1 \; V_{ \text{f} k }(t_2)  V_{ k \text{i}  }(t_1)  e^{  i E_{ \text{f} k } t_2 / \hbar } e^{  i E_{ k \text{i}  } t_1 / \hbar } \\
+\end{split}
+\end{equation}
+
+where $V_{\alpha \beta }(t) = \bra{ \alpha } V(t)  \ket{ \beta } $. \\
+
+\item We can rewrite  this in terms of $(V_0)_{\alpha \beta }$ as
+
+\begin{equation}
+\begin{split}
+\tilde{K}^{(2)}_\text{fi} (t) = - \frac{1}{4 \hbar^2} \sum_k \int_0^t dt_2 \int_0^{t_2} dt_1 \;  & \left( (V_0)_{\text{f} k } e^{ - i \omega t_2} +  (V_0^\dagger)_{\text{f} k } e^{ i \omega t_2}   \right) \left( (V_0)_{  k \text{i} } e^{ - i \omega t_1} +  (V_0^\dagger)_{  k \text{i}} e^{ i \omega t_1}   \right)   e^{  i E_{ \text{f} k } t_2 / \hbar } e^{  i E_{ k \text{i}  } t_1 / \hbar } \\
+%
+\tilde{K}^{(2)}_\text{fi} (t) =  - \frac{1}{4 \hbar^2} \sum_k \int_0^t dt_2 \int_0^{t_2} dt_1 \; & \left(  (V_0)_{\text{f} k }  (V_0)_{  k \text{i} } e^{ - i \omega ( t_2 + t_1) }
++ (V_0)_{\text{f} k } (V_0^\dagger)_{  k \text{i}}   e^{ - i \omega ( t_2 - t_1) } \right. \\
+& \left.  +  (V_0^\dagger)_{\text{f} k }  (V_0)_{  k \text{i} } e^{ i \omega ( t_2 - t_1) } 
++  (V_0^\dagger)_{\text{f} k }   (V_0^\dagger)_{  k \text{i}}   e^{ i \omega ( t_2 +  t_1) }
+%
+\right)   e^{  i E_{ \text{f} k } t_2 / \hbar } e^{  i E_{ k \text{i}  } t_1 / \hbar }
+\\
+%
+\tilde{K}^{(2)}_\text{fi} (t) =  - \frac{1}{4 \hbar^2} \sum_k \int_0^t dt_2 \int_0^{t_2} dt_1 \; & \left(  (V_0)_{\text{f} k }  (V_0)_{  k \text{i} } e^{  i ( E_{ \text{f} k } - \hbar \omega )t_2 / \hbar } e^{  i ( E_{ k \text{i}  } - \hbar \omega) t_1 / \hbar } \right. \\
+& \left. + (V_0)_{\text{f} k } (V_0^\dagger)_{  k \text{i}}  
+e^{  i ( E_{ \text{f} k } - \hbar \omega )t_2 / \hbar } e^{  i ( E_{ k \text{i}  } + \hbar \omega) t_1 / \hbar }
+ \right. \\
+& \left.  +  (V_0^\dagger)_{\text{f} k }  (V_0)_{  k \text{i} } e^{  i ( E_{ \text{f} k } +  \hbar \omega )t_2 / \hbar } e^{  i ( E_{ k \text{i}  } - \hbar \omega) t_1 / \hbar }
+\right. \\
+& \left. +  (V_0^\dagger)_{\text{f} k }   (V_0^\dagger)_{  k \text{i}}   e^{  i ( E_{ \text{f} k } +  \hbar \omega )t_2 / \hbar } e^{  i ( E_{ k \text{i}  } + \hbar \omega) t_1 / \hbar }
+%
+\right)   
+\\
+%
+\end{split}
+\end{equation}
+
+But each of these terms are of the form in equation (8) in the homework. So we can remove the time ordering and sum over analogous terms that look like equation (10) in the homework. \\
+
+\begin{equation}
+\begin{split}
+\tilde{K}^{(2)}_\text{fi} (t)  = - \frac{\pi i}{2 } \sum_k \frac{1}{E_\text{i} - E_k + i0^+} & \left[
+ (V_0)_{\text{f} k }  (V_0)_{  k \text{i} } e^{ i ( E_{\text{fi}} - \hbar \omega ) t /2 \hbar } \delta_t ( E_\text{fi} - \hbar \omega  ) \right. \\
+& \left. + (V_0)_{\text{f} k } (V_0^\dagger)_{  k \text{i}}  e^{ i  E_{\text{fi}} t /2 \hbar } \delta_t ( E_\text{fi}) 
+ \right. \\
+& \left.  +  (V_0^\dagger)_{\text{f} k }  (V_0)_{  k \text{i} } e^{ i  E_{\text{fi}} t /2 \hbar } \delta_t ( E_\text{fi}) 
+\right. \\
+& \left. +  (V_0^\dagger)_{\text{f} k }   (V_0^\dagger)_{  k \text{i}}   e^{ i ( E_{\text{fi}} + \hbar \omega ) t /2 \hbar } \delta_t ( E_\text{fi} + \hbar \omega  )
+%
+\right]
+%
+\\
+\end{split}
+\end{equation}
+
+
+\item 
+
+
+
+
+
+
+\end{enumerate}
+
+
+
+\hfill \\
+\noindent\rule{15cm}{0.4pt} \\
+
+
+\item We claim that
+
+\begin{equation}
+\begin{split}
+\lim_{\epsilon \to 0^+ } \frac{1}{ x \pm i\epsilon} & = \mathscr{P} \frac{1}{x} \mp i\pi \delta(x) \\
+%& = \frac{1}{2}\left( \frac{1}{x+ i0^+} + \frac{1}{x - i0^+} \right) \mp i\pi \delta(x) \\
+\end{split}
+\end{equation}
+
+Since (23) only makes sense as a distribution, let $f : \mathbb{C} \to \mathbb{C} $ be a nice enough function (i.e. infinitely differentiable with compact support). Then by (23) we mean
+
+\begin{equation}
+\begin{split}
+\lim_{\epsilon \to 0^+ } \int_{-\infty}^{\infty}\frac{f(x)}{ x \pm i\epsilon} & = \lim_{\delta \to 0^+ } \int_{\mathbb{R} \setminus \left[- \delta, \delta \right] } \frac{f(x)}{x}   \mp i\pi f(0)  \\
+\end{split}
+\end{equation}
+
+To show this, we perform a contour integration over the curve, $\gamma_\delta^\pm$, defined by $\gamma_\delta^\pm = \mathbb{R} \setminus \left[- \delta, \delta \right] \cup C_\delta^\pm$, where $C_\delta^\pm$ is the semicircle, in the upper half plane for $+$ and lower half plane for $-$, with radius equal to $\delta$ (i.e. $C_\delta^\pm = \{ \delta e^{ \mp i\theta}: \theta\in \left[0, \pi \right] \}$). Since integrals over curves in $\mathbb{C}$ of holomorphic functions are path independent, and since $f(z)/(z \pm i \epsilon)$ is holomorphic on $\gamma_\delta^\pm$, we know that 
+
+\begin{equation}
+\begin{split}
+\lim_{\delta \to 0^+ } \int_{\gamma_\delta^\pm} dz \frac{f(z)}{z \pm i\epsilon} & =  \int_{-\infty}^{\infty}  dx \frac{f(x)}{ x \pm i\epsilon}
+\end{split}
+\end{equation}
+
+for all $\epsilon >0$. Thus, we have
+
+\begin{equation}
+\begin{split}
+\lim_{\epsilon \to 0^+ } \int_{-\infty}^{\infty}  dx \frac{f(x)}{ x \pm i\epsilon} & = \lim_{\delta \to 0^+ } \lim_{\epsilon \to 0^+ } \int_{\gamma_\delta^\pm} dz \frac{f(z)}{z \pm i\epsilon}  \\
+& =  \lim_{\delta \to 0^+ } \int_{ \mathbb{R} \setminus \left[- \delta, \delta \right] } dx \frac{f(x)}{x }  +   \lim_{\delta \to 0^+ } \int_{C_\delta^\pm} dz \frac{f(z)}{z}  \\
+& =   \lim_{\delta \to 0^+ } \int_{ \mathbb{R} \setminus \left[- \delta, \delta \right] } dx \frac{f(x)}{x }  \mp   \lim_{\delta \to 0^+ } \int_{\pi}^0 d\theta \frac{f( \delta e^{ \mp i \theta })}{ \delta e^{ \mp i \theta} } i \delta e^{ \mp i \theta } \\
+& =   \lim_{\delta \to 0^+ } \int_{ \mathbb{R} \setminus \left[- \delta, \delta \right] } dx \frac{f(x)}{x }  \mp   \lim_{\delta \to 0^+ } \int_{0}^\pi d\theta f( \delta e^{ \mp i \theta })\\
+& =   \lim_{\delta \to 0^+ } \int_{ \mathbb{R} \setminus \left[- \delta, \delta \right] } dx \frac{f(x)}{x }  \mp  i \pi f(0) \\
+& = \mathscr{P} \left(   \frac{f(x)}{x} \right)   \mp i \pi \delta(x) \\
+\end{split}
+\end{equation}
+
+where we have taken $\epsilon \to 0^+$ on the right hand side of (26) since the integrals are unaffected by the limit. Therefore, as distributions we have
+
+\begin{equation}
+\begin{split}
+\lim_{\epsilon \to 0^+ } \frac{1}{ x \pm i\epsilon} & = \mathscr{P} \frac{1}{x} \mp i\pi \delta(x) \\
+%& = \frac{1}{2}\left( \frac{1}{x+ i0^+} + \frac{1}{x - i0^+} \right) \mp i\pi \delta(x) \\
+\end{split}
+\end{equation}
+
+\end{enumerate}
+
+
+
+\hfill \\
+\noindent\rule{15cm}{0.4pt} \\
+
+
+
+
+
+%\begin{equation}
+%\begin{split}
+%\end{split}
+%\end{equation}
+
+
+$$\clubsuit$$
+\end{document}
+
+
+
+
+
+%+ \lambda \frac{\hbar c\alpha}{|\bm{r}_1 - \bm{r}_2|}
+
+
+
+
+%\begin{equation}
+%\begin{split}
+%\end{split}
+%\end{equation}

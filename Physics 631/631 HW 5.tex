@@ -1,0 +1,360 @@
+\documentclass[]{book}
+%\usepackage{setspace}
+%\onehalfspacing
+\usepackage{amsmath,amssymb,amsthm}
+\renewcommand{\qedsymbol}{$\blacksquare$}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{mathrsfs}
+\usepackage{amssymb}
+\usepackage{enumerate}
+\usepackage{mdwlist}
+\usepackage{dirtytalk}
+\usepackage{xparse}
+\usepackage{physics}
+\setcounter{MaxMatrixCols}{13}
+\setlength\parindent{0pt}
+\usepackage[none]{hyphenat}
+\usepackage[hmarginratio=1:1]{geometry}
+\begin{document}
+\begin{center}
+{\Large Physics 631 Homework 5}\\
+{Jeremy Welsh-Kavan}\\
+\end{center}
+\vspace{0.2 cm}
+\begin{center}
+\noindent\rule{15cm}{0.4pt} \\
+\end{center}
+
+{\bf Problem 1.} Let $\psi(x,t)$ be a normalized solution to the free particle Schr{\"o}dinger equation in one dimension. We claim that
+\begin{equation}\label{eq1}
+\check{\psi}(x,t):=\eta\sum_{j=-\infty}^{\infty}\left[\psi(x+2jL,t)-\psi(2jL-x,t)\right]
+\end{equation}
+is a solution to the infinite-square-well on $[0,L]$, where $\eta$ is a normalization factor assuming $\psi(x,t)$ is not even about $2Ln$ for some integer $n$. \\
+We will plug $\check{\psi}(x,t)$ into the Schr{\"o}dinger equation and check that it satisfies the boundary conditions. Since we are only interested in the region $[0,L]$, the only boundary conditions we must check are $\check{\psi}(0,t)=\check{\psi}(L,t)=0$. Additionally, since $\psi(x,t)$ is a solution to the free particle Schr{\"o}dinger equation for all $x\in\mathbb{R}$, then it must be continuous and 
+Observe that $\psi(x,t)$ satisfies
+\begin{equation}\label{eq2}
+i\hbar\pdv{\psi(x,t)}{t}=-\frac{\hbar^2}{2m}\pdv[2]{\psi(x,t)}{x}
+\end{equation}
+Since we have a second derivative in $x$ on the right hand side of (2), $\psi(x+2jL,t)$ and $\psi(2jL-x,t)$ are also solutions to (2).
+\begin{equation}\label{eq3}
+\begin{split}
+i\hbar\pdv{\check{\psi}}{t} &= \eta\sum_{j=-\infty}^{\infty}\left[i\hbar\pdv{\psi(x+2jL,t)}{t}-i\hbar\pdv{\psi(2jL-x,t)}{t}\right] \\
+i\hbar\pdv{\check{\psi}}{t} &= \eta\sum_{j=-\infty}^{\infty}\left[-\frac{\hbar^2}{2m}\pdv[2]{\psi(x+2jL,t)}{x}+\frac{\hbar^2}{2m}\pdv[2]{\psi(2jL-x,t)}{x}\right] \\
+i\hbar\pdv{\check{\psi}}{t} &= \eta\sum_{j=-\infty}^{\infty}-\frac{\hbar^2}{2m}\pdv[2]{x}\left[\psi(x+2jL,t)+\psi(2jL-x,t)\right] \\
+i\hbar\pdv{\check{\psi}}{t} &= -\frac{\hbar^2}{2m}\pdv[2]{x}\eta\sum_{j=-\infty}^{\infty}\left[\psi(x+2jL,t)+\psi(2jL-x,t)\right] \\
+i\hbar\pdv{\check{\psi}}{t} &=-\frac{\hbar^2}{2m}\pdv[2]{\check{\psi}}{x} \\
+\end{split}
+\end{equation}
+Therefore, $\check{\psi}(x,t)$ satisfies (2) on $[0,L]$. \\
+At $x=0$, clearly
+\begin{equation}\label{eq4}
+\check{\psi}(0,t)=\eta\sum_{j=-\infty}^{\infty}\left[\psi(2jL,t)-\psi(2jL,t)\right]=0
+\end{equation}
+At $x=L$ we have
+\begin{equation}\label{eq5}
+\begin{split}
+\check{\psi}(L,t) &=\eta\sum_{j=-\infty}^{\infty}\left[\psi((2j+1)L,t)-\psi((2j-1)L,t)\right] \\
+\check{\psi}(L,t) &=\eta\left(\sum_{j=-\infty}^{\infty}\psi((2j+1)L,t)-\sum_{j=-\infty}^{\infty}\psi((2j-1)L,t)\right) \\
+\end{split}
+\end{equation}
+But the index of each sum in (5) maps both $2j+1$ and $2j-1$ bijectively to $\mathbb{Z}_{odd}$. So we can rewrite (5) as follows
+\begin{equation}
+\check{\psi}(L,t) =\eta\left(\sum_{n\in\mathbb{Z}_{odd}}\psi(nL,t)-\sum_{n\in\mathbb{Z}_{odd}}\psi(nL,t)\right)=0 
+\end{equation}
+Therefore, $\check{\psi}(x,t)$ is a solution to the infinite square well Schr{\"o}dinger equation on $[0,L]$. \\ 
+\noindent\rule{15cm}{0.4pt} \\
+{\bf Problem 2.} 
+\begin{enumerate}[(a)]
+\item Let
+\begin{equation}\label{eq7} \psi_c(x)=\int_{-\infty}^{\infty}dx'K(x-x')\psi(x')
+\end{equation}
+We claim that
+\begin{equation}%eq8
+\phi_c(p)=\sqrt{2\pi\hbar}\tilde{K}(p)\phi(p)
+\end{equation}
+Where
+\begin{equation}%eq9
+\begin{split}
+\phi(p) &= \frac{1}{\sqrt{2\pi\hbar}}\int_{-\infty}^{\infty} e^{-ipx/\hbar}\psi(x) dx \\
+\phi_c(p) &=\frac{1}{\sqrt{2\pi\hbar}}\int_{-\infty}^{\infty} e^{-ipx/\hbar}\psi_c(x) dx \\
+\tilde{K}(p) &= \frac{1}{\sqrt{2\pi\hbar}}\int_{-\infty}^{\infty} e^{-ipx/\hbar}K(x) dx\\
+\end{split}
+\end{equation}
+We can show this by taking the Fourier transform of (7). This yields
+\begin{equation}%eq10
+\begin{split}
+\phi_c(p) &= \frac{1}{\sqrt{2\pi\hbar}}\int_{-\infty}^{\infty} e^{-ipx/\hbar}\int_{-\infty}^{\infty}K(x-x')\psi(x') dx' dx \\
+\phi_c(p) &= \frac{1}{\sqrt{2\pi\hbar}}\int_{-\infty}^{\infty}\psi(x')\int_{-\infty}^{\infty}K(x-x')e^{-ipx/\hbar} dxdx' \\
+\phi_c(p) &= \frac{1}{\sqrt{2\pi\hbar}}\int_{-\infty}^{\infty}\psi(x')\int_{-\infty}^{\infty}K(u)e^{-ip(u+x')/\hbar} dudx' \\
+\phi_c(p) &= \frac{1}{\sqrt{2\pi\hbar}}\int_{-\infty}^{\infty}\psi(x')e^{-ipx'/\hbar}dx'\int_{-\infty}^{\infty}K(u)e^{-ipu/\hbar} du \\
+\phi_c(p) &= \frac{1}{\sqrt{2\pi\hbar}} (\sqrt{2\pi\hbar}\phi(p))(\sqrt{2\pi\hbar}\tilde{K}(p)) \\
+\phi_c(p) &= \sqrt{2\pi\hbar}\tilde{K}(p)\phi(p) \\
+\end{split}
+\end{equation}
+\item Now suppose
+\begin{equation}%eq11
+\phi_c(p) = \int_{-\infty}^{\infty}\tilde{L}(p-p')\phi(p')dp'
+\end{equation}
+Where
+\begin{equation}%eq12
+L(x)=\frac{1}{\sqrt{2\pi\hbar}}\int_{-\infty}^{\infty} e^{ipx/\hbar}\tilde{L}(p) dp\\
+\end{equation}
+We claim that
+\begin{equation}%eq13
+\psi_c(x)=\sqrt{2\pi\hbar}L(x)\psi(x)
+\end{equation}
+To show this we can again just take the (inverse) Fourier transform of both sides of (11):
+\begin{equation}%eq14
+\begin{split}
+\psi_c(x) &= \frac{1}{\sqrt{2\pi\hbar}}\int_{-\infty}^{\infty}e^{ipx/\hbar}\int_{-\infty}^{\infty}\tilde{L}(p-p')\phi(p')dp'dp \\
+\psi_c(x) &= \frac{1}{\sqrt{2\pi\hbar}}\int_{-\infty}^{\infty}\int_{-\infty}^{\infty}e^{ipx/\hbar}\tilde{L}(p-p')\phi(p')dp'dp \\
+\psi_c(x) &= \frac{1}{\sqrt{2\pi\hbar}}\int_{-\infty}^{\infty}\int_{-\infty}^{\infty}e^{i(\omega+p')x/\hbar}\tilde{L}(\omega)\phi(p')dp'd\omega \\
+\psi_c(x) &= \frac{1}{\sqrt{2\pi\hbar}}\int_{-\infty}^{\infty}\tilde{L}(\omega)e^{i\omega x/\hbar}d\omega \int_{-\infty}^{\infty}\phi(p')e^{ip'x/\hbar}dp' \\
+\psi_c(x)&= \frac{1}{\sqrt{2\pi\hbar}}(\sqrt{2\pi\hbar}L(x))(\sqrt{2\pi\hbar}\psi(x)) \\ 
+\psi_c(x) &= \sqrt{2\pi\hbar}L(x)\psi(x) \\ 
+\end{split}
+\end{equation}
+
+\item Suppose $\psi(x)$ is normalized. We would like to find a condition on $K(x)$ such that $\psi_c(x)$ is normalized whenever $\psi(x)$ is normalized. To do this, we will suppose that
+\begin{equation}
+\int_{-\infty}^{\infty}|\psi(x)|^2dx=1
+\end{equation}
+And require that
+\begin{equation}
+\int_{-\infty}^{\infty}|\psi_c(x)|^2dx=1
+\end{equation}
+If (16) is true then
+\begin{equation}
+\begin{split}
+1 &= \int_{-\infty}^{\infty}|\psi_c(x)|^2dx \\
+&= \int_{-\infty}^{\infty}|\int_{-\infty}^{\infty}K(x-z)\psi(z)dz|^2dx \\
+&= \int_{-\infty}^{\infty}(\int_{-\infty}^{\infty}K(x-z)\psi(z)dz)(\int_{-\infty}^{\infty}K(x-y)\psi(y)dy)^*dx \\
+&= \int_{-\infty}^{\infty}(\int_{-\infty}^{\infty}K(x-z)\psi(z)dz)(\int_{-\infty}^{\infty}K^*(x-y)\psi^*(y)dy)dx \\
+&= \int_{-\infty}^{\infty}\int_{-\infty}^{\infty}\int_{-\infty}^{\infty}K(x-z)K^*(x-y)\psi(z)\psi^*(y)dzdydx \\
+\end{split}
+\end{equation}
+Define
+\begin{equation}
+f(y,z):=\int_{-\infty}^{\infty}K(x-z)K^*(x-y)dx
+\end{equation}
+Then we have
+\begin{equation}
+\int_{-\infty}^{\infty}\int_{-\infty}^{\infty}f(y,z)\psi(z)\psi^*(y)dzdy =1
+\end{equation}
+But we can write the normalization condition on $\psi(x)$ in the following way
+\begin{equation}
+\begin{split}
+1 &= \int_{-\infty}^{\infty}|\psi(y)|^2dy \\
+&= \int_{-\infty}^{\infty}\psi(y)\psi(y)^*dy \\
+&= \int_{-\infty}^{\infty}\int_{-\infty}^{\infty}\delta(y-z)\psi(z)\psi(y)^*dzdy \\
+\end{split}
+\end{equation}
+But equations (19) and (20) must be equal for all $\psi(x)$, so we must have
+\begin{equation}
+f(y,z)=\delta(y-z)
+\end{equation}
+Therefore, if $\psi(x)$ is normalized, $\psi_c(x)$ is also normalized provided
+\begin{equation}
+\delta(y-z)=\int_{-\infty}^{\infty}K(x-z)K^*(x-y)dx
+\end{equation}
+\end{enumerate}
+\noindent\rule{15cm}{0.4pt} \\
+{\bf Problem 3.} \\ \\
+\begin{enumerate}[(a)]
+\item The goal here will be to solve for $E$ in terms of $k$. We first write equation (2.66) in the dimensionless units $$x = \frac{kL}{2}$$ and $$\alpha^2=\frac{mL^2V_0}{2\hbar^2}$$
+From equations (2.29) and (2.70) we can see that if $\alpha\to 0$ then we have one even solution and zero odd solutions. Therefore, in order to solve for $k$, we need only solve for $x$ in the equation
+\begin{equation}
+\textrm{cot}(x)=\frac{x}{\sqrt{\alpha^2-x^2}}
+\end{equation}
+We will make a series of approximations in the limit where both $\alpha\to 0$ and $x\to 0$. 
+\begin{equation}
+\begin{split}
+\textrm{cot}(x) &=\frac{x}{\sqrt{\alpha^2-x^2}} \\
+\textrm{tan}(x) &=\frac{\sqrt{\alpha^2-x^2}}{x} \\
+x \approx \textrm{tan}(x) &=\frac{\sqrt{\alpha^2-x^2}}{x} \\
+x^2 &= \sqrt{\alpha^2-x^2} \\
+x^4 +x^2-\alpha^2 &=0 \\
+(x^2)^2+x^2-\alpha^2 &=0 \\
+x^2 &= -\frac{1}{2} + \frac{1}{2}\sqrt{1+4\alpha^2} \approx -\frac{1}{2} + \frac{1}{2}(1+2\alpha^2-2\alpha^4) \\
+x^2 &=\alpha^2 -\alpha^4 \\
+k^2 &=\frac{2mV_0}{\hbar^2} -\frac{m^2L^2V_0^2}{2\hbar^4} \\
+\frac{2m(V_0-|E|)}{\hbar^2} &= \frac{2mV_0}{\hbar^2} -\frac{m^2L^2V_0^2}{2\hbar^4} \\
+E &= -\frac{m\beta^2}{2\hbar^2}
+\end{split}
+\end{equation}
+Since $L\to 0$, the solution in region II disappears and since we only have one solution which is even, we must have $a_\textrm{I}=a_\textrm{III}$. And the bound state looks like
+\begin{equation}
+\begin{split}
+\psi_E(x) &= 
+\begin{cases}
+a_\textrm{I}e^{k_I x} & x<0 \\
+a_\textrm{I}e^{-k_I x} & x>0 
+\end{cases}\\
+\psi_E(x) &= a_\textrm{I}e^{-m\beta|x|/\hbar^2} \\
+\end{split}
+\end{equation}
+To normalize $\psi_E(x)$ we will just require that
+$$a_\textrm{I}^2\int_{-\infty}^{\infty}e^{-2m\beta|x|/\hbar^2}dx = 1$$
+Which implies that
+$$\psi_E(x) = \sqrt{\frac{m\beta}{\hbar^2}}e^{-m\beta|x|/\hbar^2}$$
+\item We can also solve this using the \say{direct} method. The time independent Schr{\"o}dinger equation becomes
+\begin{equation}
+\pdv[2]{\psi_E}{x} = -\frac{2m}{\hbar^2}(E+\beta\delta(x))\psi_E
+\end{equation}
+Observe that
+\begin{equation}
+\pdv[2]{|x|}{x}=2\delta(x) \quad \textrm{and} \quad \left(\pdv{|x|}{x}\right)=1
+\end{equation}
+This leads us to postulate a solution
+\begin{equation}
+\tilde{\psi}(x)=Ce^{-A|x|}
+\end{equation}
+Differentiating $\tilde{\psi}$ twice yields
+\begin{equation}
+\begin{split}
+\pdv[2]{\tilde{\psi}}{x} &= \pdv{x}\left(-ACe^{A|x|}\pdv{|x|}{x} \right)\\
+&= A^2Ce^{-A|x|}\left(\pdv{|x|}{x}\right)^2 - 2ACe^{-A|x|}\delta(x) \\
+&= A^2Ce^{-A|x|} - 2ACe^{-A|x|}\delta(x) \\
+&= (A^2- 2A\delta(x))\tilde{\psi}
+\end{split}
+\end{equation}
+Therefore, if $\tilde{\psi}$ is to solve (26) we must have
+\begin{equation}
+A = \frac{m\beta}{\hbar^2} \quad \textrm{and} \quad E=-\frac{m\beta^2}{2\hbar^2}
+\end{equation}
+Thus, our postulated solution was in fact a solution to (26) so 
+$$\psi_E(x)=Ce^{-m\beta|x|/\hbar^2}$$
+Normalizing $\psi_E(x)$ yields the final form of the single bound state of the delta function potential
+\begin{equation}
+\psi_E(x) = \sqrt{\frac{m\beta}{\hbar^2}}e^{-m\beta|x|/\hbar^2}
+\end{equation}
+\end{enumerate}
+\noindent\rule{15cm}{0.4pt} \\
+{\bf Problem 4.} \\ \\
+We start with the general solution to the Schr{\"o}dinger equation given the potential.
+\begin{equation}
+\psi_E(x) =
+\begin{cases}
+e^{ikx}+re^{-ikx} & \textrm{(region I)} \\
+ae^{-\kappa x} + be^{\kappa x} & \textrm{(region II)} \\
+\tau e^{ikx} & \textrm{(region III)}
+\end{cases} \\
+\end{equation}
+We can solve for $r$ and $\tau$ using the boundary conditions and requiring that $\psi_E(x)$ and $\psi'_E(x)$ are continuous everywhere.
+\begin{equation}
+\begin{split}
+\psi_E(\pm L/2 + 0^+) &= \psi_E(\pm L/2 + 0^-) \\
+\psi'_E(\pm L/2 + 0^+) &= \psi'_E(\pm L/2 + 0^-) 
+\end{split}
+\end{equation}
+Which yields the following system of equations
+\begin{equation}
+\begin{split}
+e^{-ikL/2} + re^{ikL/2} &= ae^{\kappa L/2}+be^{-\kappa L/2} \\
+ae^{-\kappa L/2} + be^{\kappa L/2} &= \tau e^{ikL/2} \\
+ike^{-ikL/2} - ikre^{ikL/2} &= -a\kappa e^{\kappa L/2}+b\kappa e^{-\kappa L/2} \\
+-a\kappa e^{-\kappa L/2} + b\kappa e^{\kappa L/2} &= ik\tau e^{ikL/2}
+\end{split}
+\end{equation}
+We can solve these as two matrix equations
+\begin{equation}
+\begin{split}
+\begin{bmatrix}
+e^{-ikL/2} & e^{ikL/2} \\
+i\frac{k}{\kappa}e^{-ikL/2} & -i\frac{k}{\kappa}e^{ikL/2} \\
+\end{bmatrix}
+\begin{bmatrix}
+1\\
+r
+\end{bmatrix}
+& = 
+\begin{bmatrix}
+e^{\kappa L/2} & e^{-\kappa L/2} \\
+-e^{\kappa L/2} & e^{-\kappa L/2}
+\end{bmatrix}
+\begin{bmatrix}
+a \\
+b
+\end{bmatrix} \\
+\begin{bmatrix}
+e^{-\kappa L/2} & e^{\kappa L/2} \\
+-e^{-\kappa L/2} & e^{\kappa L/2}
+\end{bmatrix}
+\begin{bmatrix}
+a \\
+b
+\end{bmatrix}
+&=
+\tau\begin{bmatrix}
+e^{ikL/2} \\
+i\frac{k}{\kappa}e^{ikL/2}
+\end{bmatrix}
+\end{split}
+\end{equation}
+We can invert the top matrix on the right hand side and the bottom matrix on the left hand side to solve these for the $a,b$ vector. This yields
+\begin{equation}
+\frac{1}{2}
+\begin{bmatrix}
+e^{-\kappa L/2} & e^{\kappa L/2} \\
+-e^{-\kappa L/2} & e^{\kappa L/2}
+\end{bmatrix}
+\begin{bmatrix}
+e^{-\kappa L/2} & -e^{-\kappa L/2} \\
+e^{\kappa L/2} & e^{\kappa L/2}
+\end{bmatrix}
+\begin{bmatrix}
+e^{-ikL/2} & e^{ikL/2} \\
+i\frac{k}{\kappa}e^{-ikL/2} & -i\frac{k}{\kappa}e^{ikL/2} \\
+\end{bmatrix}
+\begin{bmatrix}
+1\\
+r
+\end{bmatrix}
+=
+\tau\begin{bmatrix}
+e^{ikL/2} \\
+i\frac{k}{\kappa}e^{ikL/2}
+\end{bmatrix}
+\end{equation}
+We can shamelessly plug this into Mathematica to solve to $r$ and $\tau$, arriving at the following solutions
+\begin{equation}
+\begin{split}
+r & = \frac{e^{-ikL}(e^{2L\kappa}-1)(k^2+\kappa^2)}{(e^{2L\kappa}-1)k^2 + 2ik\kappa (1+e^{2L\kappa}) - (e^{2L\kappa}-1)\kappa^2} \\
+\tau &= \frac{4ik\kappa e^{-ikL}e^{L\kappa}}{(e^{2L\kappa}-1)k^2+2ik\kappa (1+e^{2L\kappa})-(e^{2L\kappa}-1)\kappa^2}
+\end{split}
+\end{equation}
+Which again simplify slightly to
+\begin{equation}
+\begin{split}
+r &= \frac{e^{ikL}(k^2+\kappa^2)}{k^2-\kappa^2+2ik\kappa \textrm{coth}(L\kappa)} \\
+\tau &= \frac{2ik\kappa e^{-ikL}}{2ik\kappa\textrm{cosh}(L\kappa)+(k-\kappa)(k+\kappa)\textrm{sinh}(L\kappa)}
+\end{split}
+\end{equation}
+By defining
+\begin{equation}
+\tau_1=-\frac{2ik}{\kappa-ik} \quad \tau'_1=\frac{2\kappa}{\kappa-ik} \quad r_1=-\frac{\kappa + ik}{\kappa-ik}
+\end{equation}
+we can simplify (32) by putting $r$ and $\tau$ over the common denominator $1-r_1^2e^{-2L\kappa}$. This reduces (32) to
+\begin{equation}
+\begin{split}
+r &= \frac{\tau_1\tau'_1 e^{-L\kappa}e^{-ikL}}{1-r_1^2e^{-2L\kappa}} \\
+\tau &= \frac{r_1(1-e^{-2L\kappa})e^{-ikL}}{1-r_1^2e^{-2L\kappa}}
+\end{split}
+\end{equation}
+\end{document}
+
+
+%\begin{equation}
+%\begin{split}
+%\end{split}
+%\end{equation}
+
+
+
+
+
+
+
+
+

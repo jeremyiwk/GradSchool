@@ -1,0 +1,174 @@
+\documentclass[]{article}
+%\usepackage{setspace}
+%\onehalfspacing
+\usepackage{amsmath,amssymb,amsthm}
+\renewcommand{\qedsymbol}{$\blacksquare$}
+\usepackage{amsmath}
+\usepackage{bm}
+\usepackage{amsfonts}
+\usepackage{mathrsfs}
+\usepackage{amssymb}
+\usepackage{enumerate}
+\usepackage{mdwlist}
+\usepackage{dirtytalk}
+\usepackage{xparse}
+\usepackage{physics}
+\usepackage{graphicx}
+\setcounter{MaxMatrixCols}{13}
+\setlength\parindent{0pt}
+\usepackage[none]{hyphenat}
+\usepackage[hmarginratio=1:1]{geometry}
+\begin{document}
+
+{\Large Physics 614 Homework 4}\\
+{Jeremy Welsh-Kavan}\\
+%\end{center}
+%\vspace{0.2 cm}
+\hfill \\
+\noindent\rule{15cm}{0.4pt} \\
+
+1. {\bf Entropy of the photon gas} \\
+
+\begin{enumerate}[(i)]
+
+\item We can use the fact stated in the course notes that the free energy $F$ is given by
+
+\begin{equation}
+\begin{split}
+F & = \frac{Vk_BT}{\pi^2c^3} \int_{0}^{\infty} d\omega \text{ }\omega^2 \ln( 1 - e^{-\beta \hbar \omega} ) \\
+F & = - \frac{Vk_B^4T^4}{\pi^2c^3}  \frac{\pi^4}{45 \hbar^3} \\ 
+F & = - \frac{  \pi^2 V k_B^4 T^4 }{45 \hbar^3 c^3 } \\
+\end{split}
+\end{equation}
+
+Then the entropy is given by
+
+\begin{equation}
+\begin{split}
+S & = - \pdv{F}{T} \\
+\frac{S}{k_B} & = \frac{ 4 \pi^2 V k_B^3 }{45 \hbar^3 c^3 } T^3 \\
+\frac{S}{k_B} & = \frac{ 8 V k_B }{ \pi^2 \hbar^3 c^3 \beta^3} \zeta(4) \\
+\end{split}
+\end{equation}
+
+\item The density of states for a blackbody of volume $V$ is $g(\omega) = V\omega^2/\pi^2 c^3$. Therefore, the average number of particles is given by
+
+\begin{equation}
+\begin{split}
+\expval{ N} & = \frac{V}{\pi^2 c^3} \int_{0}^{\infty} d\omega\frac{  \omega^2 }{ e^{\beta\hbar\omega} - 1} \\
+\expval{ N} & = \frac{V}{\pi^2 c^3} \int_{0}^{\infty} d\omega\frac{  \omega^2 }{ e^{\beta\hbar\omega} - 1} \\
+\expval{ N } & = \frac{2V \zeta(3) }{\pi^2 \hbar^3 c^3 \beta^3} \\
+\end{split}
+\end{equation}
+
+Therefore, we have
+
+\begin{equation}
+\begin{split}
+\frac{S}{\expval{N}k_B} & =4 \frac{  \zeta(4)  }{  \zeta(3)   } \\
+\end{split}
+\end{equation}
+
+
+
+\end{enumerate}
+
+
+\hfill \\
+\noindent\rule{15cm}{0.4pt} \\
+
+2. {\bf      Cosmic microwave background         } \\ 
+
+I got a little arrogant and thought I could do this one quickly. Instead I will be taking the proverbial ``L'' on this one. \\
+
+
+\noindent\rule{15cm}{0.4pt} \\
+
+
+
+3. {\bf High-temperature limit of the phonon gas} \\
+
+\begin{enumerate}[(i)]
+
+\item Since we can find the heat capacity as a derivative of the average energy, we first find the average energy. Let $g(\omega)$ be the density of states for phonons in a 3D crystal and let $N$ be the number of particles in the crystal. We can proceed as in the lecture notes. Define $\tilde{\omega}$ to be the solution to
+
+\begin{equation}
+\begin{split}
+\int_{0}^{\tilde{\omega}}d\omega  \; g(\omega) & = 3N \\
+\end{split}
+\end{equation}
+
+Then the average energy for the system can be written as
+
+\begin{equation}
+\begin{split}
+\expval{E} & = \int_{0}^{\tilde{\omega}} d\omega \;  \frac{ \hbar \omega g(\omega ) }{ e^{\beta\hbar\omega} - 1  } \\
+\end{split}
+\end{equation}
+
+From this we can find the heat capacity, $C_V$, by taking a derivative with respect to $T$.
+
+\begin{equation}
+\begin{split}
+C_V & = \pdv{\expval{E}}{T} \\
+C_V & = \frac{ 1 }{ k_B T^2  } \int_{0}^{\tilde{\omega}} d\omega \;  \frac{  \hbar^2  \omega^2   e^{\beta\hbar\omega} }{ \left( e^{\beta\hbar\omega} - 1 \right)^2 } g(\omega )  \\
+C_V & =  k_B \int_{0}^{\tilde{\omega}} d\omega \;  \frac{ \beta^2  \hbar^2  \omega^2   e^{\beta\hbar\omega} }{ \left( e^{\beta\hbar\omega} - 1 \right)^2 } g(\omega )  \\
+\end{split}
+\end{equation}
+
+\item Expanding the fraction in (7) to second order in $\beta\hbar\omega$ allows us to approximate the integral in the high temperature limit, i.e. $\beta\hbar\omega \ll 1$.
+
+\begin{equation}
+\begin{split}
+\frac{ ( \beta \hbar \omega )^2   e^{\beta\hbar\omega} }{ \left( e^{\beta\hbar\omega} - 1 \right)^2 } & \approx  1 -  \frac{ ( \beta \hbar \omega )^2 }{ 12 } + \mathcal{O}\left(  \left( \beta \hbar \omega \right)^4 \right) \\ 
+\implies C_V & \approx    k_B \int_{0}^{\tilde{\omega}} d\omega \;  \left( 1 -  \frac{ ( \beta \hbar \omega )^2 }{ 12 } \right) g(\omega )  \\
+C_V & \approx    3N k_B  -  \frac{ 1 }{ k_B T^2 } \int_{0}^{\tilde{\omega}} d\omega \;  \frac{ \hbar^2 \omega^2  }{ 12 }g(\omega )  \\
+C_V & \approx    3N k_B \left( 1  -  \frac{1}{3Nk_B^2 T^2} \int_{0}^{\tilde{\omega}} d\omega \;  \frac{  \hbar^2 \omega^2  }{ 12 }g(\omega )  \right)  \\
+C_V & \approx    3N k_B \left( 1  +  \frac{\alpha }{T^2}  \right)  \\
+\end{split}
+\end{equation}
+
+where $\alpha = -  \frac{1}{36 Nk_B^2 } \int_{0}^{\tilde{\omega}} d\omega \;  \hbar^2 \omega^2  g(\omega ) $. \\
+
+\item Using the expressions for the density of states and $\omega_D$ defined using the Debye approximation in the lecture notes, we have
+
+\begin{equation}
+\begin{split}
+\alpha & =  -  \frac{1}{36 Nk_B^2 } \int_{0}^{\omega_D} d\omega \;   \frac{ 3 \hbar^2 V \omega^4}{ 2 \pi^2 c_s^2}  \\
+\alpha & =  -  \frac{1}{36 Nk_B^2 } \frac{ 3 \hbar^2 V }{ 10 \pi^2 c_s^2} \left(  \frac{6 \pi^2 N}{ V } c_s\right)^{5/3} \\
+\alpha & =  -  \frac{1}{36 k_B^2 } \frac{ 3 \hbar^2  }{ 10 \pi^2 c_s^2} \left(  6 \pi^2c_s\right)^{5/3} \frac{N^{2/3}}{V^{2/3}} \\
+\alpha & \propto \left( \frac{N}{V}  \right)^{2/3} \\
+\end{split}
+\end{equation}
+
+
+
+
+\end{enumerate}
+
+
+%\begin{equation}
+%\begin{split}
+%\end{split}
+%\end{equation}
+
+
+\begin{center}
+\noindent\rule{15cm}{0.4pt} \\
+\end{center}
+$$\clubsuit$$
+\end{document}
+
+
+
+
+
+%+ \lambda \frac{\hbar c\alpha}{|\bm{r}_1 - \bm{r}_2|}
+
+
+
+
+%\begin{equation}
+%\begin{split}
+%\end{split}
+%\end{equation}

@@ -1,0 +1,138 @@
+\begin{equation}
+\begin{split}
+\tilde{K}_\text{fi}(t) & = -2\pi i V_\text{fi} e^{i E_\text{fi} t /2\hbar}  \delta_t(E_\text{f})  \\ &+ \frac{i  V_\text{fi} |V_\text{fi}|^2  }{\hbar^3(2\pi i)^2}  \int_0^t dt_3 \int_0^{t} dt_2 \int_0^{t} dt_1 \; e^{ i E_{\text{f}} t_3/\hbar} e^{ - i E_{ \text{i} } t_1/\hbar}  \int dE_1 \int dE_2 \; \frac{   e^{- i E_1(t_3 - t_2)/\hbar} e^{ -i E_2(t_2 - t_1)/\hbar  }    }{   ( E_1 + i0^+ - E_\text{i}    )       ( E_2 + i0^+ - E_\text{f}    )  }         \\
+%
+\tilde{K}_\text{fi}(t) & = -2\pi i V_\text{fi} e^{i E_\text{fi} t /2\hbar}  \delta_t(E_\text{f})  \\ &+ \frac{i  V_\text{fi} |V_\text{fi}|^2  }{\hbar^3(2\pi i)^2}  \int dE_1 \int dE_2 \; \frac{ 1  }{   ( E_1 + i0^+ - E_\text{i}    )       ( E_2 + i0^+ - E_\text{f}    )  }  \\ &  \times \int_0^t dt_3 \int_0^{t} dt_2 \int_0^{t} dt_1 \; e^{ i E_{\text{f}} t_3/\hbar} e^{ - i E_{ \text{i} } t_1/\hbar}   e^{- i E_1(t_3 - t_2)/\hbar} e^{ -i E_2(t_2 - t_1)/\hbar  }        \\
+%
+\end{split}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+\newpage
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+To evaluate , we can rewrite ( ) as follows
+
+\begin{equation}
+\begin{split}
+\lim_{\epsilon \to 0^+ } \int_{-\infty}^{\infty} dx \frac{f(x)}{ x \pm i\epsilon} & = \lim_{\epsilon \to 0^+ } \int_{-\infty}^{\infty} dx  \frac{ x \mp i\epsilon }{ x^2 +  \epsilon^2 }  f(x) \\
+%
+& = \lim_{\epsilon \to 0^+ }  \int_{-\infty}^{\infty}  dx  \frac{ x }{ x^2 +  \epsilon^2 }  f(x)   \mp i  \lim_{\epsilon \to 0^+ }  \int_{-\infty}^{\infty} dx  \frac{  \epsilon }{ x^2 +  \epsilon^2 }  f(x)  \\
+%
+& = \lim_{\epsilon \to 0^+ }  \int_{-\infty}^{\infty} dx  \frac{ x^2 }{ x^2 +  \epsilon^2 } \frac{  f(x)}{x}    \mp i \pi \lim_{\epsilon \to 0^+ }  \int_{-\infty}^{\infty} dx  \frac{1}{\pi}  \frac{  \epsilon }{ x^2 +  \epsilon^2 }  f(x)  \\
+\end{split}
+\end{equation}
+
+since the second integral in the last line in (15) is a normalized Lorentzian, in the limit as $\epsilon \to 0^+$ we have
+
+\begin{equation}
+\begin{split}
+\lim_{\epsilon \to 0^+ } \int_{-\infty}^{\infty} dx  \frac{f(x)}{ x \pm i\epsilon} & = \lim_{\epsilon \to 0^+ }  \int_{-\infty}^{\infty} dx  \frac{ x^2 }{ x^2 +  \epsilon^2 } \frac{  f(x)}{x}    \mp i \pi \int_{-\infty}^{\infty} dx \: \delta(x)  f(x)  \\
+\end{split}
+\end{equation}
+
+We can evaluate the remaining integral by performing an integration by parts since we assume $\dv{f}{x} \to 0$ at $\pm \infty$. 
+
+\begin{equation}
+\begin{split}
+\lim_{\epsilon \to 0^+ }  \int_{-\infty}^{\infty} dx  \frac{ x }{ x^2 +  \epsilon^2 } f(x) & =  -\lim_{\epsilon \to 0^+ }  \int_{-\infty}^{\infty} dx \: \frac{1}{2} \ln( x^2 + \epsilon^2) \dv{f}{x} \\
+& = -  \int_{-\infty}^{\infty} dx \:  \ln( \sqrt{ x^2 }) \dv{f}{x} \\
+& = -  \int_{-\infty}^{\infty} dx \:  \ln(|x |) \dv{f}{x} \\
+\end{split}
+\end{equation}
+
+Since this integral converges on $\left[ -\epsilon, \epsilon \right]$, we can include a limit which excludes this interval and take $\epsilon \to 0$ so that
+
+\begin{equation}
+\begin{split}
+\lim_{\epsilon \to 0^+ }  \int_{-\infty}^{\infty} dx  \frac{ x }{ x^2 +  \epsilon^2 } f(x) & = -  \lim_{\epsilon \to 0^+ } \int_{ \mathbb{R} \setminus \left[- \epsilon, \epsilon \right] } dx \:  \ln(|x |) \dv{f}{x} \\
+& = \lim_{\epsilon \to 0^+ } \int_{ \mathbb{R} \setminus \left[- \epsilon, \epsilon \right] } dx \: \frac{f(x)}{x} \\
+& = \mathscr{P} \frac{ f(x) }{x} \\
+\end{split}
+\end{equation}
+
+So we have
+
+\begin{equation}
+\begin{split}
+\lim_{\epsilon \to 0^+ } \int_{-\infty}^{\infty}\frac{f(x)}{ x \pm i\epsilon} & = \lim_{\epsilon \to 0^+ } \int_{\mathbb{R} \setminus \left[- \epsilon, \epsilon \right] } \frac{f(x)}{x}   \mp i\pi f(0)  \\
+\end{split}
+\end{equation}
+
+Therefore, as distributions, 
+
+\begin{equation}
+\begin{split}
+\lim_{\epsilon \to 0^+ } \frac{1}{ x \pm i\epsilon} & = \mathscr{P} \frac{1}{x} \mp i\pi \delta(x) \\
+%& = \frac{1}{2}\left( \frac{1}{x+ i0^+} + \frac{1}{x - i0^+} \right) \mp i\pi \delta(x) \\
+\end{split}
+\end{equation}
+
+
+
+
+
+\newpage
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+\end{equation}
+
+
+

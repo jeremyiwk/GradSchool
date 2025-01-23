@@ -1,0 +1,313 @@
+\documentclass[]{article}
+%\usepackage{setspace}
+%\onehalfspacing
+\usepackage{amsmath,amssymb,amsthm}
+\renewcommand{\qedsymbol}{$\blacksquare$}
+\usepackage{amsmath}
+\usepackage{bm}
+\usepackage{amsfonts}
+\usepackage{mathrsfs}
+\usepackage{amssymb}
+\usepackage{enumerate}
+\usepackage{mdwlist}
+\usepackage{dirtytalk}
+\usepackage{xparse}
+\usepackage{physics}
+\usepackage{xfrac}
+\usepackage{graphicx}
+\setcounter{MaxMatrixCols}{13}
+\setlength\parindent{0pt}
+\usepackage[none]{hyphenat}
+\usepackage[hmarginratio=1:1]{geometry}
+\begin{document}
+
+{\Large Physics 633 Homework 2}\\
+{Jeremy Welsh-Kavan}\\
+%\end{center}
+\vspace{0.2 cm}
+\noindent\rule{15cm}{0.4pt} \\
+
+\begin{enumerate}[1)]
+
+\item
+We can write the Hamiltonian for the helium atom as the sum of two hydrogen atom Hamiltonians plus a perturbation due to the repulsive force between the two electrons. The sum of two hydrogen atom Hamiltonians is
+
+\begin{equation}
+\begin{split}
+H_0 & = \frac{p_1^2}{2m_e} + \frac{p_2^2}{2m_e} - \frac{2\hbar c\alpha}{r_1} - \frac{2\hbar c\alpha}{r_2} \\
+\end{split}
+\end{equation}
+
+Ignoring any exchange-symmetry effects, the eigenfunctions of this Hamiltonian are just products of eigenfunctions of the hydrogen atom Hamiltonian. For justification, let $A_1$ and $A_2$ be operators and let $x_1$ and $x_2$ be eigenvectors, with eigenvalues $\lambda_1$ and $\lambda_2$, of $A_1$ and $A_2$ respectively. Then $(A_1 + A_2)x_1x_2 = \lambda_1x_1x_2 + \lambda_2x_1x_2 = (\lambda_1 + \lambda_2)x_1x_2$. Therefore, eigenfunctions of (1) are
+
+\begin{equation}
+\begin{split}
+\psi^{(0)}_{n_1,l_1,m_1,n_2,l_2,m_2}(\bm{r}_1,\bm{r}_2) & = \psi_{n_1,l_1,m_1}(\bm{r}_1)\psi_{n_2,l_2,m_2}(\bm{r}_2)  \\
+\end{split}
+\end{equation}
+
+with corresponding eigenvalues
+
+\begin{equation}
+\begin{split}
+E_{n_1,n_2} & = - 2\alpha^2c^2m_e \left( \frac{1}{n_1^2}  + \frac{1}{n_2^2}  \right) \\
+\end{split}
+\end{equation}
+
+The full perturbed Hamiltonian is then given by
+
+\begin{equation}
+\begin{split}
+H & = \frac{p_1^2}{2m_e} + \frac{p_2^2}{2m_e} - \frac{2\hbar c\alpha}{r_1} - \frac{2\hbar c\alpha}{r_2}  +  \frac{\hbar c\alpha}{|\bm{r}_1 - \bm{r}_2|}\\
+\end{split}
+\end{equation}
+
+From the reading on nondegenerate perturbation theory, we know that the first order energy shift is given by
+
+\begin{equation}
+\begin{split}
+\delta E_1 & =  \bra{\psi^{(0)}} V \ket{\psi^{(0)}} \\
+\delta E_1 & =  \int d\bm{r}_2 d\bm{r}_1   \frac{\hbar c\alpha}{|\bm{r}_1 - \bm{r}_2|}\psi_{1,0,0}(\bm{r}_1)^2\psi_{1,0,0}(\bm{r}_2)^2 \\
+\delta E_1 & =  \hbar c\alpha\left( \frac{1}{\pi a^3}  \right)^2  \int d\bm{r}_2 d\bm{r}_1   \frac{1}{|\bm{r}_1 - \bm{r}_2|} e^{-2 r_1/ a}  e^{-2 r_2/ a}\\
+\end{split}
+\end{equation}
+
+where $a = \frac{\hbar}{2\alpha m_e c}$. We can write both integrals in spherical coordinates in which the polar angle measures the angle from $\bm{r}_1$ to $\bm{r}_2$ and expand the potential as
+
+\begin{equation}
+\begin{split}
+\frac{1}{|\bm{r}_1 - \bm{r}_2|} & = \frac{1}{r_>}\sum_{\ell=0}^{\infty} P_\ell(\cos\theta)\left(\frac{r_<}{r_>} \right)^\ell
+\end{split}
+\end{equation}
+
+If we substitute this for $\frac{1}{|\bm{r}_1 - \bm{r}_2|}$, then the integral over $\bm{r}_2$ in (5) will eliminate all but the $\ell = 0$ term in the sum, since $\int_{-1}^{1}dx P_\ell(x) = 0$ for $\ell\ne 0$. Therefore, (5) becomes
+
+\begin{equation}
+\begin{split}
+\delta E_1 & =  \hbar c\alpha\left( \frac{4\pi}{\pi a^3}  \right)^2  \int_0^\infty \int_0^\infty r_1^2r_2^2 dr_2 dr_1   \frac{1}{r_>} e^{-2 r_1/ a}  e^{-2 r_2/ a}\\
+\delta E_1 & =  \hbar c\alpha\left( \frac{4\pi}{\pi a^3}  \right)^2  \int_0^\infty  dr_1 \left[ \int_0^\infty dr_2  r_1^2r_2^2 \frac{1}{\max(r_1,r_2)} e^{-2 r_1/ a}  e^{-2 r_2/ a} \right] \\
+\delta E_1 & =  \hbar c\alpha\left( \frac{4\pi}{\pi a^3}  \right)^2  \int_0^\infty  dr_1 \left[ \int_0^{r_1} dr_2  r_1^2r_2^2 \frac{1}{r_1} e^{-2 r_1/ a}  e^{-2 r_2/ a} + \int_{r_1}^\infty dr_2   \frac{1}{r_2} e^{-2 r_1/ a}  e^{-2 r_2/ a}\right] \\
+\delta E_1 & =  2\hbar c\alpha\left( \frac{4\pi}{\pi a^3}  \right)^2  \int_0^\infty  dr_1 \int_0^{r_1} dr_2  r_1^2r_2^2 \frac{1}{r_1} e^{-2 r_1/ a}  e^{-2 r_2/ a}\\
+\delta E_1 & =  2\hbar c\alpha\left( \frac{4}{ a^3}  \right)^2 \frac{5a^5}{256} \\
+\delta E_1 & =   \frac{5\hbar c\alpha}{ 8 a}\\
+\delta E_1 & =   \frac{5\hbar c\alpha}{ 8} \frac{ 2 \alpha m_e c }{\hbar}\\
+\delta E_1 & =   \frac{5 c^2\alpha^2 m_e}{ 4} \\
+\delta E_1 & \approx 34.01 \text{  eV} \\
+\end{split}
+\end{equation}
+
+Therefore, the ground-state energy of helium is 
+
+\begin{equation}
+\begin{split}
+E_1 + \delta E_1 & \approx -74.79 \text{  eV} \\
+\end{split}
+\end{equation}
+
+
+
+
+\hfill \\
+\noindent\rule{15cm}{0.4pt} \\
+
+\item We start with the relativistic perturbation to the Hamiltonian, given by
+
+\begin{equation}
+\begin{split}
+H_\text{rel}  & : = - \frac{p^4}{8m_e^3c^2}
+\end{split}
+\end{equation}
+
+We can rewrite this in terms of the ``vanilla'' Hydrogen atom Hamiltonian as follows
+
+\begin{equation}
+\begin{split}
+H_\text{rel}  & = - \frac{1}{2m_ec^2} \left( \frac{p^2}{2m_e} \right)^2 \\
+H_\text{rel}  & = - \frac{1}{2m_ec^2} \left( H + \frac{\hbar c \alpha}{r} \right)^2 \\
+\end{split}
+\end{equation}
+
+\begin{enumerate}[a)]
+
+
+\item First we must argue that $H_\text{rel}$ commutes with $H$. Since we may write $H_\text{rel}$ according to (9), we need only show that $H$ commutes with $H \frac{1}{r}$. Let $\ket{n}$ be an energy eigenstate, then 
+
+\begin{equation}
+\begin{split}
+\bra{n} \left[ H,H \frac{1}{r} \right] \ket{n} & = \bra{n} H H \frac{1}{r} - H \frac{1}{r} H \ket{n}  \\
+\bra{n} \left[ H,H \frac{1}{r} \right] \ket{n}  & = E_n \bra{n}  H \frac{1}{r} - H \frac{1}{r}  \ket{n}  \\
+\bra{n} \left[ H,H \frac{1}{r} \right] \ket{n}  & = 0  \\
+\end{split}
+\end{equation}
+
+Similarly, $\left[ H, \frac{1}{r}H\right] = 0 $. So, $H_\text{rel}$ is diagonal in the basis of eigenstates of $H$. Therefore, the energy shifts, to first order, are given by 
+
+
+\begin{equation}
+\begin{split}
+\bra{n} H_\text{rel} \ket{n} & = - \frac{1}{2m_ec^2}  \bra{n} H^2 +  \frac{\hbar c \alpha}{r}H + H \frac{\hbar c \alpha}{r}  + \frac{\hbar^2 c^2 \alpha^2}{r^2}   \ket{n}  \\
+\bra{n} H_\text{rel} \ket{n} & = - \frac{1}{2m_ec^2} \left( E_n^2 + 2  \hbar c \alpha E_n  \expval{ \frac{1}{r}}   + \hbar^2 c^2 \alpha^2  \expval{ \frac{1}{r^2}}  \right) \\ 
+\bra{n} H_\text{rel} \ket{n} & = \frac{1}{2m_ec^2} \left( - E_n^2 -  2  \hbar c \alpha E_n  \left(  \frac{ m_e c\alpha }{\hbar n^2}   \right)  - \hbar^2 c^2 \alpha^2  \left(   \frac{m_e^2c^2n\alpha^2}{\hbar^2(L+1/2)n^4}  \right) \right) \\
+\bra{n} H_\text{rel} \ket{n} & = \frac{1}{2m_ec^2} \left( - E_n^2 +  4  E_n^2  - 4 E_n^2 \left(   \frac{n}{L+1/2}  \right) \right) \\
+\Delta E_\text{rel}  & = \frac{E_n^2}{2m_ec^2} \left( 3 -    \frac{4n}{L+1/2} \right) \\
+\end{split}
+\end{equation}
+
+
+\item With $g_S-1 \approx 1$, the fine structure shift is 
+
+\begin{equation}
+\begin{split}
+\Delta E_\text{fs} & = \frac{(E_n^2)n}{m_ec^2} \frac{J( J+1) - L(L+1) - \frac{1}{2}(\frac{1}{2}+1)}{L(L+1/2)(L+1)} \\
+\end{split}
+\end{equation}
+
+So, with $L = J \pm \frac{1}{2}$, we have
+
+\begin{equation}
+\begin{split}
+\Delta E_\text{fs} + \Delta E_\text{rel}& = \frac{(E_n^2)}{m_ec^2} \left( \frac{J( J +1) - (J \pm \frac{1}{2})(J \pm \frac{1}{2}+1) - \frac{3}{4}}{(J \pm \frac{1}{2})(J \pm \frac{1}{2}+1/2)(J \pm \frac{1}{2}+1)} n +   \frac{1}{2} \left( 3 -    \frac{4n}{J \pm \frac{1}{2}+1/2} \right) \right) \\
+\end{split}
+\end{equation}
+
+Using Mathematica to simplify this gives
+
+\begin{equation}
+\begin{split}
+\Delta E_\text{fs} + \Delta E_\text{rel}& = \frac{(E_n^2)}{m_ec^2} \left(  \frac{3}{2}  - \frac{4n}{2J+1}\right) \\
+\Delta E_\text{fs} + \Delta E_\text{rel}& = \frac{(E_n^2)}{2m_ec^2} \left(  3 - \frac{4n}{J+1/2}\right) \\
+\end{split}
+\end{equation}
+
+which is surprisingly independent of whether or $\pm$ is $+$ or $ -$. 
+
+\end{enumerate}
+
+
+
+\hfill \\
+\noindent\rule{15cm}{0.4pt} \\
+
+\item The perturbation due to the Darwin term is given by
+
+\begin{equation}
+\begin{split}
+H_D & = \frac{\hbar^2\pi}{2m_e^2c^2} \frac{e^2}{4\pi \epsilon_0} \delta^3(\bm{r}) \\
+\end{split}
+\end{equation}
+
+\begin{enumerate}[a)]
+
+\item Since this commutes with the regular hydrogen atom Hamiltonian, we can use first order, non-degenerate perturbation theory. The first order energy corrections are then given by $\delta E_1 = \bra{\psi_0} H_D \ket{\psi_0}$. Let $\ket{n, l, m} $ be an energy eigenstate of the hydrogen atom. Then we have
+
+\begin{equation}
+\begin{split}
+\delta E_1 & = \bra{n, l, m} H_D \ket{n, l, m}  \\
+\delta E_1 & =  \frac{\hbar^2\pi}{2m_e^2c^2} \frac{e^2}{4\pi \epsilon_0}  \int d\Omega \int_{0}^{\infty}r^2dr \text{ }  \psi_{nlm}(r,\Omega)^* \delta^3(\bm{r}) \psi_{nlm}(r,\Omega) \\
+\delta E_1 & =  \frac{\hbar^2\pi}{2m_e^2c^2} \frac{e^2}{4\pi \epsilon_0}  \int d\Omega \int_{0}^{\infty}r^2dr \text{ } \delta^3(\bm{r}) |\psi_{nlm}(r,\Omega)|^2   \\
+\delta E_1 & =  \frac{\hbar^2\pi}{2m_e^2c^2} \frac{e^2}{4\pi \epsilon_0}  \int d\Omega \int_{0}^{\infty}r^2dr \text{ } \delta^3(\bm{r}) R_{nl}(r)^2  | Y_l^m (\Omega)|^2  \\
+\delta E_1 & =  \frac{\hbar^2\pi}{2m_e^2c^2} \frac{e^2}{4\pi \epsilon_0}  \int_0^{2\pi} \int_0^{\pi} \sin(\theta)d\theta\phi \int_{0}^{\infty}r^2dr \text{ } \frac{ \delta(r) \delta(\theta)  \delta(\phi)   }{r^2 \sin(\theta)} R_{nl}(r)^2  | Y_l^m (\Omega)|^2  \\
+\delta E_1 & =  \frac{\hbar^2\pi}{2m_e^2c^2} \frac{e^2}{4\pi \epsilon_0} \left(\frac{2}{na_0} \right)^3  | Y_l^m (0,0)|^2  \eval{ \left( \frac{ (n-l-1)!  }{2n(n+l)!}  e^{-\rho} \rho^{2l} L_{n-l-1}^{2l+1}(\rho)^2     \right) }_{\rho=0} \\
+\delta E_1 & =  \frac{\hbar^2\pi}{2m_e^2c^2} \frac{e^2}{4\pi \epsilon_0} \left(\frac{2}{na_0} \right)^3  | Y_l^m (0,0)|^2  \left( \frac{ (n-l-1)!  }{2n(n+l)!}  \left(  \mqty{ n+l \\ n-l-1 }  \right)^2 \right) \delta_{l,0} \\
+\delta E_1 & =  \frac{\hbar^2\pi}{2m_e^2c^2} \frac{e^2}{4\pi \epsilon_0} \left(\frac{2}{na_0} \right)^3  | Y_0^0 (0,0)|^2  \left( \frac{ (n-1)!  }{2n(n!)}  \left(  \mqty{ n \\ n-1 }  \right)^2 \right) \delta_{l,0} \\
+\delta E_1 & =  \frac{\hbar^2\pi}{2m_e^2c^2} \frac{e^2}{4\pi \epsilon_0} \left(\frac{2}{na_0} \right)^3    \frac{ 1  }{8\pi}   \delta_{l,0} \\
+\delta E_1 & =  \frac{1}{2}\frac{\hbar^4}{m_e^3 c^2} \frac{1}{n^3a_0^4}   \delta_{l,0} \\
+\delta E_1 & =  \frac{m_e c^2 \alpha^4}{2n^3}  \delta_{l,0} \\
+\end{split}
+\end{equation}
+
+
+
+\item Adding $\Delta E_D$ to $\Delta E_\text{rel}$ and evaluating the $L=0$ case gives
+
+\begin{equation}
+\begin{split}
+\Delta E_\text{rel} + \Delta E_D  & =     \frac{E_n^2}{2m_ec^2} \left( 3 -    \frac{4n}{1/2} \right) + \frac{m_e c^2 \alpha^4}{2n^3}  \\
+\Delta E_\text{rel} + \Delta E_D  & =     \frac{E_n^2}{2m_ec^2} \left( 3 -    8n \right) + 4  \frac{E_n^2 n }{2 m_e c^2}  \\
+\Delta E_\text{rel} + \Delta E_D  & =     \frac{E_n^2}{2m_ec^2} \left( 3 -    4n \right) \\
+\end{split}
+\end{equation}
+
+which is equivalent to (15) with $J=1/2$. 
+
+
+
+\end{enumerate}
+
+
+\hfill \\
+\noindent\rule{15cm}{0.4pt} \\
+
+
+\item Starting with $H_\text{hfs} = A_\text{hfs} \frac{\bm{I}\cdot\bm{J}}{\hbar^2}$ and $H_B^\text{(hfs)} = \frac{\mu_B}{\hbar} (g_J J_z + g_I I_z) B_z$ we compute matrix elements of $ H_\text{hfs} + H_B^\text{(hfs)}$ in the ``strong-field basis'', $\ket{J\text{ }m_J ; I\text{ }m_I}$. We first rewrite $H_\text{hfs}$ as $H_\text{hfs} = \frac{A_\text{hfs}}{\hbar^2} ( I_z J_z + \frac{1}{2}\left( I_+J_- + I_-J_+ \right))$. We know the matrix will be block diagonal (and symmetric) with $2 \times 2$ blocks since the raising an lowering operators will annihilate terms that are farther from 1 entry from the diagonal, while the $z$ component operators ensure that diagonal elements remain non-zero. Additionally, the products of raising and lowering operators will only yield terms for which $m_I$ and $m_J$ are offset by $1$ on either side of the braket. 
+
+Given $m_I$, and with $H =   H_\text{hfs} + H_B^\text{(hfs)}$, the matrix elements for a block are given by
+
+\begin{equation}
+\begin{split}
+\bra{ \sfrac{1}{2} \text{ }  \sfrac{1}{2} ; I\text{ }m_I}  H \ket{ \sfrac{1}{2} \text{ } \sfrac{1}{2}; I\text{ }m_I}   \\ & = A_\text{hfs} \frac{m_I}{2} + \mu_B\left( \frac{g_J}{2} + g_I m_I \right) B \\
+\bra{ \sfrac{1}{2} \text{ } \sfrac{-1}{2} ; I \text{ }m_I + 1}  H \ket{ \sfrac{1}{2} \text{ }  \sfrac{-1}{2}; I \text{ }m_I + 1}   \\ & =  - A_\text{hfs} \frac{(m_I+1)}{2} + \mu_B \left( -  \frac{g_J}{2} + g_I (m_I+1) \right) B \\
+\bra{ \sfrac{1}{2} \text{ } \sfrac{-1}{2} ; I \text{ }m_I + 1}  H \ket{ \sfrac{1}{2} \text{ }  \sfrac{1}{2}; I \text{ }m_I }  \\ & = \frac{ A_\text{hfs} }{2} \sqrt{ (\sfrac{1}{2} + \sfrac{1}{2}) ( \sfrac{1}{2} - \sfrac{1}{2} +1)} \sqrt{ (I + m_I + 1)(I - m_I)  } \\
+& = \frac{ A_\text{hfs} }{2} \sqrt{ (I + m_I + 1)(I - m_I)  } \\
+& = \bra{ \sfrac{1}{2} \text{ } \sfrac{1}{2} ; I \text{ }m_I }  H \ket{ \sfrac{1}{2} \text{ }  \sfrac{-1}{2}; I \text{ }m_I +1}
+\\
+\end{split}
+\end{equation}
+
+Since eigenvalues of a block in a block diagonal matrix are eigenvalues of the original matrix, we need only find the eigenvalues of 
+
+\begin{equation}
+\begin{split}
+\left[    \mqty{  A_\text{hfs} \frac{m_I}{2} + \mu_B\left( \frac{g_J}{2} + g_I m_I \right) B &   \frac{ A_\text{hfs} }{2} \sqrt{ (I + m_I + 1)(I - m_I)  }  \\ \frac{ A_\text{hfs} }{2} \sqrt{ (I + m_I + 1)(I - m_I)  }  &   - A_\text{hfs} \frac{(m_I+1)}{2} + \mu_B \left( -  \frac{g_J}{2} + g_I (m_I+1) \right) B    }   \right]  \\
+\end{split}
+\end{equation}
+
+Using Mathematica, we find that the eigenvalues are
+
+\begin{equation}
+\begin{split}
+\Delta E & = \frac{1}{4} \left( -A_\text{hfs} + 2\mu_B B g_I (1 + 2m_I) \right.  \\ & \pm \left. \sqrt{ A_\text{hfs}^2(1+2I  )^2 - 4A_\text{hfs} \mu_B B (g_I - g_J)(1+2m_I) + 4 \mu_B^2 B^2 (g_I - g_J)^2 }   \right)\\
+\Delta E & =  - \frac{ \Delta E_\text{hfs} }{2(2I+1) } + \mu_B B g_I (m_I + \sfrac{1}{2})  \\ & \pm \frac{A_\text{hfs}}{4} (1+2I) \sqrt{ 1 - \frac{ 4\mu_B B (g_I - g_J)(1+2m_I) }{ A_\text{hfs} (1+2I)^2} + \frac{ 4 \mu_B^2 B^2 (g_I - g_J)^2}{ A_\text{hfs} (1+2I)^2   } }  \\
+\Delta E & =  - \frac{ \Delta E_\text{hfs} }{2(2I+1) } + \mu_B B g_I (m_I + \sfrac{1}{2})  \\ & \pm \frac{A_\text{hfs}}{4} (1+2I) \sqrt{ 1 + \frac{ 4 \mu_B B (g_J - g_I)(1+2m_I) }{ A_\text{hfs} (I + \sfrac{1}{2})^2} + \frac{ \mu_B^2 B^2 (g_I - g_J)^2}{  A_\text{hfs} (I + \sfrac{1}{2})^2   } } \\
+\Delta E & =  - \frac{ \Delta E_\text{hfs} }{2(2I+1) } + \mu_B B g_I m  \pm  \frac{\Delta E_\text{hfs} }{2} \sqrt{ 1 + \frac{ 4 mx }{ 2I+1} + x^2  }  \\
+\end{split}
+\end{equation}
+
+where 
+
+\begin{equation}
+\begin{split}
+\Delta E_\text{hfs} & = A_\text{hfs} \left( I + \frac{1}{2} \right) \\
+x & = \frac{\mu_B (g_J - g_I)B}{  \Delta E_\text{hfs}} \\
+m & = m_I \pm m_J \\
+\end{split}
+\end{equation}
+
+
+
+
+
+
+
+\end{enumerate}
+
+
+\begin{center}
+\noindent\rule{15cm}{0.4pt} \\
+\end{center}
+$$\clubsuit$$
+\end{document}
+
+
+
+
+
+%+ \lambda \frac{\hbar c\alpha}{|\bm{r}_1 - \bm{r}_2|}
+
+
+
+
+%\begin{equation}
+%\begin{split}
+%\end{split}
+%\end{equation}

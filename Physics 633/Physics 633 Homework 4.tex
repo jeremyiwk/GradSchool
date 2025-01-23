@@ -1,0 +1,426 @@
+\documentclass[]{article}
+%\usepackage{setspace}
+%\onehalfspacing
+\usepackage{amsmath,amssymb,amsthm}
+\renewcommand{\qedsymbol}{$\blacksquare$}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{mathrsfs}
+\usepackage{amssymb}
+\usepackage{enumerate}
+\usepackage{mdwlist}
+\usepackage{dirtytalk}
+\usepackage{xparse}
+\usepackage{physics}
+\usepackage{graphicx}
+\usepackage{xcolor}% http://ctan.org/pkg/xcolor
+\usepackage{hyperref}% http://ctan.org/pkg/hyperref
+\hypersetup{
+  colorlinks=true,
+  linkcolor=blue!50!red,
+  urlcolor=green!70!black
+}
+\setcounter{MaxMatrixCols}{13}
+\setlength\parindent{0pt}
+\usepackage[none]{hyphenat}
+\usepackage[hmarginratio=1:1]{geometry}
+
+\newcommand{\dvec}[1]{\overset{\leftrightarrow}{#1}}
+
+\def\Xint#1{\mathchoice
+{\XXint\displaystyle\textstyle{#1}}%
+{\XXint\textstyle\scriptstyle{#1}}%
+{\XXint\scriptstyle\scriptscriptstyle{#1}}%
+{\XXint\scriptscriptstyle\scriptscriptstyle{#1}}%
+\!\int}
+\def\XXint#1#2#3{{\setbox0=\hbox{$#1{#2#3}{\int}$}
+\vcenter{\hbox{$#2#3$}}\kern-.5\wd0}}
+\def\ddashint{\Xint=}
+\def\dashint{\Xint-}
+
+\def\shrinkage{2.1mu}
+\def\vecsign{\mathchar"017E}
+\def\dvecsign{\smash{\stackon[-1.95pt]{\mkern-\shrinkage\vecsign}{\rotatebox{180}{$\mkern-\shrinkage\vecsign$}}}}
+\def\dvec#1{\def\useanchorwidth{T}\stackon[-4.2pt]{#1}{\,\dvecsign}}
+\usepackage{stackengine}
+\stackMath
+
+
+\begin{document}
+
+{\Large Physics 633 Homework 4}\\
+{Jeremy Welsh-Kavan}\\
+\hfill \\
+\noindent\rule{15cm}{0.4pt} \\
+
+\begin{enumerate}[1)]
+
+
+\item We consider a generalized susceptibility including a dc pole of the form 
+
+\begin{equation}
+\begin{aligned}
+\dvec{\zeta}(\omega) & = \dvec{\chi} (\omega) + \frac{ i \dvec{\sigma}(\omega)}{\omega} \\
+\end{aligned}
+\end{equation} \\
+
+
+
+In terms of the Hilbert transform, the Kramers-Kronig relations can be written \\
+
+\begin{equation}
+\begin{aligned}
+\dvec{\chi}(\omega)  - \dvec{\chi}_0  & = - i \mathscr{H} \left[  \dvec{\chi} (\omega) - \dvec{\chi}_0  \right] \\
+& = \frac{1}{ \pi i} \;  \dashint_{-\infty}^{\infty} d\omega' \: \frac{   \dvec{\chi} (\omega') - \dvec{\chi}_0 }{ \omega' - \omega } \\
+\end{aligned}
+\end{equation} \\
+
+We can add $ i \dvec{\sigma}(\omega) / \omega $ to both sides of this and then rewrite the right hand side to try to combine the terms \\
+
+\begin{equation}
+\begin{aligned}
+\dvec{\zeta}(\omega)  - \dvec{\chi}_0  =  \frac{1}{ \pi i} \;  \dashint_{-\infty}^{\infty} d\omega' \: \frac{   \dvec{\chi} (\omega') - \dvec{\chi}_0 }{ \omega' - \omega }  & + \frac{ i \dvec{\sigma}(\omega)}{\omega} \\
+ =  \frac{1}{ \pi i} \;  \dashint_{-\infty}^{\infty} d\omega' \: \frac{   \dvec{\chi} (\omega') - \dvec{\chi}_0 }{ \omega' - \omega }  & +  \int_{-\infty}^{\infty} d\omega' \frac{ i \dvec{\sigma}(\omega')}{\omega'} \delta(\omega' - \omega) \\
+  =  \frac{1}{ \pi i} \;  \dashint_{-\infty}^{\infty} d\omega' \: \frac{   \dvec{\chi} (\omega') - \dvec{\chi}_0 }{ \omega' - \omega }  
+ & +  \frac{1}{ \pi i } \: \dashint_{-\infty}^{\infty} d\omega' \frac{ i \dvec{\sigma}(\omega')}{\omega' (\omega' - \omega) } \\
+ & -  \frac{1}{ \pi i} \int_{-\infty}^{\infty} d\omega' \frac{ i \dvec{\sigma}(\omega')}{\omega' (\omega' - \omega + i0^+) } \\
+ = \frac{1}{ \pi i} \;  \dashint_{-\infty}^{\infty} d\omega' \: \frac{   \dvec{\zeta} (\omega') - \dvec{\chi}_0 }{ \omega' - \omega }   & -  \frac{1}{ \pi } \int_{-\infty}^{\infty} d\omega' \frac{  \dvec{\sigma}(\omega')}{\omega' (\omega' - \omega + i0^+) } \\
+\end{aligned}
+\end{equation} \\
+
+where we have used the identity stated in the reading on Dynamic Polarizability to replace the delta function. Finally, we can use the Residue theorem to compute the last integral above. Note that the integrand has two singularities in the complex plane. One on the real axis at $\omega' = 0$ and the other off the real axis at $\omega' = \omega - i0^+$. We can close the curve with two integrals which go to zero, so that we integrate in a rectangle enclosing only the real singularity. Since the integral above is the limit of two integrals displaced by $i\epsilon$ from the real axis, we can set 
+\\
+
+\begin{equation}
+\begin{aligned}
+\int_{-\infty}^{\infty} d\omega' \frac{  \dvec{\sigma}(\omega')}{\omega' (\omega' - \omega + i0^+) } & = \frac{1}{2} \left[  \int_{-\infty}^{\infty} d\omega' \frac{  \dvec{\sigma}(\omega' - i0^+ /2 )}{ ( \omega' - i0^+/2 ) (\omega' - \omega + i0^+ ) } \right. \\  & + \left.  \int_{\infty}^{ - \infty} d\omega' \frac{  \dvec{\sigma}(\omega' + i0^+ )}{ ( \omega' + i0^+)(\omega' - \omega + 2i0^+) }\right]  \\
+%& = \pi i  \frac{  \dvec{\sigma}(- i0^+ )}{ \omega - i0^+  }   \\
+\end{aligned}
+\end{equation} \\
+
+Finally, by the residue theorem, and since the closed curve contains only the singularity on the real axis, we have
+
+\begin{equation}
+\begin{aligned}
+\int_{-\infty}^{\infty} d\omega' \frac{  \dvec{\sigma}(\omega')}{\omega' (\omega' - \omega + i0^+) } & =   \frac{1}{2} \left[ 2 \pi i  \frac{  \dvec{\sigma}(- i0^+ )}{ - \omega + i0^+  }   \right] \\
+& = -  \pi i  \frac{  \dvec{\sigma}(0 )}{ \omega   }  \\
+\end{aligned}
+\end{equation} \\
+
+Plugging this into Eq. (3), we have 
+
+\begin{equation}
+\begin{aligned}
+\dvec{\zeta}(\omega)  - \dvec{\chi}_0  &  = \frac{1}{ \pi i} \;  \dashint_{-\infty}^{\infty} d\omega' \: \frac{   \dvec{\zeta} (\omega') - \dvec{\chi}_0 }{ \omega' - \omega }    -  \frac{1}{ \pi } \int_{-\infty}^{\infty} d\omega' \frac{  \dvec{\sigma}(\omega')}{\omega' (\omega' - \omega + i0^+) } \\
+\dvec{\zeta}(\omega)  - \dvec{\chi}_0  &  = \frac{1}{ \pi i} \;  \dashint_{-\infty}^{\infty} d\omega' \: \frac{   \dvec{\zeta} (\omega') - \dvec{\chi}_0 }{ \omega' - \omega } +  i  \frac{  \dvec{\sigma}_0}{ \omega   }   \\
+\end{aligned}
+\end{equation} \\
+
+Writing this in terms of real and complex parts, we have the modified Kramers-Kronig relations,
+
+\begin{equation}
+\begin{aligned}
+\Re\left[ \dvec{\zeta}(\omega)  - \dvec{\chi}_0 \right]  &  =  \frac{1}{ \pi } \;  \dashint_{-\infty}^{\infty} d\omega' \: \frac{  \Im\left[  \dvec{\zeta} (\omega') - \dvec{\chi}_0  \right] }{ \omega' - \omega }   \\
+%
+\Im\left[ \dvec{\zeta}(\omega)  - \dvec{\chi}_0 \right]  &  = - \frac{1}{ \pi } \;  \dashint_{-\infty}^{\infty} d\omega' \: \frac{  \Re\left[  \dvec{\zeta} (\omega') - \dvec{\chi}_0  \right] }{ \omega' - \omega } +   \frac{  \dvec{\sigma}_0}{ \omega   }   \\
+\end{aligned}
+\end{equation} \\
+
+as desired. \\
+
+
+\noindent\rule{15cm}{0.4pt} \\
+
+
+
+\item We would like to rewrite the Kramers-Kronig relations \\
+
+\begin{equation}
+\begin{aligned}
+\Re\left[ \dvec{\chi}(\omega) -  \dvec{\chi}_0 \right]  &  =  \frac{1}{ \pi } \;  \dashint_{-\infty}^{\infty} d\omega' \: \frac{  \Im\left[  \dvec{\chi} (\omega') - \dvec{\chi}_0  \right] }{ \omega' - \omega }   \\
+%
+\Im\left[ \dvec{\chi}(\omega)  - \dvec{\chi}_0 \right]  &  = - \frac{1}{ \pi } \;  \dashint_{-\infty}^{\infty} d\omega' \: \frac{  \Re\left[  \dvec{\chi} (\omega') - \dvec{\chi}_0  \right] }{ \omega' - \omega }  \\
+\end{aligned}
+\end{equation} \\
+
+in the form
+
+\begin{equation}
+\begin{aligned}
+\Re\left[ \dvec{\chi}(\omega)  \right]  &  =  \dvec{\chi}_0 + \frac{2}{ \pi } \;  \dashint_{0}^{\infty} d\omega' \: \frac{ \omega' \Im\left[  \dvec{\chi} (\omega')  \right] }{ \omega'^2 - \omega^2 }   \\
+%
+\Im\left[ \dvec{\chi}(\omega)  \right]  &  = - \frac{2\omega}{ \pi } \;  \dashint_{0}^{\infty} d\omega' \: \frac{  \Re\left[  \dvec{\chi} (\omega')  \right] - \dvec{\chi}_0 }{ \omega'^2 - \omega^2 }  \\
+\end{aligned}
+\end{equation} \\
+
+We first prove the auxiliary claim that $\dvec{\chi}( - \omega ^*)  = \dvec{\chi}^*(\omega)$. Following from the definition, we have \\
+
+
+\begin{equation}
+\begin{aligned}
+\chi_{\alpha \beta} (\omega)  & = \frac{i}{\hbar} \int_{0}^{\infty} d\tau \expval{ \left[  \tilde{x}_\alpha(\tau), \tilde{x}_\beta (\tau)  \right]  } e^{i\omega \tau} \\
+\end{aligned}
+\end{equation} \\
+
+Complex conjugating both sides yields \\
+
+
+\begin{equation}
+\begin{aligned}
+\chi_{\alpha \beta}^* (\omega)  & = - \frac{i}{\hbar} \int_{0}^{\infty} d\tau \expval{ \left[  \tilde{x}_\alpha(\tau), \tilde{x}_\beta (0)  \right]  }^* e^{ - i \omega^* \tau} \\
+& =   \frac{i}{\hbar} \int_{0}^{\infty} d\tau \expval{ \left[  \tilde{x}_\alpha(\tau), \tilde{x}_\beta (0)  \right]  } e^{ i ( - \omega^*) \tau} \\
+& = \chi_{\alpha \beta} ( - \omega^* ) 
+\end{aligned}
+\end{equation} \\
+
+Wherein the complex conjugate has flipped the order of the commutator. Observe that $\dvec{\chi}_0$ is real, since the equality above shows that $\dvec{\chi}( 0 ) = \dvec{\chi}^*( 0 )$. The Kramers-Kronig relations can be rewritten as \\
+
+
+\begin{equation}
+\begin{aligned}
+\dvec{\chi}(\omega)  - \dvec{\chi}_0  & = \frac{1}{ \pi i} \;  \dashint_{-\infty}^{\infty} d\omega' \: \frac{   \dvec{\chi} (\omega') - \dvec{\chi}_0 }{ \omega' - \omega } \\
+\end{aligned}
+\end{equation} \\
+
+We can break up the integral, perform a variable substitution and then recombine to get \\
+
+\begin{equation}
+\begin{aligned}
+\dvec{\chi}(\omega)  - \dvec{\chi}_0  & = \frac{1}{ \pi i} \;  \dashint_{0}^{\infty} d\omega' \: \frac{   \dvec{\chi} (\omega') - \dvec{\chi}_0 }{ \omega' - \omega } + \frac{1}{ \pi i} \;  \dashint_{-\infty}^{0} d\omega' \: \frac{   \dvec{\chi} (\omega') - \dvec{\chi}_0 }{ \omega' - \omega } \\
+%
+& = \frac{1}{ \pi i} \;  \dashint_{0}^{\infty} d\omega' \: \frac{   \dvec{\chi} (\omega') - \dvec{\chi}_0 }{ \omega' - \omega } + \frac{1}{ \pi i} \;  \dashint_{0}^{\infty} d\omega' \: \frac{   \dvec{\chi} (-\omega') - \dvec{\chi}_0 }{ - \omega' - \omega } \\
+%
+& = \frac{1}{ \pi i} \;  \dashint_{0}^{\infty} d\omega' \: \frac{   \dvec{\chi} (\omega') - \dvec{\chi}_0 }{ \omega' - \omega } - \frac{1}{ \pi i} \;  \dashint_{0}^{\infty} d\omega' \: \frac{   \dvec{\chi}^* (\omega') - \dvec{\chi}_0 }{  \omega' +  \omega } \\
+%
+& = \frac{1}{ \pi i} \;  \dashint_{0}^{\infty} d\omega' \: \frac{  ( \dvec{\chi} (\omega') - \dvec{\chi}_0 )(\omega' +  \omega) }{ \omega'^2 - \omega^2 } - \frac{ (  \dvec{\chi}^* (\omega') - \dvec{\chi}_0 )(\omega' - \omega )  }{  \omega'^2 -  \omega^2 } \\
+%
+& = \frac{1}{ \pi i} \;  \dashint_{0}^{\infty} d\omega' \: \frac{  ( \dvec{\chi} (\omega') - \dvec{\chi}_0 )(\omega' +  \omega)  - (  \dvec{\chi}^* (\omega') - \dvec{\chi}_0 )(\omega' - \omega ) }{ \omega'^2 - \omega^2 } \\
+%
+& = \frac{1}{ \pi i} \;  \dashint_{0}^{\infty} d\omega' \: \frac{ 2 i \omega' \Im\left[ \dvec{\chi} (\omega')   \right] +  2 \omega \Re\left[   \dvec{\chi} (\omega') -  \dvec{\chi}_0  \right]  }{ \omega'^2 - \omega^2 } \\
+%
+& = \frac{2}{ \pi } \;  \dashint_{0}^{\infty} d\omega' \: \frac{ \omega' \Im\left[ \dvec{\chi} (\omega')   \right]   }{ \omega'^2 - \omega^2 } - i\frac{ 2 \omega }{ \pi } \;  \dashint_{0}^{\infty} d\omega' \: \frac{   \Re\left[   \dvec{\chi} (\omega') -  \dvec{\chi}_0  \right]  }{ \omega'^2 - \omega^2 } \\
+%
+\end{aligned}
+\end{equation} \\
+
+And since $\dvec{\chi}_0 $ is real, we have
+
+\begin{equation}
+\begin{aligned}
+\Re \left[ \dvec{\chi}(\omega) \right]    & = \dvec{\chi}_0 +  \frac{2}{ \pi } \;  \dashint_{0}^{\infty} d\omega' \: \frac{ \omega' \Im\left[ \dvec{\chi} (\omega')   \right]   }{ \omega'^2 - \omega^2 } \\
+\Im \left[ \dvec{\chi}(\omega) \right]    & = - \frac{ 2 \omega }{ \pi } \;  \dashint_{0}^{\infty} d\omega' \: \frac{   \Re\left[   \dvec{\chi} (\omega')  \right]  -  \dvec{\chi}_0  }{ \omega'^2 - \omega^2 } \\
+%
+\end{aligned}
+\end{equation} \\
+
+as desired. \\
+
+
+\noindent\rule{15cm}{0.4pt} \\
+
+
+
+
+\item We consider a classical damped forced harmonic oscillator whose equation of motion is given by
+
+\begin{equation}
+\begin{aligned}
+\ddot{x} + 2 \gamma \dot{x} + \omega_0^2 x & = f(t) \\
+\end{aligned}
+\end{equation} \\
+
+with driving force $f(t)$ and where $\gamma < \omega_0$. Note that we have deviated from the notation in the homework with the coefficient of $2\gamma$ above because it makes the final solution look nicer.  \\
+
+\begin{enumerate}[a)]
+
+\item We wish to find the Green's function of the differential operator above. That is, we wish to find a function, $g(t,t')$, such that
+
+\begin{equation}
+\begin{aligned}
+\ddot{g} + 2 \gamma \dot{g} + \omega_0^2 g & = \delta(t - t')  \\
+\end{aligned}
+\end{equation} \\
+
+subject to the initial condition, $g(t',t')=0$. \\ 
+
+First, let $\hat{f}(\omega)$ be the frequency-time Fourier transform of $f(t)$, defined by $\hat{f}(\omega) = \frac{1}{\sqrt{2\pi}} \int  dt \; e^{-i\omega t} f(t) $. Then the function $\hat{g}(\omega,t')$ must satisfy
+
+\begin{equation}
+\begin{aligned}
+- \omega^2 \hat{g} + 2  i \gamma \omega \hat{g} + \omega_0^2 \hat{g} & = \frac{1}{\sqrt{2\pi}} e^{ - i \omega t' }  \\
+\hat{g}(\omega, t') & = \frac{1}{\sqrt{2\pi}} \frac{ e^{ - i \omega t' }  }{ \omega_0^2 - \omega^2  + 2 i \gamma \omega   } \\
+\implies g(t,t') & = \frac{1}{2 \pi } \int_{-\infty}^{\infty} d\omega   \frac{ e^{  i \omega(t- t') }  }{ \omega_0^2 - \omega^2  + 2 i \gamma \omega   }  \\
+\end{aligned}
+\end{equation} \\
+
+Which can be solved with a contour integral. Define $\omega^\mp =  i\gamma \mp \sqrt{\omega_0^2 - \gamma^2} $. Then we can rewrite $g(t,t')$ as
+
+\begin{equation}
+\begin{aligned}
+\implies g(t,t') & =  \frac{1}{2 \pi } \int_{-\infty}^{\infty} d\omega   \frac{ e^{  i \omega(t- t') }  }{ (\omega- \omega^+)(\omega^- - \omega) }  \\
+\end{aligned}
+\end{equation} \\
+
+
+Let $\Gamma_1$ be a counterclockwise semicircular contour of radius $R$ in the upper half plane containing $\omega^\mp$ and let $\Gamma_2$ be a clockwise semicircular contour of radius $R$ in the lower half plane. In order for the integral along the semicircular portion to decay exponentially, we must have $\Re\left(  i \omega(t- t')  \right) < 0$ which occurs in the upper half plane when $t>t'$ and in the lower half plane when $t<t'$. So we have
+
+\begin{equation}
+\begin{aligned}
+\frac{1}{2 \pi } \int_{-\infty}^{\infty} d\omega   \frac{ e^{  i \omega(t- t') }  }{ (\omega- \omega^+)(\omega^- - \omega) }  & = \frac{1}{2 \pi } \int_{\Gamma_1} dz    \frac{ e^{  i z(t- t') }  }{ (z- \omega^+)(\omega^- - z) }  \; \text{, if } \; t>t' \\
+\frac{1}{2 \pi } \int_{-\infty}^{\infty} d\omega   \frac{ e^{  i \omega(t- t') }  }{ (\omega- \omega^+)(\omega^- - \omega) }  & = \frac{1}{2 \pi } \int_{\Gamma_2} dz    \frac{ e^{  i z(t- t') }  }{ (z- \omega^+)(\omega^- - z) }  \; \text{, if } \; t<t' \\
+\end{aligned}
+\end{equation} \\
+
+For convenience, define $\omega^* = \sqrt{  \omega_0^2 - \gamma^2  } $. Then, by the Residue Theorem we have
+
+\begin{equation}
+\begin{aligned}
+\frac{1}{2 \pi } \int_{\Gamma_1} dz \frac{ e^{  i z(t- t') }  }{ (z- \omega^+)(\omega^- - z) } & =   i \left(  \frac{ e^{ i \omega^+ (t-t')  }  }{ \omega^- - \omega^+ }  - \frac{ e^{ i \omega^- (t-t')  }  }{  \omega^- - \omega^+  }    \right)  \\
+& = \frac{ -i  e^{  -\gamma (t - t')   } }{ 2 \omega^* }   \left( e^{ i\omega^* (t-t') } - e^{ - i \omega^* (t-t')  }   \right)        \\
+& =  e^{  -\gamma (t - t')  } \frac{ \sin( \omega^* ( t - t' )  ) }{ \omega^* } \\
+ \frac{1}{2 \pi }\int_{\Gamma_2} dz \frac{ e^{  i z(t- t') }  }{ (z- \omega^+)(z - \omega^-) } & =  0 \\
+\end{aligned}
+\end{equation} \\
+
+Since the integrand is analytic on the entire lower half place. Thus, the Green's function of the linear differential operator that yields the equation of motion for the damped harmonic oscillator is
+
+\begin{equation}
+\begin{aligned}
+g(t,t') & = \begin{cases} 
+e^{  -\gamma (t - t')  } \frac{ \sin( \omega^*  ( t - t' )  ) }{ \sqrt{ \omega_0^2 - \gamma^2}   } \; \text{, } \; t>t' \\
+0 \; \text{, } \; t<t' 
+\end{cases} \\
+g(t,t') & =  \Theta(t - t') e^{  -\gamma (t - t')  } \frac{ \sin(  \omega^*( t - t' )  ) }{\omega^*  }
+\end{aligned}
+\end{equation} \\
+
+where $\omega^* = \sqrt{  \omega_0^2 - \gamma^2  } $ and where $\Theta(t)$ is the Heaviside step function. Note again, the different convention we have used for the damping coefficient, $\gamma$. In particular, this now agrees with the Green's function for the damped oscillator given on \href{https://en.wikipedia.org/wiki/Green\%27s\_function}{this Wikipedia page}. \\
+
+We may also write 
+
+\begin{equation}
+\begin{aligned}
+g(t) & =  \Theta(t) e^{  -\gamma t  } \frac{ \sin(  \omega^* t  ) }{\omega^*  } \\
+\end{aligned}
+\end{equation} \\
+
+\item Define $L = \partial^2_t + 2\gamma \partial_t + \omega_0^2$. Suppose $x(t)$ solves \\
+
+\begin{equation}
+\begin{aligned}
+\ddot{x} + 2 \gamma \dot{x} + \omega_0^2 x & = f(t) \\
+L\left[ x(t) \right] & =  f(t)
+\end{aligned}
+\end{equation} \\
+
+for some arbitrary ``forcing" function $f(t)$. Recall that $L\left[ g(t - t') \right]  =  \delta(t - t')$. So we can rewrite the above equation as follows \\
+
+\begin{equation}
+\begin{aligned}
+L\left[ x(t) \right] & =  f(t) \\
+L\left[ x(t) \right] & =  \int_{-\infty}^{\infty} dt' \; \delta(t - t') f(t') \\
+L\left[ x(t) \right] & =  \int_{-\infty}^{\infty} dt' \; L\left[ g(t - t') \right]  f(t') \\
+L\left[ x(t) \right] & = L\left[ \int_{-\infty}^{\infty} dt' \; g(t - t')   f(t') \right]\\
+\end{aligned}
+\end{equation} \\
+
+where the last step is justified because $L$ only acts on functions of $t$. We can assume that solutions to $L\left[ x(t) \right] =  f(t)$ are unique provided initial conditions are specified. Therefore, we have \\
+
+\begin{equation}
+\begin{aligned}
+ x(t) & = \int_{-\infty}^{\infty} dt' \; g(t - t')   f(t') \\
+ x(t) & = \int_{-\infty}^{\infty} dt' \; g(t')   f(t - t') \\
+\end{aligned}
+\end{equation} \\
+
+for arbitrary forcing function $f(t)$ and where $g(t)$ is as defined in part a). This is clearly a convolution of $f$ with $g$. \\
+
+\item To find the frequency space Green's function, we solve \\
+
+\begin{equation}
+\begin{aligned}
+\ddot{x} + 2 \gamma \dot{x} + \omega_0^2 x & = e^{- i \omega t} \\
+\end{aligned}
+\end{equation} \\
+
+for $x(t)$. The frequency space Green's function will be the amplitude, $\tilde{g}(\omega)$, of the solution, $x(t) = \tilde{g}(\omega) e^{- i \omega t}$. We can solve for $x(t)$ by forming the convolution with $g(t - t')$ shown above. $x(t)$ is then given by \\
+
+\begin{equation}
+\begin{aligned}
+x(t) & = \int_{-\infty}^{\infty} dt' \;  g(t')   f(t - t')  \\
+x(t) & = \int_{-\infty}^{\infty} dt' \;  e^{ - i \omega (t - t') } \Theta(t') e^{  -\gamma t'  } \frac{ \sin(  \omega^* t'  ) }{\omega^*  }  \\
+x(t) & = \frac{ 1 }{\omega^*  } \int_{0}^{\infty} dt' \;  e^{ - i \omega (t - t') } e^{  -\gamma t'  } \sin(  \omega^* t'  ) \\
+x(t) & = \frac{ e^{ - i t \omega} }{ (\gamma - i \omega )^2 + {\omega^*}^2} \\
+\end{aligned}
+\end{equation} \\
+
+So we have that \\
+
+\begin{equation}
+\begin{aligned}
+\tilde{g}(\omega) & = \frac{ 1 }{ (\gamma - i \omega )^2 + {\omega^*}^2} \\
+\end{aligned}
+\end{equation} \\
+
+
+\item The convolution theorem states that if
+
+\begin{equation}
+\begin{aligned}
+ x(t) & = \int_{-\infty}^{\infty} dt' \; g(t - t')   f(t') \\
+\end{aligned}
+\end{equation} \\
+
+then the Fourier transform of each function satisfies
+
+\begin{equation}
+\begin{aligned}
+ \tilde{x}(\omega) & =  \tilde{g}( \omega )   \tilde{f}(\omega) \\
+\end{aligned}
+\end{equation} \\
+
+Taking the inverse Fourier transform of both sides gives
+
+\begin{equation}
+\begin{aligned}
+ \tilde{x}(t) & =   \frac{1}{2\pi} \int_{-\infty}^{\infty} d\omega \;  \tilde{g}( \omega )  \tilde{f}(\omega)  e^{- i \omega t } \\
+\end{aligned}
+\end{equation} \\
+
+\end{enumerate}
+
+
+\noindent\rule{15cm}{0.4pt} \\
+
+\item
+
+
+
+
+
+
+
+
+
+\end{enumerate}
+ 
+\noindent\rule{15cm}{0.4pt} \\
+
+$$\clubsuit$$
+
+\end{document}
+
+
+
+
+
+
+
+
+
+
+
+%\begin{equation}
+%\begin{split}
+%\end{split}
+%\end{equation}

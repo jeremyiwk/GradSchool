@@ -1,0 +1,340 @@
+\documentclass[]{article}
+%\usepackage{setspace}
+%\onehalfspacing
+\usepackage{amsmath,amssymb,amsthm}
+\renewcommand{\qedsymbol}{$\blacksquare$}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{mathrsfs}
+\usepackage{amssymb}
+\usepackage{bm}
+\usepackage{enumerate}
+\usepackage{mdwlist}
+\usepackage{dirtytalk}
+\usepackage{xparse}
+\usepackage{physics}
+\usepackage[cmtip,all]{xy}
+\newcommand{\longsquiggly}{\xymatrix{{}\ar@{~>}[r]&{}}}
+\usepackage{graphicx}
+\usepackage{xcolor}% http://ctan.org/pkg/xcolor
+\usepackage{hyperref}% http://ctan.org/pkg/hyperref
+\hypersetup{
+  colorlinks=true,
+  linkcolor=blue!50!red,
+  urlcolor=green!70!black
+}
+\setcounter{MaxMatrixCols}{13}
+\setlength\parindent{0pt}
+\usepackage[none]{hyphenat}
+\usepackage[hmarginratio=1:1]{geometry}
+\begin{document}
+
+{\Large Physics 633 Homework 5}\\
+{Jeremy Welsh-Kavan}\\
+\hfill \\
+\noindent\rule{15cm}{0.4pt} \\
+
+
+
+\begin{enumerate}[1)]
+
+\item We begin with the electromagnetic wave equation in an inhomogenous dielectric medium: \\
+
+\begin{equation}
+\begin{aligned}
+\left[  \laplacian - \frac{ n^2(\bm{r} ) }{c^2} \partial_t^2    \right] \mathscr{E}( \bm{r},t) & = 0 \\ 
+\end{aligned}
+\end{equation} \\
+
+where $n(\bm{r})$ is the medium's refractive index profile. We shall assume that $\mathscr{E}( \bm{r}, t)$ can be expressed as a monochromatic plane wave \\
+
+\begin{equation}
+\begin{aligned}
+\mathscr{E} ( \bm{r}, t) & = \mathscr{E} ( \bm{r} ) e^{ - i \omega t}
+\end{aligned}
+\end{equation} \\
+
+With $k = \omega/c$, the wave equation then becomes \\
+
+\begin{equation}
+\begin{aligned}
+\left[  \laplacian +  k^2 n^2(\bm{r} )   \right] \mathscr{E}( \bm{r}) & = 0 \\ 
+\end{aligned}
+\end{equation} \\
+
+Define $V(\bm{r})  = k^2 - k^2 n^2(\bm{r} ) $. Then the wave equation can be rewritten in a form more reminiscent of the Schrodinger equation: \\
+
+\begin{equation}
+\begin{aligned}
+\left[  \laplacian + k^2 +   V(\bm{r})   \right] \mathscr{E}( \bm{r}) & = 0 \\ 
+\implies \left[ - \laplacian +   V(\bm{r})   \right] \mathscr{E}( \bm{r}) & = k^2 \mathscr{E}( \bm{r}) \\ 
+\end{aligned}
+\end{equation} \\
+
+
+\begin{enumerate}[a)]
+
+\item Now, setting $E = k^2$, \\
+
+\begin{equation}
+\begin{aligned}
+\left[ - \laplacian +   V(\bm{r})   \right] \mathscr{E}( \bm{r}) & = E \mathscr{E}( \bm{r}) \\ 
+\end{aligned}
+\end{equation} \\
+
+We can define a wave function, $\varphi$, by \\
+
+\begin{equation}
+\begin{aligned}
+\varphi ( \bm{r} , t ) & = \mathscr{E}( \bm{r}) e^{ - i E T}
+\end{aligned}
+\end{equation} \\
+
+In which case, $\varphi$ satisfies \\
+
+\begin{equation}
+\begin{aligned}
+\left[ - \laplacian +   V(\bm{r})   \right] \varphi ( \bm{r} , t ) & =  i \partial_T \varphi ( \bm{r} , t )  \\ 
+\end{aligned}
+\end{equation} \\
+
+In general, solutions $\varphi ( \bm{r} , t )$ can be written as a superposition of plane waves \\
+
+
+\begin{equation}
+\begin{aligned}
+\varphi ( \bm{r} , t )  & = \frac{1}{2\pi} \int_{-\infty}^{\infty} dE \: \tilde{\varphi} ( \bm{r} , E ) \: e^{ - i E T } \\ 
+\end{aligned}
+\end{equation} \\
+
+In which case, we can also write \\
+
+
+\begin{equation}
+\begin{aligned}
+\mathscr{E} ( \bm{r} )  & = \int_{-\infty}^{\infty} dT \: \varphi ( \bm{r} , T) \: e^{  i k^2 T } \\ 
+\end{aligned}
+\end{equation} \\
+
+and we claim that this satisfies the wave equation in Eq. (3). To show this, we simply plug Eq. (5) into Eq. (3). \\
+
+\begin{equation}
+\begin{aligned}
+\left[  \laplacian +  k^2 n^2(\bm{r} )   \right] \mathscr{E}( \bm{r}) & =  \int_{-\infty}^{\infty} dT \: \left[  \laplacian +  k^2 n^2(\bm{r} )   \right]   \varphi ( \bm{r} , T) \: e^{  i k^2 T } \\ 
+& =  \int_{-\infty}^{\infty} dT \: \left[  \laplacian - V( \bm{r} )  + i \partial_T \right]   \varphi ( \bm{r} , T) \: e^{  i k^2 T } \\ 
+\end{aligned}
+\end{equation} \\
+
+But $\varphi ( \bm{r} , T)$ satisfies the Schrodinger equation, so we have \\
+
+
+\begin{equation}
+\begin{aligned}
+\left[  \laplacian +  k^2 n^2(\bm{r} )   \right] \mathscr{E}( \bm{r}) & =  0 \\
+\end{aligned}
+\end{equation} \\
+
+
+\item The Feynman propagator can be written as \\
+
+\begin{equation}
+\begin{aligned}
+K( x, t ; x_0 , t_0 ) & = \int Dx \exp\left[ \frac{ i }{ \hbar } \int_{t_0}^{t} dt' L( x, \dot{x} ) \right] \\
+\end{aligned}
+\end{equation} \\
+
+In the case of $H = - \laplacian + V( \bm{r} ) $ with $ i \partial_T = H$, the time evolution operator can be rewritten as $U(t+\delta t , t ) = e^{ - i H \delta t} $. Thus, identifying $m \to 1/2$, and $\hbar \to 1$, we can rewrite the usual propagator for the Schrodinger equation as \\
+
+\begin{equation}
+\begin{aligned}
+K( x, T ; x_0 , 0 ) & = \int Dx \exp\left[ \frac{ i }{ \hbar } \int_{0}^{T} d\tau \left( \frac{1}{2} m \dot{x}^2  - V(x)   \right) \right] \\
+%
+K( x, T ; x_0 , 0 ) & = \int Dx \exp\left[ i \int_{0}^{T} d\tau \left( \frac{1}{4}  \dot{x}^2  - V(x)   \right) \right] \\
+%
+\end{aligned}
+\end{equation} \\
+
+
+
+\item We have that the energy-space Green's function is given by \\
+
+\begin{equation}
+\begin{aligned}
+G^+ (\bm{r}, \bm{r}', E) = \frac{1 }{ i \hbar } \int_{0}^{\infty} d\tau \: e^{ i (E + i0^+) \tau /\hbar } G^+ (\bm{r}, \bm{r}' ; \tau ) \\
+\end{aligned}
+\end{equation} \\
+
+which can be rewritten under the identifications defined in b), and with $E = k^2$, as \\
+
+\begin{equation}
+\begin{aligned}
+G^+ (\bm{r}, \bm{r}', E) & = \frac{1 }{ i } \int_{0}^{\infty} dT \: e^{ i k^2 T } K^+( x, T ; x_0 , 0 )  \\
+& = - i  \int_{0}^{\infty} dT \: e^{ i k^2 T }   \int Dx \exp\left[ i \int_{0}^{T} d\tau \left( \frac{   \dot{x}^2 }{4}   - V(x)   \right) \right] \\
+\end{aligned}
+\end{equation} \\
+
+
+\item Starting with the reduced action, \\
+
+\begin{equation}
+\begin{aligned}
+S_\text{reduced} \left[ \bm{x} \right] & = \int_{0}^{s} \sqrt{ k^2 - V(\bm{x})    } ds'
+\end{aligned}
+\end{equation} \\
+
+we wish to derive Fermat's principle. Recall that $V(\bm{r})  = k^2 - k^2 n^2(\bm{r} ) $. Substituting this into the integral gives \\
+
+\begin{equation}
+\begin{aligned}
+S_\text{reduced} \left[ \bm{x} \right] & = \int_{0}^{s} \sqrt{ k^2  n^2(\bm{r} )   } ds' \\
+%
+S_\text{reduced} \left[ \bm{x} \right] & = k \int_{0}^{s}   n(\bm{r} )  ds' \\
+%
+\end{aligned}
+\end{equation} \\
+
+But requiring that this action is stationary is precisely Fermat's principle, since the constant $k$ does not change the functional minimization, so the derivation is complete. \\
+
+
+
+
+\end{enumerate}
+
+\noindent\rule{15cm}{0.4pt} \\
+
+
+\item We claim that
+
+
+\begin{equation}
+\begin{aligned}
+\lim_{\epsilon \to 0^+} \int_{ 0 }^{\infty} d \tau \: e^{ - \epsilon \tau} \cos(\omega \tau )  = \pi \delta (\omega )
+\end{aligned}
+\end{equation} \\
+
+and \\
+
+\begin{equation}
+\begin{aligned}
+\lim_{\epsilon \to 0^+} \int_{ 0 }^{\infty} d \tau \: e^{ - \epsilon \tau} \sin(\omega \tau )  = \mathscr{P} \left( \frac{1}{\omega}  \right) \\
+\end{aligned}
+\end{equation} \\
+
+To show this, consider the following integral \\
+
+
+\begin{equation}
+\begin{aligned}
+j(\omega) & = \lim_{\epsilon \to 0^+} \int_{0 }^{\infty} d \tau \: e^{ - \epsilon \tau} e^{ - i \omega \tau}  
+\end{aligned}
+\end{equation} \\
+
+This integral is easily computed and yields
+
+\begin{equation}
+\begin{aligned}
+j(\omega) & = \lim_{\epsilon \to 0^+} \int_{0 }^{\infty} d \tau \: e^{ - \epsilon \tau} e^{ -  i \omega \tau}  \\
+& =  \lim_{\epsilon \to 0^+}   \left[ \frac{ e^{  -  ( \epsilon +  i  \omega) \tau} }{ -\epsilon  - i  \omega  }   \right]_{0 }^{\infty} \\
+& =    \lim_{\epsilon \to 0^+}   \frac{ 1  }{   \epsilon +  i \omega }   \\
+& =    \lim_{\epsilon \to 0^+}   \frac{ 1  }{ i (  \omega - i  \epsilon )   }   \\
+& =    - i   \left[  \mathscr{P} \left(  \frac{1}{\omega}  \right)  + i \pi \delta(\omega)   \right] \\
+& =    \pi \delta(\omega)    - i   \mathscr{P} \left(  \frac{1}{\omega}  \right)    \\
+\end{aligned}
+\end{equation} \\
+
+So $\Re[ j(\omega) ] = \pi \delta(\omega)$ and $\Im[ j(\omega) ] =  - \mathscr{P} \left(  \frac{1}{\omega}  \right) $. But we also have $\Re[ e^{ - i \omega \tau} ] = \cos(\omega \tau) ]$ and $\Im[ e^{ - i \omega \tau} ] = - \sin(\omega \tau)] $. Thus, the claim is true. \\
+
+\noindent\rule{15cm}{0.4pt} \\
+
+\item We compute the following Fourier transform: \\
+
+\begin{equation}
+\begin{aligned}
+j(\omega) & = \int_{-\infty}^{\infty} dt \: e^{ i \omega t } \int_{-\infty}^{t} dt' \: \dot{q}(t') \Gamma(t - t' )  \\ %& =  - \frac{ i }{ M } J(\omega) \tilde{q} ( \omega ) \\
+\end{aligned}
+\end{equation} \\
+
+where \\
+
+\begin{equation}
+\begin{aligned}
+\Gamma(t) & = \frac{ 1 }{ 2\pi } \int_{-\infty}^{\infty} d\omega \: \frac{ 2 J( \omega ) }{M \omega } e^{ - i \omega t } \\
+\end{aligned}
+\end{equation} \\
+
+We can insert a $\Theta(t)$ function to eliminate the time dependence of the integral to obtain \\
+
+\begin{equation}
+\begin{aligned}
+j(\omega) & = \int_{-\infty}^{\infty} dt \: e^{ i \omega t } \int_{-\infty}^{\infty} dt' \: \dot{q}(t') \Gamma(t - t' ) \Theta( t - t' )  \\ %& =  - \frac{ i }{ M } J(\omega) \tilde{q} ( \omega ) \\
+& =  \int_{-\infty}^{\infty} dt' \:  \dot{q}(t')  \int_{-\infty}^{\infty} dt \:  \Gamma(t - t' ) \Theta( t - t' )  e^{ i \omega t } \\
+%
+& =  \int_{-\infty}^{\infty} dt' \:  \dot{q}(t')  \int_{-\infty}^{\infty} dt \:   \Gamma(t  ) \Theta( t )  e^{ i \omega ( t + t') } \\
+%
+& =  \int_{-\infty}^{\infty} dt' \:  \dot{q}(t') e^{ i \omega t' } \int_{-\infty}^{\infty} dt \:   \Gamma(t  ) \Theta( t )  e^{ i \omega  t  } \\
+%
+\end{aligned}
+\end{equation} \\
+
+Next, we perform an integration by parts on the first integral to extract $\tilde{q}(\omega)$, and insert the definition of $\Gamma(t)$. \\
+
+\begin{equation}
+\begin{aligned}
+j(\omega) & = - i \omega \int_{-\infty}^{\infty} dt' \:  q(t') e^{ i \omega t' } \int_{-\infty}^{\infty} dt \:   \Gamma(t  ) \Theta( t )  e^{ i \omega  t  } \\
+%
+& = - i \omega \:  \tilde{q}(\omega)  \int_{-\infty}^{\infty} dt \:   \Gamma(t  ) \Theta( t )  e^{ i \omega  t  } \\
+%
+& = - i \omega \:  \tilde{q}(\omega)  \int_{0}^{\infty} dt \:   \Gamma(t  )   e^{ i \omega  t  } \\
+%
+& = - i \omega  \frac{ 1 }{ \pi M } \tilde{q}(\omega)  \int_{0}^{\infty} dt \:   \int_{-\infty}^{\infty} d\omega' \: \frac{  J( \omega' ) }{ \omega' } e^{ - i \omega' t }   e^{ i \omega  t  } \\
+%
+& = - i \omega  \frac{ 1 }{ \pi M } \tilde{q}(\omega)    \int_{-\infty}^{\infty} d\omega' \: \frac{  J( \omega' ) }{ \omega' }  \int_{0}^{\infty} dt \:   e^{ - i ( \omega' - \omega )  t  } \\
+%
+\end{aligned}
+\end{equation} \\
+
+The last integral can be rewritten as $ \lim_{\epsilon \to 0} \int_{0}^{\infty} dt \:   e^{-\epsilon t } e^{ - i ( \omega' - \omega )  t  }$, which we know from the previous problem is given by $ \pi \delta(  \omega' - \omega )    - i   \mathscr{P} \left(  \frac{1}{  \omega' - \omega }  \right)  $. So we have \\
+
+\begin{equation}
+\begin{aligned}
+j(\omega) & = - i \omega  \frac{ 1 }{ \pi M } \tilde{q}(\omega)    \int_{-\infty}^{\infty} d\omega' \: \frac{  J( \omega' ) }{ \omega' } \left(   \pi \delta(  \omega' - \omega )    - i   \mathscr{P} \left(  \frac{1}{  \omega' - \omega }  \right)  \right) \\
+%
+& =   \frac{ - i  }{  M } J( \omega ) \tilde{q}(\omega)  - i    \int_{-\infty}^{\infty} d\omega' \: \frac{  J( \omega' ) }{ \omega' }    \mathscr{P} \left(  \frac{1}{  \omega' - \omega }  \right) \\
+%
+& =   \frac{ - i  }{  M } J( \omega ) \tilde{q}(\omega)  - i  \lim_{\epsilon \to 0^+ }  \int_{\mathbb{R}  \backslash ( \omega - \epsilon, \omega + \epsilon)} d\omega' \: \frac{  J( \omega' ) }{ \omega' (  \omega' - \omega  )}    \\
+\end{aligned}
+\end{equation} \\
+
+But, in an ohmic reservoir, $J(\omega') \propto \omega'$, so the principal value integral is zero. Therefore, \\
+
+\begin{equation}
+\begin{aligned}
+ \int_{-\infty}^{\infty} dt \: e^{ i \omega t } \int_{-\infty}^{t} dt' \: \dot{q}(t') \Gamma(t - t' ) & =   \frac{ - i  }{  M } J( \omega ) \tilde{q}(\omega)  \\ %& =  - \frac{ i }{ M } J(\omega) \tilde{q} ( \omega ) \\
+\end{aligned}
+\end{equation} \\
+
+
+\end{enumerate}
+
+
+
+\noindent\rule{15cm}{0.4pt} \\
+
+$$\clubsuit$$
+
+\end{document}
+
+
+
+
+
+
+
+
+
+
+
+%\begin{equation}
+%\begin{aligned}
+%\end{aligned}
+%\end{equation}

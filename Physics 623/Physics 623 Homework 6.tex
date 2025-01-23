@@ -1,0 +1,258 @@
+\documentclass[]{article}
+%\usepackage{setspace}
+%\onehalfspacing
+\usepackage{amsmath,amssymb,amsthm}
+\renewcommand{\qedsymbol}{$\blacksquare$}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{mathrsfs}
+\usepackage{amssymb}
+\usepackage{bm}
+\usepackage{enumerate}
+\usepackage{mdwlist}
+\usepackage{dirtytalk}
+\usepackage{xparse}
+\usepackage{physics}
+\usepackage[cmtip,all]{xy}
+\newcommand{\longsquiggly}{\xymatrix{{}\ar@{~>}[r]&{}}}
+\usepackage{graphicx}
+\usepackage{xcolor}% http://ctan.org/pkg/xcolor
+\usepackage{hyperref}% http://ctan.org/pkg/hyperref
+\hypersetup{
+  colorlinks=true,
+  linkcolor=blue!50!red,
+  urlcolor=green!70!black
+}
+\setcounter{MaxMatrixCols}{13}
+\setlength\parindent{0pt}
+\usepackage[none]{hyphenat}
+\usepackage[hmarginratio=1:1]{geometry}
+\begin{document}
+
+{\Large Physics 623 Homework 6}\\
+{Jeremy Welsh-Kavan}\\
+\hfill \\
+\noindent\rule{15cm}{0.4pt} \\
+
+4.4.1. {\bf Radiation by an accelerated point particle} \\
+
+To check consistency between the energy spectrum and power of a non-relativistic charged particle, we can write the total energy radiated in terms of both the energy per unit frequency and in terms of the power. \\
+
+\begin{equation}
+\begin{aligned}
+U & = \int_{0}^{\infty} d\omega \; \frac{dU}{d\omega} \\
+U & = \int_{0}^{\infty} dt \; \mathscr{P}(t) \\
+\end{aligned}
+\end{equation} \\
+
+Plugging in the expressions derived in class for $ \frac{dU}{d\omega}$, we have \\
+
+\begin{equation}
+\begin{aligned}
+U & = \frac{2}{3} \frac{e^2}{\pi c^3} \int_{0}^{\infty} d\omega \;  |\dot{\bm{v}}(\omega)|^2 \\
+U & = \frac{2}{3} \frac{e^2}{\pi c^3} \int_{0}^{\infty} d\omega \;  \left( \dot{\bm{v}}(\omega) \right) \left( \dot{\bm{v}}(\omega)^* \right) \\
+U & = \frac{2}{3} \frac{e^2}{\pi c^3} \int_{0}^{\infty} d\omega \;  \left[\int dt_1 e^{i\omega t_1} \dot{\bm{v}}(t_1)\right] \cdot \left[ \int dt_2 e^{-i\omega t_2} \dot{\bm{v}}(t_2) \right] \\
+U & = \frac{2}{3} \frac{e^2}{\pi c^3}  \int \int dt_1 dt_2 \;  \dot{\bm{v}}(t_1) \cdot \dot{\bm{v}}(t_2)\int_{0}^{\infty} d\omega \; e^{i\omega (t_1-t_2)}   \\
+U & = \frac{2}{3} \frac{e^2}{\pi c^3}  \int \int dt_1 dt_2 \; \dot{\bm{v}}(t_1) \cdot \dot{\bm{v}}(t_2) \left( \pi \delta(t_1 - t_2) \right)  \\
+\end{aligned}
+\end{equation} \\
+
+The last step is justified because the delta function is an even function of its argument. Therefore, it can be written as an inverse Fourier transform as follows: \\
+
+\begin{equation}
+\begin{aligned}
+\delta(t_1 - t_2) & = \frac{1}{2\pi} \int_{-\infty}^{\infty} d\omega \; e^{i\omega(t_1 - t_2)}  \\
+& = \delta(t_2 - t_1) \\
+& =  \frac{1}{2\pi} \int_{-\infty}^{\infty} d\omega \; e^{- i\omega(t_1 - t_2)} \\
+\implies 2\pi \delta(t_1 - t_2)  & =  \int_{0}^{\infty} d\omega \; e^{i\omega(t_1 - t_2)} +  \int_{-\infty}^{0} d\omega \; e^{ i\omega(t_1 - t_2)} \\
+2\pi \delta(t_1 - t_2)  & = 2 \int_{0}^{\infty} d\omega \; e^{i\omega(t_1 - t_2)} \\
+\end{aligned}
+\end{equation} \\
+
+Thus, we can simplify the integral in Eq. (3) to read \\
+
+\begin{equation}
+\begin{aligned}
+U & = \frac{2}{3} \frac{e^2}{\pi c^3}  \int \int dt_1 dt_2 \;  \dot{\bm{v}}(t_1) \cdot \dot{\bm{v}}(t_2) \left( \pi \delta(t_1 - t_2) \right)  \\
+U & = \frac{2}{3} \frac{e^2}{ c^3} \int dt_1  \;  \dot{\bm{v}}(t_1) \cdot \dot{\bm{v}}(t_1)  \\
+U & = \frac{2}{3} \frac{e^2}{ c^3} \int dt  \;  (\dot{\bm{v}}(t))^2  \\
+U & =  \int dt  \;  \mathscr{P}(t) \\
+\end{aligned}
+\end{equation} \\
+
+So the two formulae are consistent. \\
+
+\hfill
+\noindent\rule{15cm}{0.4pt} \\
+
+
+
+4.4.2. {\bf Classical model of an atom} \\
+
+We consider a classical model of a radiating atom as a damped harmonic oscillator with charge $e$ obeying
+
+
+\begin{equation}
+\begin{aligned}
+\ddot{x} +  \gamma \dot{x} + \omega_0^2 x & = 0\\
+x(t=0) & = a \\
+\dot{x}(t=0) & = 0 \\
+\end{aligned}
+\end{equation} \\
+
+\begin{enumerate}[a)]
+
+\item The approximate result from ch.4 § 4.5 states that $\gamma  = \frac{4}{3} \frac{e^2\omega_0^2}{mc^3} $. Overdamping occurs when $\gamma > 2\omega_0$. However, for an electron whose radiation spectrum is peaked somewhere in the range of visible light, we have \\
+
+\begin{equation}
+\begin{aligned}
+\frac{\gamma}{2\omega_0}  & = \frac{2}{3} \frac{e^2\omega_0}{mc^3} \\
+\frac{\gamma}{2\omega_0}  & = \frac{4\pi}{3} \frac{e^2  }{ \lambda mc^2}  \\
+\end{aligned}
+\end{equation} \\
+
+In the visible range, the spectrum of $\lambda$ is roughly $ 300 \text{nm} \le \lambda \le 1100 \text{nm}$. So for $\gamma / 2\omega_0$ we have
+
+\begin{equation}
+\begin{aligned}
+& \frac{4\pi}{3} \frac{e^2  }{ (1100 \text{nm})  mc^2}  \le \frac{\gamma}{2\omega_0}  \le \frac{4\pi}{3} \frac{e^2  }{ (300 \text{nm})  mc^2}  \\
+\longsquiggly & 1\times 10^{-8} \le \frac{\gamma}{2\omega_0}  \le 4\times 10^{-8}  \ll 1\\
+\end{aligned}
+\end{equation} \\
+
+So the case of the oscillator being overdamped is out of the question. \\
+
+\item Now we attempt to solve the equation of motion exactly. Let $\omega_* = \sqrt{\omega_0^2 - \gamma^2/4}$ and let $\omega_\pm = -\gamma/2 \pm i\omega_*$. Then the differential equation in Eq. (5) is solved, in general, by \\
+
+\begin{equation}
+\begin{aligned}
+x(t) & = c_1 e^{-\gamma t/2}\cos( \omega_* t) + c_2 e^{ -\gamma t /2} \sin(\omega_* t) \\
+\end{aligned}
+\end{equation} \\
+
+Plugging in the initial conditions gives
+
+\begin{equation}
+\begin{aligned}
+x(t) & = a e^{-\gamma t/2}\cos( \omega_* t) + \frac{a\gamma}{2\omega_*} e^{ -\gamma t /2} \sin(\omega_* t) \\
+\end{aligned}
+\end{equation} \\
+
+So we have
+
+\begin{equation}
+\begin{aligned}
+v(t) & = - a \left( 1 + \frac{\gamma^2}{4 \omega_*^2} \right) e^{ -\gamma t /2} \sin(\omega_* t) \\
+\end{aligned}
+\end{equation} \\
+
+And we can define $ \xi = 1 + \frac{\gamma^2}{4 \omega_*^2} $ to write 
+
+\begin{equation}
+\begin{aligned}
+v(t) & = - a \xi e^{ -\gamma t /2} \sin(\omega_* t) \\
+\end{aligned}
+\end{equation} \\
+
+We now Fourier transform Eq. (11) to get
+
+\begin{equation}
+\begin{aligned}
+v(\omega) & = - a \xi \int dt \;  e^{ - i\omega t -\gamma t /2} \sin(\omega_* t) \\
+v(\omega) & =  \frac{ i a \xi}{2 } \int dt \;  \left( e^{ - i (\omega  - \omega_* + i \gamma  /2) t} - e^{ -  i (\omega  + \omega_* + i \gamma  /2) t}  \right) \\
+v(\omega) & = - \frac{  a \xi}{2 } \left( \frac{1}{ \omega  - \omega_* + i \gamma  /2} -  \frac{1}{ \omega  + \omega_* + i \gamma  /2}  \right) \\
+\end{aligned}
+\end{equation} \\
+
+For the energy radiated per unit frequency, we have
+
+
+\begin{equation}
+\begin{aligned}
+\frac{d U}{d\omega} & = \frac{ 2 e^2}{3 \pi c^3} | \dot{v}(\omega) |^2 
+\end{aligned}
+\end{equation} \\
+
+Since $\dot{v}(\omega) = -i \omega v(\omega) $, we can rewrite Eq. (13) in terms of (12) to get the radiated energy per unit frequency.
+
+\begin{equation}
+\begin{aligned}
+\frac{d U}{d\omega} & = \frac{ 2 \omega^2 e^2}{3 \pi c^3} | v(\omega) |^2 \\
+\frac{d U}{d\omega} & = \frac{  a^2 \xi^2 \omega^2 e^2}{6 \pi c^3} \left| \frac{1}{ \omega  - \omega_* + i \gamma  /2} -  \frac{1}{ \omega  + \omega_* + i \gamma  /2}  \right|^2 \\
+%
+\frac{d U}{d\omega} & = \frac{  a^2 \xi^2 \omega^2 e^2}{6 \pi c^3} \left( \frac{4 \omega_*^2  }{ \left( ( \omega  - \omega_* )^2 + \gamma^2/4 \right) \left( ( \omega  + \omega_* )^2 + \gamma^2/4 \right) } \right) \\
+%
+\frac{d U}{d\omega} & = \frac{ 2 a^2 \xi^2 \omega_*^2 e^2}{3 \pi c^3}  \frac{ \omega^2  }{ \left( ( \omega  - \omega_* )^2 + \gamma^2/4 \right) \left( ( \omega  + \omega_* )^2 + \gamma^2/4 \right) } \\
+\end{aligned}
+\end{equation} \\
+
+To get the total radiated energy we need only integrate this over $\omega$. This yields
+
+\begin{equation}
+\begin{aligned}
+U & = \int_0^{\infty} d\omega \frac{d U}{d\omega}  \\
+%
+U & = \frac{ 2 a^2 \xi^2 \omega_*^2 e^2}{3 \pi c^3}  \int_{-\infty}^{\infty} d\omega \frac{ \omega^2  }{ \left( ( \omega  - \omega_* )^2 + \gamma^2/4 \right) \left( ( \omega  + \omega_* )^2 + \gamma^2/4 \right) } \\
+%
+U & = \frac{ 2 a^2 \xi^2 \omega_*^2 e^2}{4 \pi c^3}  \int_{-\infty}^{\infty} d\omega \frac{ (\omega/\omega_*)^2  }{ \omega_*^2 \left( ( \omega/\omega_*  - 1 )^2 + \gamma^2/4\omega_*^2 \right) \left( ( \omega/\omega_*  + 1)^2 + \gamma^2/4\omega_*^2 \right) } \\
+%
+U & = \frac{ 2 a^2 \xi^2  e^2}{3 \pi c^3}  \omega_*  \int_{-\infty}^{\infty} dz \frac{ z^2  }{ \left( (z-1)^2 + \gamma^2/4\omega_*^2 \right) \left( ( z  + 1)^2 + \gamma^2/4\omega_*^2 \right) } \\
+%
+U & = \frac{ 2 a^2 \xi^2  e^2}{3 \pi c^3}  \omega_*  \frac{\pi \omega_*}{ \gamma } \\
+%
+U & = \frac{ 2 a^2 \xi^2 \omega_*^2 e^2}{3 \gamma c^3}  \\
+\end{aligned}
+\end{equation} \\
+
+where $\xi = 1 + \frac{\gamma^2}{4 \omega_*^2} $ and $\omega_* = \sqrt{\omega_0^2 - \gamma^2/4}$. The integral above was computed in Mathematica. \\ 
+
+If $\gamma$ is small compared to $2\omega_0$ then $\xi^2 \omega_*^2 = \omega_*^4\left( 1 + \frac{\gamma^2}{4\omega_*^2} \right)^2 \approx \omega_0^4\left( 1 + \frac{\gamma^2}{4\omega_0^2} \right)^2 \approx  \omega_0^4$. So in this limit we have
+
+\begin{equation}
+\begin{aligned}
+U & = \frac{ 2 a^2 \xi^2 \omega_*^2 e^2}{3 \gamma c^3}  \\
+U & \approx  \frac{ 2 a^2 \omega_0^4 e^2}{3 \gamma c^3} 
+\end{aligned}
+\end{equation} \\
+
+So the underdamped case is recovered. \\
+
+
+
+
+
+
+
+\end{enumerate}
+
+ 
+\noindent\rule{15cm}{0.4pt} \\
+
+
+
+4.5.1. {\bf Čerenkov radiation} \\
+
+This one didn't make it :( 
+
+
+ 
+\noindent\rule{15cm}{0.4pt} \\
+
+$$\clubsuit$$
+
+\end{document}
+
+
+
+
+
+
+
+
+
+
+
+%\begin{equation}
+%\begin{split}
+%\end{split}
+%\end{equation}
